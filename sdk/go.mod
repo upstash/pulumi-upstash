@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/upstash/upstash-pulumi-provider/sdk
 
 go 1.17
 

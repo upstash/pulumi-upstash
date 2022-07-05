@@ -1,0 +1,5 @@
+{
+  "resource": true,
+  "name": "upstash",
+  "server": "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}"
+}

@@ -1,0 +1,469 @@
+{
+    "name": "upstash",
+    "displayName": "Upstash",
+    "description": "A Pulumi package for creating and managing upstash cloud resources.",
+    "keywords": [
+        "pulumi",
+        "upstash",
+        "category/cloud"
+    ],
+    "homepage": "https://www.pulumi.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`upstash` Terraform Provider](https://github.com/upstash/terraform-provider-upstash).",
+    "repository": "https://github.com/pulumi/pulumi-upstash",
+    "pluginDownloadURL": "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
+    "publisher": "Upstash",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            }
+        },
+        "defaults": [
+            "apiKey",
+            "email"
+        ]
+    },
+    "provider": {
+        "description": "The provider type for the upstash package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "apiKey",
+            "email"
+        ],
+        "inputProperties": {
+            "apiKey": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            }
+        },
+        "requiredInputs": [
+            "apiKey",
+            "email"
+        ]
+    },
+    "resources": {
+        "upstash:index/redisDatabase:RedisDatabase": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleDB = new upstash.RedisDatabase(\"exampleDB\", {\n    databaseName: \"Terraform DB6\",\n    multizone: true,\n    region: \"eu-west-1\",\n    tls: true,\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\nexample_db = upstash.RedisDatabase(\"exampleDB\",\n    database_name=\"Terraform DB6\",\n    multizone=True,\n    region=\"eu-west-1\",\n    tls=True)\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDB = new Upstash.RedisDatabase(\"exampleDB\", new Upstash.RedisDatabaseArgs\n        {\n            DatabaseName = \"Terraform DB6\",\n            Multizone = true,\n            Region = \"eu-west-1\",\n            Tls = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewRedisDatabase(ctx, \"exampleDB\", \u0026upstash.RedisDatabaseArgs{\n\t\t\tDatabaseName: pulumi.String(\"Terraform DB6\"),\n\t\t\tMultizone:    pulumi.Bool(true),\n\t\t\tRegion:       pulumi.String(\"eu-west-1\"),\n\t\t\tTls:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDB = new RedisDatabase(\"exampleDB\", RedisDatabaseArgs.builder()        \n            .databaseName(\"Terraform DB6\")\n            .multizone(\"true\")\n            .region(\"eu-west-1\")\n            .tls(\"true\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDB:\n    type: upstash:RedisDatabase\n    properties:\n      databaseName: Terraform DB6\n      multizone: true\n      region: eu-west-1\n      tls: true\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "consistent": {
+                    "type": "boolean",
+                    "description": "When enabled, all writes are synchronously persisted to the disk.\n"
+                },
+                "creationTime": {
+                    "type": "integer",
+                    "description": "Creation time of the database\n"
+                },
+                "databaseId": {
+                    "type": "string",
+                    "description": "Unique Database ID for created database\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "Name of the database\n"
+                },
+                "databaseType": {
+                    "type": "string",
+                    "description": "Type of the database\n"
+                },
+                "dbDailyBandwidthLimit": {
+                    "type": "integer",
+                    "description": "Daily bandwidth limit for the database\n"
+                },
+                "dbDiskThreshold": {
+                    "type": "integer",
+                    "description": "Disk threshold for the database\n"
+                },
+                "dbMaxClients": {
+                    "type": "integer",
+                    "description": "Max clients for the database\n"
+                },
+                "dbMaxCommandsPerSecond": {
+                    "type": "integer",
+                    "description": "Max commands per second for the database\n"
+                },
+                "dbMaxEntrySize": {
+                    "type": "integer",
+                    "description": "Max entry size for the database\n"
+                },
+                "dbMaxRequestSize": {
+                    "type": "integer",
+                    "description": "Max request size for the database\n"
+                },
+                "dbMemoryThreshold": {
+                    "type": "integer",
+                    "description": "Memory threshold for the database\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Database URL for connection\n"
+                },
+                "multizone": {
+                    "type": "boolean",
+                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password of the database\n",
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port of the endpoint\n"
+                },
+                "readOnlyRestToken": {
+                    "type": "string",
+                    "description": "Rest Token for the database.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n"
+                },
+                "restToken": {
+                    "type": "string",
+                    "description": "Rest Token for the database.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State of the database\n"
+                },
+                "tls": {
+                    "type": "boolean",
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                },
+                "userEmail": {
+                    "type": "string",
+                    "description": "User email for the database\n"
+                }
+            },
+            "required": [
+                "creationTime",
+                "databaseId",
+                "databaseName",
+                "databaseType",
+                "dbDailyBandwidthLimit",
+                "dbDiskThreshold",
+                "dbMaxClients",
+                "dbMaxCommandsPerSecond",
+                "dbMaxEntrySize",
+                "dbMaxRequestSize",
+                "dbMemoryThreshold",
+                "endpoint",
+                "password",
+                "port",
+                "readOnlyRestToken",
+                "region",
+                "restToken",
+                "state",
+                "userEmail"
+            ],
+            "inputProperties": {
+                "consistent": {
+                    "type": "boolean",
+                    "description": "When enabled, all writes are synchronously persisted to the disk.\n",
+                    "willReplaceOnChanges": true
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "Name of the database\n",
+                    "willReplaceOnChanges": true
+                },
+                "multizone": {
+                    "type": "boolean",
+                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n",
+                    "willReplaceOnChanges": true
+                },
+                "tls": {
+                    "type": "boolean",
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                }
+            },
+            "requiredInputs": [
+                "databaseName",
+                "region"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RedisDatabase resources.\n",
+                "properties": {
+                    "consistent": {
+                        "type": "boolean",
+                        "description": "When enabled, all writes are synchronously persisted to the disk.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "Creation time of the database\n"
+                    },
+                    "databaseId": {
+                        "type": "string",
+                        "description": "Unique Database ID for created database\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "Name of the database\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "databaseType": {
+                        "type": "string",
+                        "description": "Type of the database\n"
+                    },
+                    "dbDailyBandwidthLimit": {
+                        "type": "integer",
+                        "description": "Daily bandwidth limit for the database\n"
+                    },
+                    "dbDiskThreshold": {
+                        "type": "integer",
+                        "description": "Disk threshold for the database\n"
+                    },
+                    "dbMaxClients": {
+                        "type": "integer",
+                        "description": "Max clients for the database\n"
+                    },
+                    "dbMaxCommandsPerSecond": {
+                        "type": "integer",
+                        "description": "Max commands per second for the database\n"
+                    },
+                    "dbMaxEntrySize": {
+                        "type": "integer",
+                        "description": "Max entry size for the database\n"
+                    },
+                    "dbMaxRequestSize": {
+                        "type": "integer",
+                        "description": "Max request size for the database\n"
+                    },
+                    "dbMemoryThreshold": {
+                        "type": "integer",
+                        "description": "Memory threshold for the database\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "Database URL for connection\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password of the database\n",
+                        "secret": true
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "Port of the endpoint\n"
+                    },
+                    "readOnlyRestToken": {
+                        "type": "string",
+                        "description": "Rest Token for the database.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "restToken": {
+                        "type": "string",
+                        "description": "Rest Token for the database.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State of the database\n"
+                    },
+                    "tls": {
+                        "type": "boolean",
+                        "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    },
+                    "userEmail": {
+                        "type": "string",
+                        "description": "User email for the database\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "upstash:index/getRedisDatabase:getRedisDatabase": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleDBData = upstash.getRedisDatabase({\n    databaseId: resource.upstash_redis_database.exampleDB.database_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nexample_db_data = upstash.get_redis_database(database_id=resource[\"upstash_redis_database\"][\"exampleDB\"][\"database_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDBData = Output.Create(Upstash.GetRedisDatabase.InvokeAsync(new Upstash.GetRedisDatabaseArgs\n        {\n            DatabaseId = resource.Upstash_redis_database.ExampleDB.Database_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupRedisDatabase(ctx, \u0026GetRedisDatabaseArgs{\n\t\t\tDatabaseId: resource.Upstash_redis_database.ExampleDB.Database_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleDBData = Output.of(UpstashFunctions.getRedisDatabase(GetRedisDatabaseArgs.builder()\n            .databaseId(resource.upstash_redis_database().exampleDB().database_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleDBData:\n    Fn::Invoke:\n      Function: upstash:getRedisDatabase\n      Arguments:\n        databaseId: ${resource.upstash_redis_database.exampleDB.database_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getRedisDatabase.\n",
+                "properties": {
+                    "databaseId": {
+                        "type": "string",
+                        "description": "Unique Database ID for requested database\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "databaseId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getRedisDatabase.\n",
+                "properties": {
+                    "consistent": {
+                        "type": "boolean",
+                        "description": "When enabled database runs in Consistency Mode\n"
+                    },
+                    "creationTime": {
+                        "type": "integer"
+                    },
+                    "databaseId": {
+                        "type": "string",
+                        "description": "Unique Database ID for requested database\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "Name of the database\n"
+                    },
+                    "databaseType": {
+                        "type": "string"
+                    },
+                    "dbDailyBandwidthLimit": {
+                        "type": "integer"
+                    },
+                    "dbDiskThreshold": {
+                        "type": "integer"
+                    },
+                    "dbMaxClients": {
+                        "type": "integer"
+                    },
+                    "dbMaxCommandsPerSecond": {
+                        "type": "integer"
+                    },
+                    "dbMaxEntrySize": {
+                        "type": "integer"
+                    },
+                    "dbMaxRequestSize": {
+                        "type": "integer"
+                    },
+                    "dbMemoryThreshold": {
+                        "type": "integer"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "Database URL for connection\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "When enabled database is highly available and deployed multi-zone\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password of the database\n"
+                    },
+                    "port": {
+                        "type": "integer"
+                    },
+                    "readOnlyRestToken": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n"
+                    },
+                    "restToken": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "tls": {
+                        "type": "boolean",
+                        "description": "When enabled data is encrypted in transit\n"
+                    },
+                    "userEmail": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "consistent",
+                    "creationTime",
+                    "databaseId",
+                    "databaseName",
+                    "databaseType",
+                    "dbDailyBandwidthLimit",
+                    "dbDiskThreshold",
+                    "dbMaxClients",
+                    "dbMaxCommandsPerSecond",
+                    "dbMaxEntrySize",
+                    "dbMaxRequestSize",
+                    "dbMemoryThreshold",
+                    "endpoint",
+                    "multizone",
+                    "password",
+                    "port",
+                    "readOnlyRestToken",
+                    "region",
+                    "restToken",
+                    "state",
+                    "tls",
+                    "userEmail",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "rootNamespace": "Upstash"
+        },
+        "go": {
+            "generateExtraInputTypes": true,
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing upstash cloud resources.",
+            "packageName": "@upstash/upstash",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/upstash/terraform-provider-upstash)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-upstash` repo](https://github.com/pulumi/pulumi-upstash/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`upstash/terraform-provider-upstash` repo](https://github.com/upstash/terraform-provider-upstash/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "packageName": "upstash_upstash",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/upstash/terraform-provider-upstash)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-upstash` repo](https://github.com/pulumi/pulumi-upstash/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`upstash/terraform-provider-upstash` repo](https://github.com/upstash/terraform-provider-upstash/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
