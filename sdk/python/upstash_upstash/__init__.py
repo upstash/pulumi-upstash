@@ -5,9 +5,15 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .get_kafka_cluster import *
+from .get_kafka_topic import *
 from .get_redis_database import *
+from .get_team import *
+from .kafka_cluster import *
+from .kafka_topic import *
 from .provider import *
 from .redis_database import *
+from .team import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -21,10 +27,34 @@ _utilities.register(
 [
  {
   "pkg": "upstash",
+  "mod": "index/kafkaCluster",
+  "fqn": "upstash_upstash",
+  "classes": {
+   "upstash:index/kafkaCluster:KafkaCluster": "KafkaCluster"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/kafkaTopic",
+  "fqn": "upstash_upstash",
+  "classes": {
+   "upstash:index/kafkaTopic:KafkaTopic": "KafkaTopic"
+  }
+ },
+ {
+  "pkg": "upstash",
   "mod": "index/redisDatabase",
   "fqn": "upstash_upstash",
   "classes": {
    "upstash:index/redisDatabase:RedisDatabase": "RedisDatabase"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/team",
+  "fqn": "upstash_upstash",
+  "classes": {
+   "upstash:index/team:Team": "Team"
   }
  }
 ]

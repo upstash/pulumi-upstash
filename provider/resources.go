@@ -92,6 +92,15 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"upstash_kafka_cluster": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaCluster"),
+			},
+			"upstash_kafka_topic": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaTopic"),
+			},
+			"upstash_team": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Team"),
+			},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -108,6 +117,15 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"upstash_redis_database_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRedisDatabase"),
+			},
+			"upstash_kafka_cluster_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaCluster"),
+			},
+			"upstash_kafka_topic_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaTopic"),
+			},
+			"upstash_team_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTeam"),
 			},
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.

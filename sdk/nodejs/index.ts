@@ -5,9 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./getKafkaCluster";
+export * from "./getKafkaTopic";
 export * from "./getRedisDatabase";
+export * from "./getTeam";
+export * from "./kafkaCluster";
+export * from "./kafkaTopic";
 export * from "./provider";
 export * from "./redisDatabase";
+export * from "./team";
 
 // Export sub-modules:
 import * as config from "./config";
@@ -17,20 +23,32 @@ export {
 };
 
 // Import resources to register:
+import { KafkaCluster } from "./kafkaCluster";
+import { KafkaTopic } from "./kafkaTopic";
 import { RedisDatabase } from "./redisDatabase";
+import { Team } from "./team";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "upstash:index/kafkaCluster:KafkaCluster":
+                return new KafkaCluster(name, <any>undefined, { urn })
+            case "upstash:index/kafkaTopic:KafkaTopic":
+                return new KafkaTopic(name, <any>undefined, { urn })
             case "upstash:index/redisDatabase:RedisDatabase":
                 return new RedisDatabase(name, <any>undefined, { urn })
+            case "upstash:index/team:Team":
+                return new Team(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("upstash", "index/kafkaCluster", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/kafkaTopic", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/redisDatabase", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/team", _module)
 
 import { Provider } from "./provider";
 

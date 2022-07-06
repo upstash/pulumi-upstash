@@ -20,8 +20,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "upstash:index/kafkaCluster:KafkaCluster":
+		r = &KafkaCluster{}
+	case "upstash:index/kafkaTopic:KafkaTopic":
+		r = &KafkaTopic{}
 	case "upstash:index/redisDatabase:RedisDatabase":
 		r = &RedisDatabase{}
+	case "upstash:index/team:Team":
+		r = &Team{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -52,7 +58,22 @@ func init() {
 	version, _ := PkgVersion()
 	pulumi.RegisterResourceModule(
 		"upstash",
+		"index/kafkaCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/kafkaTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
 		"index/redisDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/team",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

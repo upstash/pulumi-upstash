@@ -58,6 +58,388 @@
         ]
     },
     "resources": {
+        "upstash:index/kafkaCluster:KafkaCluster": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleCluster = new upstash.KafkaCluster(\"exampleCluster\", {\n    clusterName: \"TerraformCluster\",\n    multizone: false,\n    region: \"eu-west-1\",\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\nexample_cluster = upstash.KafkaCluster(\"exampleCluster\",\n    cluster_name=\"TerraformCluster\",\n    multizone=False,\n    region=\"eu-west-1\")\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleCluster = new Upstash.KafkaCluster(\"exampleCluster\", new Upstash.KafkaClusterArgs\n        {\n            ClusterName = \"TerraformCluster\",\n            Multizone = false,\n            Region = \"eu-west-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewKafkaCluster(ctx, \"exampleCluster\", \u0026upstash.KafkaClusterArgs{\n\t\t\tClusterName: pulumi.String(\"TerraformCluster\"),\n\t\t\tMultizone:   pulumi.Bool(false),\n\t\t\tRegion:      pulumi.String(\"eu-west-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new KafkaCluster(\"exampleCluster\", KafkaClusterArgs.builder()        \n            .clusterName(\"TerraformCluster\")\n            .multizone(false)\n            .region(\"eu-west-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: upstash:KafkaCluster\n    properties:\n      clusterName: TerraformCluster\n      multizone: false\n      region: eu-west-1\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "Unique Cluster ID for created cluster\n"
+                },
+                "clusterName": {
+                    "type": "string",
+                    "description": "Name of the team\n"
+                },
+                "creationTime": {
+                    "type": "integer",
+                    "description": "Creation time of the cluster\n"
+                },
+                "maxMessageSize": {
+                    "type": "integer",
+                    "description": "Max Message Size for the cluster\n"
+                },
+                "maxMessagesPerSecond": {
+                    "type": "integer",
+                    "description": "Max Messages Per Second for the cluster\n"
+                },
+                "maxPartitions": {
+                    "type": "integer",
+                    "description": "Max Partitions for the cluster\n"
+                },
+                "maxRetentionSize": {
+                    "type": "integer",
+                    "description": "Max Retention Size of the cluster\n"
+                },
+                "maxRetentionTime": {
+                    "type": "integer",
+                    "description": "Max Retention Time of the cluster\n"
+                },
+                "multizone": {
+                    "type": "boolean",
+                    "description": "Whether cluster has multizone attribute\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password for the cluster\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "region of the cluster. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n"
+                },
+                "restEndpoint": {
+                    "type": "string",
+                    "description": "REST Endpoint of the cluster\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State, where the cluster is originated\n"
+                },
+                "tcpEndpoint": {
+                    "type": "string",
+                    "description": "TCP Endpoint of the cluster\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of the cluster\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username for the cluster\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "clusterName",
+                "creationTime",
+                "maxMessageSize",
+                "maxMessagesPerSecond",
+                "maxPartitions",
+                "maxRetentionSize",
+                "maxRetentionTime",
+                "password",
+                "region",
+                "restEndpoint",
+                "state",
+                "tcpEndpoint",
+                "type",
+                "username"
+            ],
+            "inputProperties": {
+                "clusterName": {
+                    "type": "string",
+                    "description": "Name of the team\n"
+                },
+                "multizone": {
+                    "type": "boolean",
+                    "description": "Whether cluster has multizone attribute\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "region of the cluster. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "clusterName",
+                "region"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KafkaCluster resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for created cluster\n"
+                    },
+                    "clusterName": {
+                        "type": "string",
+                        "description": "Name of the team\n"
+                    },
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "Creation time of the cluster\n"
+                    },
+                    "maxMessageSize": {
+                        "type": "integer",
+                        "description": "Max Message Size for the cluster\n"
+                    },
+                    "maxMessagesPerSecond": {
+                        "type": "integer",
+                        "description": "Max Messages Per Second for the cluster\n"
+                    },
+                    "maxPartitions": {
+                        "type": "integer",
+                        "description": "Max Partitions for the cluster\n"
+                    },
+                    "maxRetentionSize": {
+                        "type": "integer",
+                        "description": "Max Retention Size of the cluster\n"
+                    },
+                    "maxRetentionTime": {
+                        "type": "integer",
+                        "description": "Max Retention Time of the cluster\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "Whether cluster has multizone attribute\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password for the cluster\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "region of the cluster. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "restEndpoint": {
+                        "type": "string",
+                        "description": "REST Endpoint of the cluster\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State, where the cluster is originated\n"
+                    },
+                    "tcpEndpoint": {
+                        "type": "string",
+                        "description": "TCP Endpoint of the cluster\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the cluster\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username for the cluster\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/kafkaTopic:KafkaTopic": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@upstash/upstash\";\n\n// Not necessary if the topic belongs to an already created cluster.\nconst exampleKafkaCluster = new upstash.KafkaCluster(\"exampleKafkaCluster\", {\n    clusterName: \"Terraform_Upstash_Cluster\",\n    region: \"eu-west-1\",\n    multizone: false,\n});\nconst exampleKafkaTopic = new upstash.KafkaTopic(\"exampleKafkaTopic\", {\n    topicName: \"TerraformTopic\",\n    partitions: 1,\n    retentionTime: 625135,\n    retentionSize: 725124,\n    maxMessageSize: 829213,\n    cleanupPolicy: \"delete\",\n    clusterId: resource.upstash_kafka_cluster.exampleKafkaCluster.cluster_id,\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\n# Not necessary if the topic belongs to an already created cluster.\nexample_kafka_cluster = upstash.KafkaCluster(\"exampleKafkaCluster\",\n    cluster_name=\"Terraform_Upstash_Cluster\",\n    region=\"eu-west-1\",\n    multizone=False)\nexample_kafka_topic = upstash.KafkaTopic(\"exampleKafkaTopic\",\n    topic_name=\"TerraformTopic\",\n    partitions=1,\n    retention_time=625135,\n    retention_size=725124,\n    max_message_size=829213,\n    cleanup_policy=\"delete\",\n    cluster_id=resource[\"upstash_kafka_cluster\"][\"exampleKafkaCluster\"][\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Not necessary if the topic belongs to an already created cluster.\n        var exampleKafkaCluster = new Upstash.KafkaCluster(\"exampleKafkaCluster\", new Upstash.KafkaClusterArgs\n        {\n            ClusterName = \"Terraform_Upstash_Cluster\",\n            Region = \"eu-west-1\",\n            Multizone = false,\n        });\n        var exampleKafkaTopic = new Upstash.KafkaTopic(\"exampleKafkaTopic\", new Upstash.KafkaTopicArgs\n        {\n            TopicName = \"TerraformTopic\",\n            Partitions = 1,\n            RetentionTime = 625135,\n            RetentionSize = 725124,\n            MaxMessageSize = 829213,\n            CleanupPolicy = \"delete\",\n            ClusterId = resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewKafkaCluster(ctx, \"exampleKafkaCluster\", \u0026upstash.KafkaClusterArgs{\n\t\t\tClusterName: pulumi.String(\"Terraform_Upstash_Cluster\"),\n\t\t\tRegion:      pulumi.String(\"eu-west-1\"),\n\t\t\tMultizone:   pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upstash.NewKafkaTopic(ctx, \"exampleKafkaTopic\", \u0026upstash.KafkaTopicArgs{\n\t\t\tTopicName:      pulumi.String(\"TerraformTopic\"),\n\t\t\tPartitions:     pulumi.Int(1),\n\t\t\tRetentionTime:  pulumi.Int(625135),\n\t\t\tRetentionSize:  pulumi.Int(725124),\n\t\t\tMaxMessageSize: pulumi.Int(829213),\n\t\t\tCleanupPolicy:  pulumi.String(\"delete\"),\n\t\t\tClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleKafkaCluster = new KafkaCluster(\"exampleKafkaCluster\", KafkaClusterArgs.builder()        \n            .clusterName(\"Terraform_Upstash_Cluster\")\n            .region(\"eu-west-1\")\n            .multizone(false)\n            .build());\n\n        var exampleKafkaTopic = new KafkaTopic(\"exampleKafkaTopic\", KafkaTopicArgs.builder()        \n            .topicName(\"TerraformTopic\")\n            .partitions(1)\n            .retentionTime(625135)\n            .retentionSize(725124)\n            .maxMessageSize(829213)\n            .cleanupPolicy(\"delete\")\n            .clusterId(resource.upstash_kafka_cluster().exampleKafkaCluster().cluster_id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleKafkaCluster:\n    type: upstash:KafkaCluster\n    properties:\n      clusterName: Terraform_Upstash_Cluster\n      region: eu-west-1\n      multizone: false\n  exampleKafkaTopic:\n    type: upstash:KafkaTopic\n    properties:\n      topicName: TerraformTopic\n      partitions: 1\n      retentionTime: 625135\n      retentionSize: 725124\n      maxMessageSize: 829213\n      cleanupPolicy: delete\n      clusterId: ${resource.upstash_kafka_cluster.exampleKafkaCluster.cluster_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "cleanupPolicy": {
+                    "type": "string",
+                    "description": "Cleanup policy will be used in the topic(compact or delete)\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "ID of the cluster the topic will be deployed in\n"
+                },
+                "creationTime": {
+                    "type": "integer",
+                    "description": "Creation time of the topic\n"
+                },
+                "maxMessageSize": {
+                    "type": "integer",
+                    "description": "Max message size in the topic\n"
+                },
+                "multizone": {
+                    "type": "boolean",
+                    "description": "Whether multizone replication is enabled\n"
+                },
+                "partitions": {
+                    "type": "integer",
+                    "description": "The number of partitions the topic will have\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password to be used in authenticating to the cluster\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region of the kafka topic\n"
+                },
+                "restEndpoint": {
+                    "type": "string",
+                    "description": "REST Endpoint of the kafka topic\n"
+                },
+                "retentionSize": {
+                    "type": "integer",
+                    "description": "Retention size of the messages in the topic\n"
+                },
+                "retentionTime": {
+                    "type": "integer",
+                    "description": "Retention time of messages in the topic\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State of the kafka topic (active or deleted)\n"
+                },
+                "tcpEndpoint": {
+                    "type": "string",
+                    "description": "TCP Endpoint of the kafka topic\n"
+                },
+                "topicId": {
+                    "type": "string",
+                    "description": "Unique Cluster ID for created topic\n"
+                },
+                "topicName": {
+                    "type": "string",
+                    "description": "Name of the topic\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username to be used in authenticating to the cluster\n"
+                }
+            },
+            "required": [
+                "cleanupPolicy",
+                "clusterId",
+                "creationTime",
+                "maxMessageSize",
+                "multizone",
+                "partitions",
+                "password",
+                "region",
+                "restEndpoint",
+                "retentionSize",
+                "retentionTime",
+                "state",
+                "tcpEndpoint",
+                "topicId",
+                "topicName",
+                "username"
+            ],
+            "inputProperties": {
+                "cleanupPolicy": {
+                    "type": "string",
+                    "description": "Cleanup policy will be used in the topic(compact or delete)\n",
+                    "willReplaceOnChanges": true
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "ID of the cluster the topic will be deployed in\n",
+                    "willReplaceOnChanges": true
+                },
+                "maxMessageSize": {
+                    "type": "integer",
+                    "description": "Max message size in the topic\n"
+                },
+                "partitions": {
+                    "type": "integer",
+                    "description": "The number of partitions the topic will have\n",
+                    "willReplaceOnChanges": true
+                },
+                "retentionSize": {
+                    "type": "integer",
+                    "description": "Retention size of the messages in the topic\n"
+                },
+                "retentionTime": {
+                    "type": "integer",
+                    "description": "Retention time of messages in the topic\n"
+                },
+                "topicName": {
+                    "type": "string",
+                    "description": "Name of the topic\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "cleanupPolicy",
+                "clusterId",
+                "maxMessageSize",
+                "partitions",
+                "retentionSize",
+                "retentionTime",
+                "topicName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KafkaTopic resources.\n",
+                "properties": {
+                    "cleanupPolicy": {
+                        "type": "string",
+                        "description": "Cleanup policy will be used in the topic(compact or delete)\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "ID of the cluster the topic will be deployed in\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "Creation time of the topic\n"
+                    },
+                    "maxMessageSize": {
+                        "type": "integer",
+                        "description": "Max message size in the topic\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "Whether multizone replication is enabled\n"
+                    },
+                    "partitions": {
+                        "type": "integer",
+                        "description": "The number of partitions the topic will have\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password to be used in authenticating to the cluster\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region of the kafka topic\n"
+                    },
+                    "restEndpoint": {
+                        "type": "string",
+                        "description": "REST Endpoint of the kafka topic\n"
+                    },
+                    "retentionSize": {
+                        "type": "integer",
+                        "description": "Retention size of the messages in the topic\n"
+                    },
+                    "retentionTime": {
+                        "type": "integer",
+                        "description": "Retention time of messages in the topic\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State of the kafka topic (active or deleted)\n"
+                    },
+                    "tcpEndpoint": {
+                        "type": "string",
+                        "description": "TCP Endpoint of the kafka topic\n"
+                    },
+                    "topicId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for created topic\n"
+                    },
+                    "topicName": {
+                        "type": "string",
+                        "description": "Name of the topic\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username to be used in authenticating to the cluster\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "upstash:index/redisDatabase:RedisDatabase": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleDB = new upstash.RedisDatabase(\"exampleDB\", {\n    databaseName: \"Terraform DB6\",\n    multizone: true,\n    region: \"eu-west-1\",\n    tls: true,\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\nexample_db = upstash.RedisDatabase(\"exampleDB\",\n    database_name=\"Terraform DB6\",\n    multizone=True,\n    region=\"eu-west-1\",\n    tls=True)\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDB = new Upstash.RedisDatabase(\"exampleDB\", new Upstash.RedisDatabaseArgs\n        {\n            DatabaseName = \"Terraform DB6\",\n            Multizone = true,\n            Region = \"eu-west-1\",\n            Tls = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewRedisDatabase(ctx, \"exampleDB\", \u0026upstash.RedisDatabaseArgs{\n\t\t\tDatabaseName: pulumi.String(\"Terraform DB6\"),\n\t\t\tMultizone:    pulumi.Bool(true),\n\t\t\tRegion:       pulumi.String(\"eu-west-1\"),\n\t\t\tTls:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDB = new RedisDatabase(\"exampleDB\", RedisDatabaseArgs.builder()        \n            .databaseName(\"Terraform DB6\")\n            .multizone(\"true\")\n            .region(\"eu-west-1\")\n            .tls(\"true\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDB:\n    type: upstash:RedisDatabase\n    properties:\n      databaseName: Terraform DB6\n      multizone: true\n      region: eu-west-1\n      tls: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -299,9 +681,307 @@
                 },
                 "type": "object"
             }
+        },
+        "upstash:index/team:Team": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@upstash/upstash\";\n\nconst exampleTeam = new upstash.Team(\"exampleTeam\", {\n    teamName: \"TerraformTeam\",\n    copyCc: false,\n    teamMembers: {\n        \"X@Y.Z\": \"owner\",\n        \"A@B.C\": \"dev\",\n        \"E@E.F\": \"finance\",\n    },\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\nexample_team = upstash.Team(\"exampleTeam\",\n    team_name=\"TerraformTeam\",\n    copy_cc=False,\n    team_members={\n        \"X@Y.Z\": \"owner\",\n        \"A@B.C\": \"dev\",\n        \"E@E.F\": \"finance\",\n    })\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleTeam = new Upstash.Team(\"exampleTeam\", new Upstash.TeamArgs\n        {\n            TeamName = \"TerraformTeam\",\n            CopyCc = false,\n            TeamMembers = \n            {\n                { \"X@Y.Z\", \"owner\" },\n                { \"A@B.C\", \"dev\" },\n                { \"E@E.F\", \"finance\" },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewTeam(ctx, \"exampleTeam\", \u0026upstash.TeamArgs{\n\t\t\tTeamName: pulumi.String(\"TerraformTeam\"),\n\t\t\tCopyCc:   pulumi.Bool(false),\n\t\t\tTeamMembers: pulumi.StringMap{\n\t\t\t\t\"X@Y.Z\": pulumi.String(\"owner\"),\n\t\t\t\t\"A@B.C\": pulumi.String(\"dev\"),\n\t\t\t\t\"E@E.F\": pulumi.String(\"finance\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleTeam = new Team(\"exampleTeam\", TeamArgs.builder()        \n            .teamName(\"TerraformTeam\")\n            .copyCc(false)\n            .teamMembers(Map.ofEntries(\n                Map.entry(\"X@Y.Z\", \"owner\"),\n                Map.entry(\"A@B.C\", \"dev\"),\n                Map.entry(\"E@E.F\", \"finance\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleTeam:\n    type: upstash:Team\n    properties:\n      teamName: TerraformTeam\n      copyCc: false\n      teamMembers:\n        X@Y.Z: owner\n        A@B.C: dev\n        E@E.F: finance\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "copyCc": {
+                    "type": "boolean",
+                    "description": "Whether Credit Card is copied\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "Unique Cluster ID for created cluster\n"
+                },
+                "teamMembers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Members of the team. (Owner must be specified, which is the owner of the api key.)\n"
+                },
+                "teamName": {
+                    "type": "string",
+                    "description": "Name of the team\n"
+                }
+            },
+            "required": [
+                "copyCc",
+                "teamId",
+                "teamMembers",
+                "teamName"
+            ],
+            "inputProperties": {
+                "copyCc": {
+                    "type": "boolean",
+                    "description": "Whether Credit Card is copied\n",
+                    "willReplaceOnChanges": true
+                },
+                "teamMembers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Members of the team. (Owner must be specified, which is the owner of the api key.)\n"
+                },
+                "teamName": {
+                    "type": "string",
+                    "description": "Name of the team\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "copyCc",
+                "teamMembers",
+                "teamName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Team resources.\n",
+                "properties": {
+                    "copyCc": {
+                        "type": "boolean",
+                        "description": "Whether Credit Card is copied\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for created cluster\n"
+                    },
+                    "teamMembers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Members of the team. (Owner must be specified, which is the owner of the api key.)\n"
+                    },
+                    "teamName": {
+                        "type": "string",
+                        "description": "Name of the team\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
         }
     },
     "functions": {
+        "upstash:index/getKafkaCluster:getKafkaCluster": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst clusterData = upstash.getKafkaCluster({\n    clusterId: resource.upstash_kafka_cluster.exampleCluster.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\ncluster_data = upstash.get_kafka_cluster(cluster_id=resource[\"upstash_kafka_cluster\"][\"exampleCluster\"][\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var clusterData = Output.Create(Upstash.GetKafkaCluster.InvokeAsync(new Upstash.GetKafkaClusterArgs\n        {\n            ClusterId = resource.Upstash_kafka_cluster.ExampleCluster.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupKafkaCluster(ctx, \u0026GetKafkaClusterArgs{\n\t\t\tClusterId: resource.Upstash_kafka_cluster.ExampleCluster.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var clusterData = Output.of(UpstashFunctions.getKafkaCluster(GetKafkaClusterArgs.builder()\n            .clusterId(resource.upstash_kafka_cluster().exampleCluster().cluster_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  clusterData:\n    Fn::Invoke:\n      Function: upstash:getKafkaCluster\n      Arguments:\n        clusterId: ${resource.upstash_kafka_cluster.exampleCluster.cluster_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKafkaCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for requested cluster\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKafkaCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for requested cluster\n"
+                    },
+                    "clusterName": {
+                        "type": "string",
+                        "description": "Name of the team\n"
+                    },
+                    "creationTime": {
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "maxMessageSize": {
+                        "type": "integer",
+                        "description": "Max Message Size for the cluster\n"
+                    },
+                    "maxMessagesPerSecond": {
+                        "type": "integer",
+                        "description": "Max Messages Per Second for the cluster\n"
+                    },
+                    "maxPartitions": {
+                        "type": "integer",
+                        "description": "Max Partitions for the cluster\n"
+                    },
+                    "maxRetentionSize": {
+                        "type": "integer",
+                        "description": "Max Retention Size of the cluster\n"
+                    },
+                    "maxRetentionTime": {
+                        "type": "integer",
+                        "description": "Max Retention Time of the cluster\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "Whether multizone replication is enabled\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password for the cluster\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region of the cluster. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n"
+                    },
+                    "restEndpoint": {
+                        "type": "string",
+                        "description": "REST Endpoint of the cluster\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "Current state of the cluster (active or deleted)\n"
+                    },
+                    "tcpEndpoint": {
+                        "type": "string",
+                        "description": "TCP Endpoint of the cluster\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the cluster\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username for the cluster\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "clusterName",
+                    "creationTime",
+                    "maxMessageSize",
+                    "maxMessagesPerSecond",
+                    "maxPartitions",
+                    "maxRetentionSize",
+                    "maxRetentionTime",
+                    "multizone",
+                    "password",
+                    "region",
+                    "restEndpoint",
+                    "state",
+                    "tcpEndpoint",
+                    "type",
+                    "username",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getKafkaTopic:getKafkaTopic": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst kafkaTopicData = upstash.getKafkaTopic({\n    topicId: resource.upstash_kafka_topic.exampleKafkaTopic.topic_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nkafka_topic_data = upstash.get_kafka_topic(topic_id=resource[\"upstash_kafka_topic\"][\"exampleKafkaTopic\"][\"topic_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kafkaTopicData = Output.Create(Upstash.GetKafkaTopic.InvokeAsync(new Upstash.GetKafkaTopicArgs\n        {\n            TopicId = resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupKafkaTopic(ctx, \u0026GetKafkaTopicArgs{\n\t\t\tTopicId: resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var kafkaTopicData = Output.of(UpstashFunctions.getKafkaTopic(GetKafkaTopicArgs.builder()\n            .topicId(resource.upstash_kafka_topic().exampleKafkaTopic().topic_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  kafkaTopicData:\n    Fn::Invoke:\n      Function: upstash:getKafkaTopic\n      Arguments:\n        topicId: ${resource.upstash_kafka_topic.exampleKafkaTopic.topic_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKafkaTopic.\n",
+                "properties": {
+                    "topicId": {
+                        "type": "string",
+                        "description": "Unique Topic ID for requested kafka topic\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "topicId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKafkaTopic.\n",
+                "properties": {
+                    "cleanupPolicy": {
+                        "type": "string",
+                        "description": "Cleanup policy will be used in the topic(compact or delete)\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "Id of the cluster this topic belongs to\n"
+                    },
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "Creation time of the topic\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "maxMessageSize": {
+                        "type": "integer",
+                        "description": "Max Message Size for the topic\n"
+                    },
+                    "multizone": {
+                        "type": "boolean",
+                        "description": "Whether multizone replication is enabled\n"
+                    },
+                    "partitions": {
+                        "type": "integer",
+                        "description": "Number of partitions the topic has\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password to be used in authenticating to the cluster\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region of the kafka topic. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n"
+                    },
+                    "restEndpoint": {
+                        "type": "string",
+                        "description": "REST Endpoint of the topic\n"
+                    },
+                    "retentionSize": {
+                        "type": "integer",
+                        "description": "Max Retention Size of the topic\n"
+                    },
+                    "retentionTime": {
+                        "type": "integer",
+                        "description": "Max Retention Time of the topic\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State of the topic (active or deleted)\n"
+                    },
+                    "tcpEndpoint": {
+                        "type": "string",
+                        "description": "TCP Endpoint of the topic\n"
+                    },
+                    "topicId": {
+                        "type": "string",
+                        "description": "Unique Topic ID for requested kafka topic\n"
+                    },
+                    "topicName": {
+                        "type": "string",
+                        "description": "Name of the kafka topic\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username to be used in authenticating to the cluster\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cleanupPolicy",
+                    "clusterId",
+                    "creationTime",
+                    "maxMessageSize",
+                    "multizone",
+                    "partitions",
+                    "password",
+                    "region",
+                    "restEndpoint",
+                    "retentionSize",
+                    "retentionTime",
+                    "state",
+                    "tcpEndpoint",
+                    "topicId",
+                    "topicName",
+                    "username",
+                    "id"
+                ]
+            }
+        },
         "upstash:index/getRedisDatabase:getRedisDatabase": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleDBData = upstash.getRedisDatabase({\n    databaseId: resource.upstash_redis_database.exampleDB.database_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nexample_db_data = upstash.get_redis_database(database_id=resource[\"upstash_redis_database\"][\"exampleDB\"][\"database_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDBData = Output.Create(Upstash.GetRedisDatabase.InvokeAsync(new Upstash.GetRedisDatabaseArgs\n        {\n            DatabaseId = resource.Upstash_redis_database.ExampleDB.Database_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupRedisDatabase(ctx, \u0026GetRedisDatabaseArgs{\n\t\t\tDatabaseId: resource.Upstash_redis_database.ExampleDB.Database_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleDBData = Output.of(UpstashFunctions.getRedisDatabase(GetRedisDatabaseArgs.builder()\n            .databaseId(resource.upstash_redis_database().exampleDB().database_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleDBData:\n    Fn::Invoke:\n      Function: upstash:getRedisDatabase\n      Arguments:\n        databaseId: ${resource.upstash_redis_database.exampleDB.database_id}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -423,6 +1103,58 @@
                     "state",
                     "tls",
                     "userEmail",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getTeam:getTeam": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst teamData = upstash.getTeam({\n    teamId: resource.upstash_team.exampleTeam.team_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nteam_data = upstash.get_team(team_id=resource[\"upstash_team\"][\"exampleTeam\"][\"team_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var teamData = Output.Create(Upstash.GetTeam.InvokeAsync(new Upstash.GetTeamArgs\n        {\n            TeamId = resource.Upstash_team.ExampleTeam.Team_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupTeam(ctx, \u0026GetTeamArgs{\n\t\t\tTeamId: resource.Upstash_team.ExampleTeam.Team_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var teamData = Output.of(UpstashFunctions.getTeam(GetTeamArgs.builder()\n            .teamId(resource.upstash_team().exampleTeam().team_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  teamData:\n    Fn::Invoke:\n      Function: upstash:getTeam\n      Arguments:\n        teamId: ${resource.upstash_team.exampleTeam.team_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTeam.\n",
+                "properties": {
+                    "teamId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for requested cluster\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "teamId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTeam.\n",
+                "properties": {
+                    "copyCc": {
+                        "type": "boolean",
+                        "description": "Whether Credit card info is copied or not\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "Unique Cluster ID for requested cluster\n"
+                    },
+                    "teamMembers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Members of the team. Email addresses are given as the keys with their roles as the values.\n"
+                    },
+                    "teamName": {
+                        "type": "string",
+                        "description": "Name of the team\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "copyCc",
+                    "teamId",
+                    "teamMembers",
+                    "teamName",
                     "id"
                 ]
             }

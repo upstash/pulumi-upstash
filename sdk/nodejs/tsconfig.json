@@ -15,10 +15,16 @@
     "files": [
         "config/index.ts",
         "config/vars.ts",
+        "getKafkaCluster.ts",
+        "getKafkaTopic.ts",
         "getRedisDatabase.ts",
+        "getTeam.ts",
         "index.ts",
+        "kafkaCluster.ts",
+        "kafkaTopic.ts",
         "provider.ts",
         "redisDatabase.ts",
+        "team.ts",
         "utilities.ts"
     ]
 }
