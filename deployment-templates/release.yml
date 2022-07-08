@@ -108,11 +108,11 @@ jobs:
           password: ${{ env.PYPI_PASSWORD }}
           packages_dir: ${{github.workspace}}/sdk/python/bin/dist
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: "public"
-          token: ${{ env.NPM_TOKEN }}
-          package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+        name: Publish on npm
+        working-directory: ${{github.workspace}}/sdk/nodejs/bin
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
+          npm publish --access public --tag=next
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
