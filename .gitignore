@@ -21,3 +21,5 @@ provider/**/schema.go
 **/version.txt
 **/nuget
 **/dist
+
+envSetter.txt

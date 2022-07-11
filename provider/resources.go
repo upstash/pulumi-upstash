@@ -15,7 +15,6 @@
 package upstash
 
 import (
-	"fmt"
 	"path/filepath"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -37,7 +36,7 @@ const (
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
 // for example `stringValue(vars, "accessKey")`.
-// Delete this alltogether.
+// Delete this altogether.
 // func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
 // 	return nil
 // }
@@ -155,7 +154,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/upstash/upstash-pulumi-provider/sdk/"),
+				"github.com/upstash/upstash-pulumi-provider/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

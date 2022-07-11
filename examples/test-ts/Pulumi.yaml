@@ -1,3 +1,3 @@
-name: test-demo
+name: test-ts
 runtime: nodejs
 description: A minimal TypeScript Pulumi program
