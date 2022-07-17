@@ -31,9 +31,6 @@ export function getKafkaCluster(args: GetKafkaClusterArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getKafkaCluster.
  */
 export interface GetKafkaClusterArgs {
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     clusterId: string;
 }
 
@@ -41,70 +38,25 @@ export interface GetKafkaClusterArgs {
  * A collection of values returned by getKafkaCluster.
  */
 export interface GetKafkaClusterResult {
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     readonly clusterId: string;
-    /**
-     * Name of the team
-     */
     readonly clusterName: string;
     readonly creationTime: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Max Message Size for the cluster
-     */
     readonly maxMessageSize: number;
-    /**
-     * Max Messages Per Second for the cluster
-     */
     readonly maxMessagesPerSecond: number;
-    /**
-     * Max Partitions for the cluster
-     */
     readonly maxPartitions: number;
-    /**
-     * Max Retention Size of the cluster
-     */
     readonly maxRetentionSize: number;
-    /**
-     * Max Retention Time of the cluster
-     */
     readonly maxRetentionTime: number;
-    /**
-     * Whether multizone replication is enabled
-     */
     readonly multizone: boolean;
-    /**
-     * Password for the cluster
-     */
     readonly password: string;
-    /**
-     * Region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
-     */
     readonly region: string;
-    /**
-     * REST Endpoint of the cluster
-     */
     readonly restEndpoint: string;
-    /**
-     * Current state of the cluster (active or deleted)
-     */
     readonly state: string;
-    /**
-     * TCP Endpoint of the cluster
-     */
     readonly tcpEndpoint: string;
-    /**
-     * Type of the cluster
-     */
     readonly type: string;
-    /**
-     * Username for the cluster
-     */
     readonly username: string;
 }
 
@@ -116,8 +68,5 @@ export function getKafkaClusterOutput(args: GetKafkaClusterOutputArgs, opts?: pu
  * A collection of arguments for invoking getKafkaCluster.
  */
 export interface GetKafkaClusterOutputArgs {
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     clusterId: pulumi.Input<string>;
 }

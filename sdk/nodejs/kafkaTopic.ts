@@ -117,7 +117,7 @@ export class KafkaTopic extends pulumi.CustomResource {
      */
     public readonly topicName!: pulumi.Output<string>;
     /**
-     * Username to be used in authenticating to the cluster
+     * Base64 encoded username to be used in authenticating to the cluster
      */
     public /*out*/ readonly username!: pulumi.Output<string>;
 
@@ -260,7 +260,7 @@ export interface KafkaTopicState {
      */
     topicName?: pulumi.Input<string>;
     /**
-     * Username to be used in authenticating to the cluster
+     * Base64 encoded username to be used in authenticating to the cluster
      */
     username?: pulumi.Input<string>;
 }

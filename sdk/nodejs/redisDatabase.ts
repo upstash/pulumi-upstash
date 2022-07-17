@@ -49,6 +49,8 @@ export class RedisDatabase extends pulumi.CustomResource {
 
     /**
      * When enabled, all writes are synchronously persisted to the disk.
+     *
+     * @deprecated Consistent option is deprecated.
      */
     public readonly consistent!: pulumi.Output<boolean | undefined>;
     /**
@@ -100,7 +102,8 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
-     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+     * results in deletion and recreation of the resource)
      */
     public readonly multizone!: pulumi.Output<boolean | undefined>;
     /**
@@ -116,7 +119,8 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly readOnlyRestToken!: pulumi.Output<string>;
     /**
-     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+     * "eu-central1"
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -128,9 +132,12 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+     * resource)
+     *
+     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
-    public readonly tls!: pulumi.Output<boolean | undefined>;
+    public readonly tls!: pulumi.Output<boolean>;
     /**
      * User email for the database
      */
@@ -215,6 +222,8 @@ export class RedisDatabase extends pulumi.CustomResource {
 export interface RedisDatabaseState {
     /**
      * When enabled, all writes are synchronously persisted to the disk.
+     *
+     * @deprecated Consistent option is deprecated.
      */
     consistent?: pulumi.Input<boolean>;
     /**
@@ -266,7 +275,8 @@ export interface RedisDatabaseState {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+     * results in deletion and recreation of the resource)
      */
     multizone?: pulumi.Input<boolean>;
     /**
@@ -282,7 +292,8 @@ export interface RedisDatabaseState {
      */
     readOnlyRestToken?: pulumi.Input<string>;
     /**
-     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+     * "eu-central1"
      */
     region?: pulumi.Input<string>;
     /**
@@ -294,7 +305,10 @@ export interface RedisDatabaseState {
      */
     state?: pulumi.Input<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+     * resource)
+     *
+     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
     tls?: pulumi.Input<boolean>;
     /**
@@ -309,6 +323,8 @@ export interface RedisDatabaseState {
 export interface RedisDatabaseArgs {
     /**
      * When enabled, all writes are synchronously persisted to the disk.
+     *
+     * @deprecated Consistent option is deprecated.
      */
     consistent?: pulumi.Input<boolean>;
     /**
@@ -316,15 +332,20 @@ export interface RedisDatabaseArgs {
      */
     databaseName: pulumi.Input<string>;
     /**
-     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+     * results in deletion and recreation of the resource)
      */
     multizone?: pulumi.Input<boolean>;
     /**
-     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+     * "eu-central1"
      */
     region: pulumi.Input<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+     * resource)
+     *
+     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
     tls?: pulumi.Input<boolean>;
 }

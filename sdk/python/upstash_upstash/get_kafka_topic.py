@@ -76,25 +76,16 @@ class GetKafkaTopicResult:
     @property
     @pulumi.getter(name="cleanupPolicy")
     def cleanup_policy(self) -> str:
-        """
-        Cleanup policy will be used in the topic(compact or delete)
-        """
         return pulumi.get(self, "cleanup_policy")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        Id of the cluster this topic belongs to
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="creationTime")
     def creation_time(self) -> int:
-        """
-        Creation time of the topic
-        """
         return pulumi.get(self, "creation_time")
 
     @property
@@ -108,105 +99,66 @@ class GetKafkaTopicResult:
     @property
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> int:
-        """
-        Max Message Size for the topic
-        """
         return pulumi.get(self, "max_message_size")
 
     @property
     @pulumi.getter
     def multizone(self) -> bool:
-        """
-        Whether multizone replication is enabled
-        """
         return pulumi.get(self, "multizone")
 
     @property
     @pulumi.getter
     def partitions(self) -> int:
-        """
-        Number of partitions the topic has
-        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def password(self) -> str:
-        """
-        Password to be used in authenticating to the cluster
-        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        Region of the kafka topic. Possible values (may change) are: "eu-west-1", "us-east-1"
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="restEndpoint")
     def rest_endpoint(self) -> str:
-        """
-        REST Endpoint of the topic
-        """
         return pulumi.get(self, "rest_endpoint")
 
     @property
     @pulumi.getter(name="retentionSize")
     def retention_size(self) -> int:
-        """
-        Max Retention Size of the topic
-        """
         return pulumi.get(self, "retention_size")
 
     @property
     @pulumi.getter(name="retentionTime")
     def retention_time(self) -> int:
-        """
-        Max Retention Time of the topic
-        """
         return pulumi.get(self, "retention_time")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        State of the topic (active or deleted)
-        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="tcpEndpoint")
     def tcp_endpoint(self) -> str:
-        """
-        TCP Endpoint of the topic
-        """
         return pulumi.get(self, "tcp_endpoint")
 
     @property
     @pulumi.getter(name="topicId")
     def topic_id(self) -> str:
-        """
-        Unique Topic ID for requested kafka topic
-        """
         return pulumi.get(self, "topic_id")
 
     @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> str:
-        """
-        Name of the kafka topic
-        """
         return pulumi.get(self, "topic_name")
 
     @property
     @pulumi.getter
     def username(self) -> str:
-        """
-        Username to be used in authenticating to the cluster
-        """
         return pulumi.get(self, "username")
 
 
@@ -246,9 +198,6 @@ def get_kafka_topic(topic_id: Optional[str] = None,
 
     kafka_topic_data = upstash.get_kafka_topic(topic_id=resource["upstash_kafka_topic"]["exampleKafkaTopic"]["topic_id"])
     ```
-
-
-    :param str topic_id: Unique Topic ID for requested kafka topic
     """
     __args__ = dict()
     __args__['topicId'] = topic_id
@@ -292,8 +241,5 @@ def get_kafka_topic_output(topic_id: Optional[pulumi.Input[str]] = None,
 
     kafka_topic_data = upstash.get_kafka_topic(topic_id=resource["upstash_kafka_topic"]["exampleKafkaTopic"]["topic_id"])
     ```
-
-
-    :param str topic_id: Unique Topic ID for requested kafka topic
     """
     ...

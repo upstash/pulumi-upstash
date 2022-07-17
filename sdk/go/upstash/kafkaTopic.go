@@ -80,7 +80,7 @@ type KafkaTopic struct {
 	TopicId pulumi.StringOutput `pulumi:"topicId"`
 	// Name of the topic
 	TopicName pulumi.StringOutput `pulumi:"topicName"`
-	// Username to be used in authenticating to the cluster
+	// Base64 encoded username to be used in authenticating to the cluster
 	Username pulumi.StringOutput `pulumi:"username"`
 }
 
@@ -165,7 +165,7 @@ type kafkaTopicState struct {
 	TopicId *string `pulumi:"topicId"`
 	// Name of the topic
 	TopicName *string `pulumi:"topicName"`
-	// Username to be used in authenticating to the cluster
+	// Base64 encoded username to be used in authenticating to the cluster
 	Username *string `pulumi:"username"`
 }
 
@@ -200,7 +200,7 @@ type KafkaTopicState struct {
 	TopicId pulumi.StringPtrInput
 	// Name of the topic
 	TopicName pulumi.StringPtrInput
-	// Username to be used in authenticating to the cluster
+	// Base64 encoded username to be used in authenticating to the cluster
 	Username pulumi.StringPtrInput
 }
 
@@ -405,7 +405,7 @@ func (o KafkaTopicOutput) TopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaTopic) pulumi.StringOutput { return v.TopicName }).(pulumi.StringOutput)
 }
 
-// Username to be used in authenticating to the cluster
+// Base64 encoded username to be used in authenticating to the cluster
 func (o KafkaTopicOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaTopic) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }

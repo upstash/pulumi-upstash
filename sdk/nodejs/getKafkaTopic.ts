@@ -31,9 +31,6 @@ export function getKafkaTopic(args: GetKafkaTopicArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getKafkaTopic.
  */
 export interface GetKafkaTopicArgs {
-    /**
-     * Unique Topic ID for requested kafka topic
-     */
     topicId: string;
 }
 
@@ -41,73 +38,25 @@ export interface GetKafkaTopicArgs {
  * A collection of values returned by getKafkaTopic.
  */
 export interface GetKafkaTopicResult {
-    /**
-     * Cleanup policy will be used in the topic(compact or delete)
-     */
     readonly cleanupPolicy: string;
-    /**
-     * Id of the cluster this topic belongs to
-     */
     readonly clusterId: string;
-    /**
-     * Creation time of the topic
-     */
     readonly creationTime: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Max Message Size for the topic
-     */
     readonly maxMessageSize: number;
-    /**
-     * Whether multizone replication is enabled
-     */
     readonly multizone: boolean;
-    /**
-     * Number of partitions the topic has
-     */
     readonly partitions: number;
-    /**
-     * Password to be used in authenticating to the cluster
-     */
     readonly password: string;
-    /**
-     * Region of the kafka topic. Possible values (may change) are: "eu-west-1", "us-east-1"
-     */
     readonly region: string;
-    /**
-     * REST Endpoint of the topic
-     */
     readonly restEndpoint: string;
-    /**
-     * Max Retention Size of the topic
-     */
     readonly retentionSize: number;
-    /**
-     * Max Retention Time of the topic
-     */
     readonly retentionTime: number;
-    /**
-     * State of the topic (active or deleted)
-     */
     readonly state: string;
-    /**
-     * TCP Endpoint of the topic
-     */
     readonly tcpEndpoint: string;
-    /**
-     * Unique Topic ID for requested kafka topic
-     */
     readonly topicId: string;
-    /**
-     * Name of the kafka topic
-     */
     readonly topicName: string;
-    /**
-     * Username to be used in authenticating to the cluster
-     */
     readonly username: string;
 }
 
@@ -119,8 +68,5 @@ export function getKafkaTopicOutput(args: GetKafkaTopicOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getKafkaTopic.
  */
 export interface GetKafkaTopicOutputArgs {
-    /**
-     * Unique Topic ID for requested kafka topic
-     */
     topicId: pulumi.Input<string>;
 }

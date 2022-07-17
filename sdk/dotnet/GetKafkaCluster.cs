@@ -70,9 +70,6 @@ namespace Upstash.Upstash
 
     public sealed class GetKafkaClusterArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
@@ -83,9 +80,6 @@ namespace Upstash.Upstash
 
     public sealed class GetKafkaClusterInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
@@ -98,70 +92,25 @@ namespace Upstash.Upstash
     [OutputType]
     public sealed class GetKafkaClusterResult
     {
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         public readonly string ClusterId;
-        /// <summary>
-        /// Name of the team
-        /// </summary>
         public readonly string ClusterName;
         public readonly int CreationTime;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Max Message Size for the cluster
-        /// </summary>
         public readonly int MaxMessageSize;
-        /// <summary>
-        /// Max Messages Per Second for the cluster
-        /// </summary>
         public readonly int MaxMessagesPerSecond;
-        /// <summary>
-        /// Max Partitions for the cluster
-        /// </summary>
         public readonly int MaxPartitions;
-        /// <summary>
-        /// Max Retention Size of the cluster
-        /// </summary>
         public readonly int MaxRetentionSize;
-        /// <summary>
-        /// Max Retention Time of the cluster
-        /// </summary>
         public readonly int MaxRetentionTime;
-        /// <summary>
-        /// Whether multizone replication is enabled
-        /// </summary>
         public readonly bool Multizone;
-        /// <summary>
-        /// Password for the cluster
-        /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// Region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
-        /// </summary>
         public readonly string Region;
-        /// <summary>
-        /// REST Endpoint of the cluster
-        /// </summary>
         public readonly string RestEndpoint;
-        /// <summary>
-        /// Current state of the cluster (active or deleted)
-        /// </summary>
         public readonly string State;
-        /// <summary>
-        /// TCP Endpoint of the cluster
-        /// </summary>
         public readonly string TcpEndpoint;
-        /// <summary>
-        /// Type of the cluster
-        /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// Username for the cluster
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

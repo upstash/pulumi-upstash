@@ -31,9 +31,6 @@ export function getRedisDatabase(args: GetRedisDatabaseArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getRedisDatabase.
  */
 export interface GetRedisDatabaseArgs {
-    /**
-     * Unique Database ID for requested database
-     */
     databaseId: string;
 }
 
@@ -42,17 +39,11 @@ export interface GetRedisDatabaseArgs {
  */
 export interface GetRedisDatabaseResult {
     /**
-     * When enabled database runs in Consistency Mode
+     * @deprecated Consistent option is deprecated.
      */
     readonly consistent: boolean;
     readonly creationTime: number;
-    /**
-     * Unique Database ID for requested database
-     */
     readonly databaseId: string;
-    /**
-     * Name of the database
-     */
     readonly databaseName: string;
     readonly databaseType: string;
     readonly dbDailyBandwidthLimit: number;
@@ -62,32 +53,20 @@ export interface GetRedisDatabaseResult {
     readonly dbMaxEntrySize: number;
     readonly dbMaxRequestSize: number;
     readonly dbMemoryThreshold: number;
-    /**
-     * Database URL for connection
-     */
     readonly endpoint: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * When enabled database is highly available and deployed multi-zone
-     */
     readonly multizone: boolean;
-    /**
-     * Password of the database
-     */
     readonly password: string;
     readonly port: number;
     readonly readOnlyRestToken: string;
-    /**
-     * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
-     */
     readonly region: string;
     readonly restToken: string;
     readonly state: string;
     /**
-     * When enabled data is encrypted in transit
+     * @deprecated TLS option is deprecated.
      */
     readonly tls: boolean;
     readonly userEmail: string;
@@ -101,8 +80,5 @@ export function getRedisDatabaseOutput(args: GetRedisDatabaseOutputArgs, opts?: 
  * A collection of arguments for invoking getRedisDatabase.
  */
 export interface GetRedisDatabaseOutputArgs {
-    /**
-     * Unique Database ID for requested database
-     */
     databaseId: pulumi.Input<string>;
 }

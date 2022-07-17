@@ -115,7 +115,8 @@ namespace Upstash.Upstash
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        /// results in deletion and recreation of the resource)
         /// </summary>
         [Output("multizone")]
         public Output<bool?> Multizone { get; private set; } = null!;
@@ -139,7 +140,8 @@ namespace Upstash.Upstash
         public Output<string> ReadOnlyRestToken { get; private set; } = null!;
 
         /// <summary>
-        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        /// "eu-central1"
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -157,10 +159,11 @@ namespace Upstash.Upstash
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        /// resource)
         /// </summary>
         [Output("tls")]
-        public Output<bool?> Tls { get; private set; } = null!;
+        public Output<bool> Tls { get; private set; } = null!;
 
         /// <summary>
         /// User email for the database
@@ -232,19 +235,22 @@ namespace Upstash.Upstash
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        /// results in deletion and recreation of the resource)
         /// </summary>
         [Input("multizone")]
         public Input<bool>? Multizone { get; set; }
 
         /// <summary>
-        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        /// "eu-central1"
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        /// resource)
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
@@ -335,7 +341,8 @@ namespace Upstash.Upstash
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        /// results in deletion and recreation of the resource)
         /// </summary>
         [Input("multizone")]
         public Input<bool>? Multizone { get; set; }
@@ -369,7 +376,8 @@ namespace Upstash.Upstash
         public Input<string>? ReadOnlyRestToken { get; set; }
 
         /// <summary>
-        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        /// "eu-central1"
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -387,7 +395,8 @@ namespace Upstash.Upstash
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        /// resource)
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }

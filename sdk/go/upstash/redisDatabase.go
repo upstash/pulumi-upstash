@@ -40,6 +40,8 @@ type RedisDatabase struct {
 	pulumi.CustomResourceState
 
 	// When enabled, all writes are synchronously persisted to the disk.
+	//
+	// Deprecated: Consistent option is deprecated.
 	Consistent pulumi.BoolPtrOutput `pulumi:"consistent"`
 	// Creation time of the database
 	CreationTime pulumi.IntOutput `pulumi:"creationTime"`
@@ -65,7 +67,8 @@ type RedisDatabase struct {
 	DbMemoryThreshold pulumi.IntOutput `pulumi:"dbMemoryThreshold"`
 	// Database URL for connection
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+	// results in deletion and recreation of the resource)
 	Multizone pulumi.BoolPtrOutput `pulumi:"multizone"`
 	// Password of the database
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -73,14 +76,18 @@ type RedisDatabase struct {
 	Port pulumi.IntOutput `pulumi:"port"`
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringOutput `pulumi:"readOnlyRestToken"`
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+	// "eu-central1"
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Rest Token for the database.
 	RestToken pulumi.StringOutput `pulumi:"restToken"`
 	// State of the database
 	State pulumi.StringOutput `pulumi:"state"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
-	Tls pulumi.BoolPtrOutput `pulumi:"tls"`
+	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+	// resource)
+	//
+	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
+	Tls pulumi.BoolOutput `pulumi:"tls"`
 	// User email for the database
 	UserEmail pulumi.StringOutput `pulumi:"userEmail"`
 }
@@ -126,6 +133,8 @@ func GetRedisDatabase(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RedisDatabase resources.
 type redisDatabaseState struct {
 	// When enabled, all writes are synchronously persisted to the disk.
+	//
+	// Deprecated: Consistent option is deprecated.
 	Consistent *bool `pulumi:"consistent"`
 	// Creation time of the database
 	CreationTime *int `pulumi:"creationTime"`
@@ -151,7 +160,8 @@ type redisDatabaseState struct {
 	DbMemoryThreshold *int `pulumi:"dbMemoryThreshold"`
 	// Database URL for connection
 	Endpoint *string `pulumi:"endpoint"`
-	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+	// results in deletion and recreation of the resource)
 	Multizone *bool `pulumi:"multizone"`
 	// Password of the database
 	Password *string `pulumi:"password"`
@@ -159,13 +169,17 @@ type redisDatabaseState struct {
 	Port *int `pulumi:"port"`
 	// Rest Token for the database.
 	ReadOnlyRestToken *string `pulumi:"readOnlyRestToken"`
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+	// "eu-central1"
 	Region *string `pulumi:"region"`
 	// Rest Token for the database.
 	RestToken *string `pulumi:"restToken"`
 	// State of the database
 	State *string `pulumi:"state"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+	// resource)
+	//
+	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls *bool `pulumi:"tls"`
 	// User email for the database
 	UserEmail *string `pulumi:"userEmail"`
@@ -173,6 +187,8 @@ type redisDatabaseState struct {
 
 type RedisDatabaseState struct {
 	// When enabled, all writes are synchronously persisted to the disk.
+	//
+	// Deprecated: Consistent option is deprecated.
 	Consistent pulumi.BoolPtrInput
 	// Creation time of the database
 	CreationTime pulumi.IntPtrInput
@@ -198,7 +214,8 @@ type RedisDatabaseState struct {
 	DbMemoryThreshold pulumi.IntPtrInput
 	// Database URL for connection
 	Endpoint pulumi.StringPtrInput
-	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+	// results in deletion and recreation of the resource)
 	Multizone pulumi.BoolPtrInput
 	// Password of the database
 	Password pulumi.StringPtrInput
@@ -206,13 +223,17 @@ type RedisDatabaseState struct {
 	Port pulumi.IntPtrInput
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringPtrInput
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+	// "eu-central1"
 	Region pulumi.StringPtrInput
 	// Rest Token for the database.
 	RestToken pulumi.StringPtrInput
 	// State of the database
 	State pulumi.StringPtrInput
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+	// resource)
+	//
+	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls pulumi.BoolPtrInput
 	// User email for the database
 	UserEmail pulumi.StringPtrInput
@@ -224,28 +245,42 @@ func (RedisDatabaseState) ElementType() reflect.Type {
 
 type redisDatabaseArgs struct {
 	// When enabled, all writes are synchronously persisted to the disk.
+	//
+	// Deprecated: Consistent option is deprecated.
 	Consistent *bool `pulumi:"consistent"`
 	// Name of the database
 	DatabaseName string `pulumi:"databaseName"`
-	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+	// results in deletion and recreation of the resource)
 	Multizone *bool `pulumi:"multizone"`
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+	// "eu-central1"
 	Region string `pulumi:"region"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+	// resource)
+	//
+	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls *bool `pulumi:"tls"`
 }
 
 // The set of arguments for constructing a RedisDatabase resource.
 type RedisDatabaseArgs struct {
 	// When enabled, all writes are synchronously persisted to the disk.
+	//
+	// Deprecated: Consistent option is deprecated.
 	Consistent pulumi.BoolPtrInput
 	// Name of the database
 	DatabaseName pulumi.StringInput
-	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+	// results in deletion and recreation of the resource)
 	Multizone pulumi.BoolPtrInput
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+	// "eu-central1"
 	Region pulumi.StringInput
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+	// resource)
+	//
+	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls pulumi.BoolPtrInput
 }
 
@@ -337,6 +372,8 @@ func (o RedisDatabaseOutput) ToRedisDatabaseOutputWithContext(ctx context.Contex
 }
 
 // When enabled, all writes are synchronously persisted to the disk.
+//
+// Deprecated: Consistent option is deprecated.
 func (o RedisDatabaseOutput) Consistent() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Consistent }).(pulumi.BoolPtrOutput)
 }
@@ -401,7 +438,8 @@ func (o RedisDatabaseOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+// results in deletion and recreation of the resource)
 func (o RedisDatabaseOutput) Multizone() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Multizone }).(pulumi.BoolPtrOutput)
 }
@@ -421,7 +459,8 @@ func (o RedisDatabaseOutput) ReadOnlyRestToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.ReadOnlyRestToken }).(pulumi.StringOutput)
 }
 
-// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+// "eu-central1"
 func (o RedisDatabaseOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -436,9 +475,12 @@ func (o RedisDatabaseOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
-func (o RedisDatabaseOutput) Tls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Tls }).(pulumi.BoolPtrOutput)
+// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+// resource)
+//
+// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
+func (o RedisDatabaseOutput) Tls() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolOutput { return v.Tls }).(pulumi.BoolOutput)
 }
 
 // User email for the database

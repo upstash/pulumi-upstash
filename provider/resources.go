@@ -97,6 +97,9 @@ func Provider() tfbridge.ProviderInfo {
 			"upstash_kafka_topic": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaTopic"),
 			},
+			"upstash_kafka_credential": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaCredential"),
+			},
 			"upstash_team": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Team"),
 			},
@@ -122,6 +125,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"upstash_kafka_topic_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaTopic"),
+			},
+			"upstash_kafka_credential_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaCredential"),
 			},
 			"upstash_team_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTeam"),

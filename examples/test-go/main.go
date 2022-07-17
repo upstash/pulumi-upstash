@@ -66,6 +66,22 @@ func main() {
 
 		ctx.Export("topic from get request", topicFromGet)
 
+		createdCredential, err := upstash.NewKafkaCredential(ctx, "exampleCredential", &upstash.KafkaCredentialArgs{
+			ClusterId:      pulumi.StringOutput(createdCluster.ClusterId),
+			CredentialName: pulumi.String("pulumi-go-credential"),
+			Permissions: pulumi.String("ALL"),
+			Topic: pulumi.StringOutput(createdTopic.TopicName),
+		})
+
+		credentialFromGet := upstash.LookupKafkaCredentialOutput(ctx, upstash.LookupKafkaCredentialOutputArgs{
+			CredentialId: createdCredential.CredentialId,
+		}, nil)
+		if err != nil {
+			return err
+		}
+
+		ctx.Export("credential from get request", credentialFromGet)
+
 		createdTeam, err := upstash.NewTeam(ctx, "exampleTeam", &upstash.TeamArgs{
 			TeamName: pulumi.String("pulumi go team"),
 			CopyCc:   pulumi.Bool(false),

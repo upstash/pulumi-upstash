@@ -18,7 +18,7 @@ class KafkaClusterArgs:
                  multizone: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a KafkaCluster resource.
-        :param pulumi.Input[str] cluster_name: Name of the team
+        :param pulumi.Input[str] cluster_name: Name of the cluster
         :param pulumi.Input[str] region: region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
         :param pulumi.Input[bool] multizone: Whether cluster has multizone attribute
         """
@@ -31,7 +31,7 @@ class KafkaClusterArgs:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Input[str]:
         """
-        Name of the team
+        Name of the cluster
         """
         return pulumi.get(self, "cluster_name")
 
@@ -86,7 +86,7 @@ class _KafkaClusterState:
         """
         Input properties used for looking up and filtering KafkaCluster resources.
         :param pulumi.Input[str] cluster_id: Unique Cluster ID for created cluster
-        :param pulumi.Input[str] cluster_name: Name of the team
+        :param pulumi.Input[str] cluster_name: Name of the cluster
         :param pulumi.Input[int] creation_time: Creation time of the cluster
         :param pulumi.Input[int] max_message_size: Max Message Size for the cluster
         :param pulumi.Input[int] max_messages_per_second: Max Messages Per Second for the cluster
@@ -100,7 +100,7 @@ class _KafkaClusterState:
         :param pulumi.Input[str] state: State, where the cluster is originated
         :param pulumi.Input[str] tcp_endpoint: TCP Endpoint of the cluster
         :param pulumi.Input[str] type: Type of the cluster
-        :param pulumi.Input[str] username: Username for the cluster
+        :param pulumi.Input[str] username: Base64 encoded username for the cluster
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -151,7 +151,7 @@ class _KafkaClusterState:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the team
+        Name of the cluster
         """
         return pulumi.get(self, "cluster_name")
 
@@ -319,7 +319,7 @@ class _KafkaClusterState:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Username for the cluster
+        Base64 encoded username for the cluster
         """
         return pulumi.get(self, "username")
 
@@ -352,7 +352,7 @@ class KafkaCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_name: Name of the team
+        :param pulumi.Input[str] cluster_name: Name of the cluster
         :param pulumi.Input[bool] multizone: Whether cluster has multizone attribute
         :param pulumi.Input[str] region: region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
         """
@@ -461,7 +461,7 @@ class KafkaCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: Unique Cluster ID for created cluster
-        :param pulumi.Input[str] cluster_name: Name of the team
+        :param pulumi.Input[str] cluster_name: Name of the cluster
         :param pulumi.Input[int] creation_time: Creation time of the cluster
         :param pulumi.Input[int] max_message_size: Max Message Size for the cluster
         :param pulumi.Input[int] max_messages_per_second: Max Messages Per Second for the cluster
@@ -475,7 +475,7 @@ class KafkaCluster(pulumi.CustomResource):
         :param pulumi.Input[str] state: State, where the cluster is originated
         :param pulumi.Input[str] tcp_endpoint: TCP Endpoint of the cluster
         :param pulumi.Input[str] type: Type of the cluster
-        :param pulumi.Input[str] username: Username for the cluster
+        :param pulumi.Input[str] username: Base64 encoded username for the cluster
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -511,7 +511,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[str]:
         """
-        Name of the team
+        Name of the cluster
         """
         return pulumi.get(self, "cluster_name")
 
@@ -623,7 +623,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
         """
-        Username for the cluster
+        Base64 encoded username for the cluster
         """
         return pulumi.get(self, "username")
 

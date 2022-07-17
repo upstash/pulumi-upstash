@@ -23,6 +23,10 @@ class GetRedisDatabaseResult:
     def __init__(__self__, consistent=None, creation_time=None, database_id=None, database_name=None, database_type=None, db_daily_bandwidth_limit=None, db_disk_threshold=None, db_max_clients=None, db_max_commands_per_second=None, db_max_entry_size=None, db_max_request_size=None, db_memory_threshold=None, endpoint=None, id=None, multizone=None, password=None, port=None, read_only_rest_token=None, region=None, rest_token=None, state=None, tls=None, user_email=None):
         if consistent and not isinstance(consistent, bool):
             raise TypeError("Expected argument 'consistent' to be a bool")
+        if consistent is not None:
+            warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
+
         pulumi.set(__self__, "consistent", consistent)
         if creation_time and not isinstance(creation_time, int):
             raise TypeError("Expected argument 'creation_time' to be a int")
@@ -86,6 +90,10 @@ class GetRedisDatabaseResult:
         pulumi.set(__self__, "state", state)
         if tls and not isinstance(tls, bool):
             raise TypeError("Expected argument 'tls' to be a bool")
+        if tls is not None:
+            warnings.warn("""TLS option is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""tls is deprecated: TLS option is deprecated.""")
+
         pulumi.set(__self__, "tls", tls)
         if user_email and not isinstance(user_email, str):
             raise TypeError("Expected argument 'user_email' to be a str")
@@ -94,9 +102,6 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter
     def consistent(self) -> bool:
-        """
-        When enabled database runs in Consistency Mode
-        """
         return pulumi.get(self, "consistent")
 
     @property
@@ -107,17 +112,11 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter(name="databaseId")
     def database_id(self) -> str:
-        """
-        Unique Database ID for requested database
-        """
         return pulumi.get(self, "database_id")
 
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> str:
-        """
-        Name of the database
-        """
         return pulumi.get(self, "database_name")
 
     @property
@@ -163,9 +162,6 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter
     def endpoint(self) -> str:
-        """
-        Database URL for connection
-        """
         return pulumi.get(self, "endpoint")
 
     @property
@@ -179,17 +175,11 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter
     def multizone(self) -> bool:
-        """
-        When enabled database is highly available and deployed multi-zone
-        """
         return pulumi.get(self, "multizone")
 
     @property
     @pulumi.getter
     def password(self) -> str:
-        """
-        Password of the database
-        """
         return pulumi.get(self, "password")
 
     @property
@@ -205,9 +195,6 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
-        """
         return pulumi.get(self, "region")
 
     @property
@@ -223,9 +210,6 @@ class GetRedisDatabaseResult:
     @property
     @pulumi.getter
     def tls(self) -> bool:
-        """
-        When enabled data is encrypted in transit
-        """
         return pulumi.get(self, "tls")
 
     @property
@@ -276,9 +260,6 @@ def get_redis_database(database_id: Optional[str] = None,
 
     example_db_data = upstash.get_redis_database(database_id=resource["upstash_redis_database"]["exampleDB"]["database_id"])
     ```
-
-
-    :param str database_id: Unique Database ID for requested database
     """
     __args__ = dict()
     __args__['databaseId'] = database_id
@@ -328,8 +309,5 @@ def get_redis_database_output(database_id: Optional[pulumi.Input[str]] = None,
 
     example_db_data = upstash.get_redis_database(database_id=resource["upstash_redis_database"]["exampleDB"]["database_id"])
     ```
-
-
-    :param str database_id: Unique Database ID for requested database
     """
     ...

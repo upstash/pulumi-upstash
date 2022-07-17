@@ -70,9 +70,6 @@ namespace Upstash.Upstash
 
     public sealed class GetTeamArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         [Input("teamId", required: true)]
         public string TeamId { get; set; } = null!;
 
@@ -83,9 +80,6 @@ namespace Upstash.Upstash
 
     public sealed class GetTeamInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         [Input("teamId", required: true)]
         public Input<string> TeamId { get; set; } = null!;
 
@@ -98,25 +92,13 @@ namespace Upstash.Upstash
     [OutputType]
     public sealed class GetTeamResult
     {
-        /// <summary>
-        /// Whether Credit card info is copied or not
-        /// </summary>
         public readonly bool CopyCc;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Unique Cluster ID for requested cluster
-        /// </summary>
         public readonly string TeamId;
-        /// <summary>
-        /// Members of the team. Email addresses are given as the keys with their roles as the values.
-        /// </summary>
         public readonly ImmutableDictionary<string, string> TeamMembers;
-        /// <summary>
-        /// Name of the team
-        /// </summary>
         public readonly string TeamName;
 
         [OutputConstructor]

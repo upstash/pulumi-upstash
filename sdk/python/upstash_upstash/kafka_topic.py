@@ -159,7 +159,7 @@ class _KafkaTopicState:
         :param pulumi.Input[str] tcp_endpoint: TCP Endpoint of the kafka topic
         :param pulumi.Input[str] topic_id: Unique Cluster ID for created topic
         :param pulumi.Input[str] topic_name: Name of the topic
-        :param pulumi.Input[str] username: Username to be used in authenticating to the cluster
+        :param pulumi.Input[str] username: Base64 encoded username to be used in authenticating to the cluster
         """
         if cleanup_policy is not None:
             pulumi.set(__self__, "cleanup_policy", cleanup_policy)
@@ -378,7 +378,7 @@ class _KafkaTopicState:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Username to be used in authenticating to the cluster
+        Base64 encoded username to be used in authenticating to the cluster
         """
         return pulumi.get(self, "username")
 
@@ -574,7 +574,7 @@ class KafkaTopic(pulumi.CustomResource):
         :param pulumi.Input[str] tcp_endpoint: TCP Endpoint of the kafka topic
         :param pulumi.Input[str] topic_id: Unique Cluster ID for created topic
         :param pulumi.Input[str] topic_name: Name of the topic
-        :param pulumi.Input[str] username: Username to be used in authenticating to the cluster
+        :param pulumi.Input[str] username: Base64 encoded username to be used in authenticating to the cluster
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -722,7 +722,7 @@ class KafkaTopic(pulumi.CustomResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
         """
-        Username to be used in authenticating to the cluster
+        Base64 encoded username to be used in authenticating to the cluster
         """
         return pulumi.get(self, "username")
 

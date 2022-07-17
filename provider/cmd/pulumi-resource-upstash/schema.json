@@ -67,7 +67,7 @@
                 },
                 "clusterName": {
                     "type": "string",
-                    "description": "Name of the team\n"
+                    "description": "Name of the cluster\n"
                 },
                 "creationTime": {
                     "type": "integer",
@@ -123,7 +123,7 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "Username for the cluster\n"
+                    "description": "Base64 encoded username for the cluster\n"
                 }
             },
             "required": [
@@ -146,7 +146,7 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "Name of the team\n"
+                    "description": "Name of the cluster\n"
                 },
                 "multizone": {
                     "type": "boolean",
@@ -172,7 +172,7 @@
                     },
                     "clusterName": {
                         "type": "string",
-                        "description": "Name of the team\n"
+                        "description": "Name of the cluster\n"
                     },
                     "creationTime": {
                         "type": "integer",
@@ -230,7 +230,133 @@
                     },
                     "username": {
                         "type": "string",
-                        "description": "Username for the cluster\n"
+                        "description": "Base64 encoded username for the cluster\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/kafkaCredential:KafkaCredential": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@upstash/upstash\";\n\nconst exampleKafkaCluster = new upstash.KafkaCluster(\"exampleKafkaCluster\", {\n    clusterName: _var.cluster_name,\n    region: _var.region,\n    multizone: _var.multizone,\n});\nconst exampleKafkaTopic = new upstash.KafkaTopic(\"exampleKafkaTopic\", {\n    topicName: _var.topic_name,\n    partitions: _var.partitions,\n    retentionTime: _var.retention_time,\n    retentionSize: _var.retention_size,\n    maxMessageSize: _var.max_message_size,\n    cleanupPolicy: _var.cleanup_policy,\n    clusterId: resource.upstash_kafka_cluster.exampleKafkaCluster.cluster_id,\n});\nconst exampleKafkaCredential = new upstash.KafkaCredential(\"exampleKafkaCredential\", {\n    clusterId: exampleKafkaCluster.clusterId,\n    credentialName: \"credentialFromTerraform\",\n    topic: exampleKafkaTopic.topicName,\n    permissions: \"ALL\",\n});\n```\n```python\nimport pulumi\nimport upstash_upstash as upstash\n\nexample_kafka_cluster = upstash.KafkaCluster(\"exampleKafkaCluster\",\n    cluster_name=var[\"cluster_name\"],\n    region=var[\"region\"],\n    multizone=var[\"multizone\"])\nexample_kafka_topic = upstash.KafkaTopic(\"exampleKafkaTopic\",\n    topic_name=var[\"topic_name\"],\n    partitions=var[\"partitions\"],\n    retention_time=var[\"retention_time\"],\n    retention_size=var[\"retention_size\"],\n    max_message_size=var[\"max_message_size\"],\n    cleanup_policy=var[\"cleanup_policy\"],\n    cluster_id=resource[\"upstash_kafka_cluster\"][\"exampleKafkaCluster\"][\"cluster_id\"])\nexample_kafka_credential = upstash.KafkaCredential(\"exampleKafkaCredential\",\n    cluster_id=example_kafka_cluster.cluster_id,\n    credential_name=\"credentialFromTerraform\",\n    topic=example_kafka_topic.topic_name,\n    permissions=\"ALL\")\n```\n```csharp\nusing Pulumi;\nusing Upstash = Upstash.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleKafkaCluster = new Upstash.KafkaCluster(\"exampleKafkaCluster\", new Upstash.KafkaClusterArgs\n        {\n            ClusterName = @var.Cluster_name,\n            Region = @var.Region,\n            Multizone = @var.Multizone,\n        });\n        var exampleKafkaTopic = new Upstash.KafkaTopic(\"exampleKafkaTopic\", new Upstash.KafkaTopicArgs\n        {\n            TopicName = @var.Topic_name,\n            Partitions = @var.Partitions,\n            RetentionTime = @var.Retention_time,\n            RetentionSize = @var.Retention_size,\n            MaxMessageSize = @var.Max_message_size,\n            CleanupPolicy = @var.Cleanup_policy,\n            ClusterId = resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id,\n        });\n        var exampleKafkaCredential = new Upstash.KafkaCredential(\"exampleKafkaCredential\", new Upstash.KafkaCredentialArgs\n        {\n            ClusterId = exampleKafkaCluster.ClusterId,\n            CredentialName = \"credentialFromTerraform\",\n            Topic = exampleKafkaTopic.TopicName,\n            Permissions = \"ALL\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleKafkaCluster, err := upstash.NewKafkaCluster(ctx, \"exampleKafkaCluster\", \u0026upstash.KafkaClusterArgs{\n\t\t\tClusterName: pulumi.Any(_var.Cluster_name),\n\t\t\tRegion:      pulumi.Any(_var.Region),\n\t\t\tMultizone:   pulumi.Any(_var.Multizone),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleKafkaTopic, err := upstash.NewKafkaTopic(ctx, \"exampleKafkaTopic\", \u0026upstash.KafkaTopicArgs{\n\t\t\tTopicName:      pulumi.Any(_var.Topic_name),\n\t\t\tPartitions:     pulumi.Any(_var.Partitions),\n\t\t\tRetentionTime:  pulumi.Any(_var.Retention_time),\n\t\t\tRetentionSize:  pulumi.Any(_var.Retention_size),\n\t\t\tMaxMessageSize: pulumi.Any(_var.Max_message_size),\n\t\t\tCleanupPolicy:  pulumi.Any(_var.Cleanup_policy),\n\t\t\tClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = upstash.NewKafkaCredential(ctx, \"exampleKafkaCredential\", \u0026upstash.KafkaCredentialArgs{\n\t\t\tClusterId:      exampleKafkaCluster.ClusterId,\n\t\t\tCredentialName: pulumi.String(\"credentialFromTerraform\"),\n\t\t\tTopic:          exampleKafkaTopic.TopicName,\n\t\t\tPermissions:    pulumi.String(\"ALL\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleKafkaCluster = new KafkaCluster(\"exampleKafkaCluster\", KafkaClusterArgs.builder()        \n            .clusterName(var_.cluster_name())\n            .region(var_.region())\n            .multizone(var_.multizone())\n            .build());\n\n        var exampleKafkaTopic = new KafkaTopic(\"exampleKafkaTopic\", KafkaTopicArgs.builder()        \n            .topicName(var_.topic_name())\n            .partitions(var_.partitions())\n            .retentionTime(var_.retention_time())\n            .retentionSize(var_.retention_size())\n            .maxMessageSize(var_.max_message_size())\n            .cleanupPolicy(var_.cleanup_policy())\n            .clusterId(resource.upstash_kafka_cluster().exampleKafkaCluster().cluster_id())\n            .build());\n\n        var exampleKafkaCredential = new KafkaCredential(\"exampleKafkaCredential\", KafkaCredentialArgs.builder()        \n            .clusterId(exampleKafkaCluster.clusterId())\n            .credentialName(\"credentialFromTerraform\")\n            .topic(exampleKafkaTopic.topicName())\n            .permissions(\"ALL\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleKafkaCluster:\n    type: upstash:KafkaCluster\n    properties:\n      clusterName: ${var.cluster_name}\n      region: ${var.region}\n      multizone: ${var.multizone}\n  exampleKafkaTopic:\n    type: upstash:KafkaTopic\n    properties:\n      topicName: ${var.topic_name}\n      partitions: ${var.partitions}\n      retentionTime: ${var.retention_time}\n      retentionSize: ${var.retention_size}\n      maxMessageSize: ${var.max_message_size}\n      cleanupPolicy: ${var.cleanup_policy}\n      clusterId: ${resource.upstash_kafka_cluster.exampleKafkaCluster.cluster_id}\n  exampleKafkaCredential:\n    type: upstash:KafkaCredential\n    properties:\n      clusterId: ${exampleKafkaCluster.clusterId}\n      credentialName: credentialFromTerraform\n      topic: ${exampleKafkaTopic.topicName}\n      permissions: ALL\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "ID of the kafka cluster\n"
+                },
+                "creationTime": {
+                    "type": "integer",
+                    "description": "Creation time of the credential\n"
+                },
+                "credentialId": {
+                    "type": "string",
+                    "description": "Unique ID of the kafka credential\n"
+                },
+                "credentialName": {
+                    "type": "string",
+                    "description": "Name of the kafka credential\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password to be used in authenticating to the cluster\n"
+                },
+                "permissions": {
+                    "type": "string",
+                    "description": "Permission scope given to the kafka credential\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State of the credential(active or deleted)\n"
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "Name of the kafka topic\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username to be used for the kafka credential\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "creationTime",
+                "credentialId",
+                "credentialName",
+                "password",
+                "permissions",
+                "state",
+                "topic",
+                "username"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "ID of the kafka cluster\n",
+                    "willReplaceOnChanges": true
+                },
+                "credentialName": {
+                    "type": "string",
+                    "description": "Name of the kafka credential\n",
+                    "willReplaceOnChanges": true
+                },
+                "permissions": {
+                    "type": "string",
+                    "description": "Permission scope given to the kafka credential\n",
+                    "willReplaceOnChanges": true
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "Name of the kafka topic\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "credentialName",
+                "permissions",
+                "topic"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KafkaCredential resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "ID of the kafka cluster\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "Creation time of the credential\n"
+                    },
+                    "credentialId": {
+                        "type": "string",
+                        "description": "Unique ID of the kafka credential\n"
+                    },
+                    "credentialName": {
+                        "type": "string",
+                        "description": "Name of the kafka credential\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password to be used in authenticating to the cluster\n"
+                    },
+                    "permissions": {
+                        "type": "string",
+                        "description": "Permission scope given to the kafka credential\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State of the credential(active or deleted)\n"
+                    },
+                    "topic": {
+                        "type": "string",
+                        "description": "Name of the kafka topic\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Username to be used for the kafka credential\n"
                     }
                 },
                 "type": "object"
@@ -301,7 +427,7 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "Username to be used in authenticating to the cluster\n"
+                    "description": "Base64 encoded username to be used in authenticating to the cluster\n"
                 }
             },
             "required": [
@@ -434,7 +560,7 @@
                     },
                     "username": {
                         "type": "string",
-                        "description": "Username to be used in authenticating to the cluster\n"
+                        "description": "Base64 encoded username to be used in authenticating to the cluster\n"
                     }
                 },
                 "type": "object"
@@ -445,7 +571,8 @@
             "properties": {
                 "consistent": {
                     "type": "boolean",
-                    "description": "When enabled, all writes are synchronously persisted to the disk.\n"
+                    "description": "When enabled, all writes are synchronously persisted to the disk.\n",
+                    "deprecationMessage": "Consistent option is deprecated."
                 },
                 "creationTime": {
                     "type": "integer",
@@ -497,7 +624,7 @@
                 },
                 "multizone": {
                     "type": "boolean",
-                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,\nresults in deletion and recreation of the resource)\n"
                 },
                 "password": {
                     "type": "string",
@@ -514,7 +641,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n"
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n"
                 },
                 "restToken": {
                     "type": "string",
@@ -526,7 +653,8 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
+                    "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
                 },
                 "userEmail": {
                     "type": "string",
@@ -552,13 +680,14 @@
                 "region",
                 "restToken",
                 "state",
+                "tls",
                 "userEmail"
             ],
             "inputProperties": {
                 "consistent": {
                     "type": "boolean",
                     "description": "When enabled, all writes are synchronously persisted to the disk.\n",
-                    "willReplaceOnChanges": true
+                    "deprecationMessage": "Consistent option is deprecated."
                 },
                 "databaseName": {
                     "type": "string",
@@ -567,16 +696,17 @@
                 },
                 "multizone": {
                     "type": "boolean",
-                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,\nresults in deletion and recreation of the resource)\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n",
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n",
                     "willReplaceOnChanges": true
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
+                    "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
                 }
             },
             "requiredInputs": [
@@ -589,7 +719,7 @@
                     "consistent": {
                         "type": "boolean",
                         "description": "When enabled, all writes are synchronously persisted to the disk.\n",
-                        "willReplaceOnChanges": true
+                        "deprecationMessage": "Consistent option is deprecated."
                     },
                     "creationTime": {
                         "type": "integer",
@@ -642,7 +772,7 @@
                     },
                     "multizone": {
                         "type": "boolean",
-                        "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                        "description": "When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,\nresults in deletion and recreation of the resource)\n"
                     },
                     "password": {
                         "type": "string",
@@ -659,7 +789,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n",
+                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n",
                         "willReplaceOnChanges": true
                     },
                     "restToken": {
@@ -672,7 +802,8 @@
                     },
                     "tls": {
                         "type": "boolean",
-                        "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)\n"
+                        "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
+                        "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
                     },
                     "userEmail": {
                         "type": "string",
@@ -771,8 +902,7 @@
                 "description": "A collection of arguments for invoking getKafkaCluster.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string",
-                        "description": "Unique Cluster ID for requested cluster\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -784,12 +914,10 @@
                 "description": "A collection of values returned by getKafkaCluster.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string",
-                        "description": "Unique Cluster ID for requested cluster\n"
+                        "type": "string"
                     },
                     "clusterName": {
-                        "type": "string",
-                        "description": "Name of the team\n"
+                        "type": "string"
                     },
                     "creationTime": {
                         "type": "integer"
@@ -799,56 +927,43 @@
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "maxMessageSize": {
-                        "type": "integer",
-                        "description": "Max Message Size for the cluster\n"
+                        "type": "integer"
                     },
                     "maxMessagesPerSecond": {
-                        "type": "integer",
-                        "description": "Max Messages Per Second for the cluster\n"
+                        "type": "integer"
                     },
                     "maxPartitions": {
-                        "type": "integer",
-                        "description": "Max Partitions for the cluster\n"
+                        "type": "integer"
                     },
                     "maxRetentionSize": {
-                        "type": "integer",
-                        "description": "Max Retention Size of the cluster\n"
+                        "type": "integer"
                     },
                     "maxRetentionTime": {
-                        "type": "integer",
-                        "description": "Max Retention Time of the cluster\n"
+                        "type": "integer"
                     },
                     "multizone": {
-                        "type": "boolean",
-                        "description": "Whether multizone replication is enabled\n"
+                        "type": "boolean"
                     },
                     "password": {
-                        "type": "string",
-                        "description": "Password for the cluster\n"
+                        "type": "string"
                     },
                     "region": {
-                        "type": "string",
-                        "description": "Region of the cluster. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n"
+                        "type": "string"
                     },
                     "restEndpoint": {
-                        "type": "string",
-                        "description": "REST Endpoint of the cluster\n"
+                        "type": "string"
                     },
                     "state": {
-                        "type": "string",
-                        "description": "Current state of the cluster (active or deleted)\n"
+                        "type": "string"
                     },
                     "tcpEndpoint": {
-                        "type": "string",
-                        "description": "TCP Endpoint of the cluster\n"
+                        "type": "string"
                     },
                     "type": {
-                        "type": "string",
-                        "description": "Type of the cluster\n"
+                        "type": "string"
                     },
                     "username": {
-                        "type": "string",
-                        "description": "Username for the cluster\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -873,14 +988,77 @@
                 ]
             }
         },
+        "upstash:index/getKafkaCredential:getKafkaCredential": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst kafkaCredentialData = upstash.getKafkaCredential({\n    credentialId: upstash_kafka_credential.exampleKafkaCredential.credential_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nkafka_credential_data = upstash.get_kafka_credential(credential_id=upstash_kafka_credential[\"exampleKafkaCredential\"][\"credential_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kafkaCredentialData = Output.Create(Upstash.GetKafkaCredential.InvokeAsync(new Upstash.GetKafkaCredentialArgs\n        {\n            CredentialId = upstash_kafka_credential.ExampleKafkaCredential.Credential_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupKafkaCredential(ctx, \u0026GetKafkaCredentialArgs{\n\t\t\tCredentialId: upstash_kafka_credential.ExampleKafkaCredential.Credential_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var kafkaCredentialData = Output.of(UpstashFunctions.getKafkaCredential(GetKafkaCredentialArgs.builder()\n            .credentialId(upstash_kafka_credential.exampleKafkaCredential().credential_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  kafkaCredentialData:\n    Fn::Invoke:\n      Function: upstash:getKafkaCredential\n      Arguments:\n        credentialId: ${upstash_kafka_credential.exampleKafkaCredential.credential_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKafkaCredential.\n",
+                "properties": {
+                    "credentialId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "credentialId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKafkaCredential.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string"
+                    },
+                    "creationTime": {
+                        "type": "integer"
+                    },
+                    "credentialId": {
+                        "type": "string"
+                    },
+                    "credentialName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "permissions": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "topic": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "creationTime",
+                    "credentialId",
+                    "credentialName",
+                    "password",
+                    "permissions",
+                    "state",
+                    "topic",
+                    "username",
+                    "id"
+                ]
+            }
+        },
         "upstash:index/getKafkaTopic:getKafkaTopic": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst kafkaTopicData = upstash.getKafkaTopic({\n    topicId: resource.upstash_kafka_topic.exampleKafkaTopic.topic_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nkafka_topic_data = upstash.get_kafka_topic(topic_id=resource[\"upstash_kafka_topic\"][\"exampleKafkaTopic\"][\"topic_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kafkaTopicData = Output.Create(Upstash.GetKafkaTopic.InvokeAsync(new Upstash.GetKafkaTopicArgs\n        {\n            TopicId = resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupKafkaTopic(ctx, \u0026GetKafkaTopicArgs{\n\t\t\tTopicId: resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var kafkaTopicData = Output.of(UpstashFunctions.getKafkaTopic(GetKafkaTopicArgs.builder()\n            .topicId(resource.upstash_kafka_topic().exampleKafkaTopic().topic_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  kafkaTopicData:\n    Fn::Invoke:\n      Function: upstash:getKafkaTopic\n      Arguments:\n        topicId: ${resource.upstash_kafka_topic.exampleKafkaTopic.topic_id}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getKafkaTopic.\n",
                 "properties": {
                     "topicId": {
-                        "type": "string",
-                        "description": "Unique Topic ID for requested kafka topic\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -892,72 +1070,56 @@
                 "description": "A collection of values returned by getKafkaTopic.\n",
                 "properties": {
                     "cleanupPolicy": {
-                        "type": "string",
-                        "description": "Cleanup policy will be used in the topic(compact or delete)\n"
+                        "type": "string"
                     },
                     "clusterId": {
-                        "type": "string",
-                        "description": "Id of the cluster this topic belongs to\n"
+                        "type": "string"
                     },
                     "creationTime": {
-                        "type": "integer",
-                        "description": "Creation time of the topic\n"
+                        "type": "integer"
                     },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "maxMessageSize": {
-                        "type": "integer",
-                        "description": "Max Message Size for the topic\n"
+                        "type": "integer"
                     },
                     "multizone": {
-                        "type": "boolean",
-                        "description": "Whether multizone replication is enabled\n"
+                        "type": "boolean"
                     },
                     "partitions": {
-                        "type": "integer",
-                        "description": "Number of partitions the topic has\n"
+                        "type": "integer"
                     },
                     "password": {
-                        "type": "string",
-                        "description": "Password to be used in authenticating to the cluster\n"
+                        "type": "string"
                     },
                     "region": {
-                        "type": "string",
-                        "description": "Region of the kafka topic. Possible values (may change) are: \"eu-west-1\", \"us-east-1\"\n"
+                        "type": "string"
                     },
                     "restEndpoint": {
-                        "type": "string",
-                        "description": "REST Endpoint of the topic\n"
+                        "type": "string"
                     },
                     "retentionSize": {
-                        "type": "integer",
-                        "description": "Max Retention Size of the topic\n"
+                        "type": "integer"
                     },
                     "retentionTime": {
-                        "type": "integer",
-                        "description": "Max Retention Time of the topic\n"
+                        "type": "integer"
                     },
                     "state": {
-                        "type": "string",
-                        "description": "State of the topic (active or deleted)\n"
+                        "type": "string"
                     },
                     "tcpEndpoint": {
-                        "type": "string",
-                        "description": "TCP Endpoint of the topic\n"
+                        "type": "string"
                     },
                     "topicId": {
-                        "type": "string",
-                        "description": "Unique Topic ID for requested kafka topic\n"
+                        "type": "string"
                     },
                     "topicName": {
-                        "type": "string",
-                        "description": "Name of the kafka topic\n"
+                        "type": "string"
                     },
                     "username": {
-                        "type": "string",
-                        "description": "Username to be used in authenticating to the cluster\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -988,8 +1150,7 @@
                 "description": "A collection of arguments for invoking getRedisDatabase.\n",
                 "properties": {
                     "databaseId": {
-                        "type": "string",
-                        "description": "Unique Database ID for requested database\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -1002,18 +1163,16 @@
                 "properties": {
                     "consistent": {
                         "type": "boolean",
-                        "description": "When enabled database runs in Consistency Mode\n"
+                        "deprecationMessage": "Consistent option is deprecated."
                     },
                     "creationTime": {
                         "type": "integer"
                     },
                     "databaseId": {
-                        "type": "string",
-                        "description": "Unique Database ID for requested database\n"
+                        "type": "string"
                     },
                     "databaseName": {
-                        "type": "string",
-                        "description": "Name of the database\n"
+                        "type": "string"
                     },
                     "databaseType": {
                         "type": "string"
@@ -1040,20 +1199,17 @@
                         "type": "integer"
                     },
                     "endpoint": {
-                        "type": "string",
-                        "description": "Database URL for connection\n"
+                        "type": "string"
                     },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "multizone": {
-                        "type": "boolean",
-                        "description": "When enabled database is highly available and deployed multi-zone\n"
+                        "type": "boolean"
                     },
                     "password": {
-                        "type": "string",
-                        "description": "Password of the database\n"
+                        "type": "string"
                     },
                     "port": {
                         "type": "integer"
@@ -1062,8 +1218,7 @@
                         "type": "string"
                     },
                     "region": {
-                        "type": "string",
-                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" , \"eu-central1\"\n"
+                        "type": "string"
                     },
                     "restToken": {
                         "type": "string"
@@ -1073,7 +1228,7 @@
                     },
                     "tls": {
                         "type": "boolean",
-                        "description": "When enabled data is encrypted in transit\n"
+                        "deprecationMessage": "TLS option is deprecated."
                     },
                     "userEmail": {
                         "type": "string"
@@ -1113,8 +1268,7 @@
                 "description": "A collection of arguments for invoking getTeam.\n",
                 "properties": {
                     "teamId": {
-                        "type": "string",
-                        "description": "Unique Cluster ID for requested cluster\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -1126,27 +1280,23 @@
                 "description": "A collection of values returned by getTeam.\n",
                 "properties": {
                     "copyCc": {
-                        "type": "boolean",
-                        "description": "Whether Credit card info is copied or not\n"
+                        "type": "boolean"
                     },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "teamId": {
-                        "type": "string",
-                        "description": "Unique Cluster ID for requested cluster\n"
+                        "type": "string"
                     },
                     "teamMembers": {
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
-                        },
-                        "description": "Members of the team. Email addresses are given as the keys with their roles as the values.\n"
+                        }
                     },
                     "teamName": {
-                        "type": "string",
-                        "description": "Name of the team\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",

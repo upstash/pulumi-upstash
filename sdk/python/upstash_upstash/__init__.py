@@ -6,10 +6,12 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .get_kafka_cluster import *
+from .get_kafka_credential import *
 from .get_kafka_topic import *
 from .get_redis_database import *
 from .get_team import *
 from .kafka_cluster import *
+from .kafka_credential import *
 from .kafka_topic import *
 from .provider import *
 from .redis_database import *
@@ -31,6 +33,14 @@ _utilities.register(
   "fqn": "upstash_upstash",
   "classes": {
    "upstash:index/kafkaCluster:KafkaCluster": "KafkaCluster"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/kafkaCredential",
+  "fqn": "upstash_upstash",
+  "classes": {
+   "upstash:index/kafkaCredential:KafkaCredential": "KafkaCredential"
   }
  },
  {

@@ -31,9 +31,6 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getTeam.
  */
 export interface GetTeamArgs {
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     teamId: string;
 }
 
@@ -41,25 +38,13 @@ export interface GetTeamArgs {
  * A collection of values returned by getTeam.
  */
 export interface GetTeamResult {
-    /**
-     * Whether Credit card info is copied or not
-     */
     readonly copyCc: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     readonly teamId: string;
-    /**
-     * Members of the team. Email addresses are given as the keys with their roles as the values.
-     */
     readonly teamMembers: {[key: string]: string};
-    /**
-     * Name of the team
-     */
     readonly teamName: string;
 }
 
@@ -71,8 +56,5 @@ export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getTeam.
  */
 export interface GetTeamOutputArgs {
-    /**
-     * Unique Cluster ID for requested cluster
-     */
     teamId: pulumi.Input<string>;
 }

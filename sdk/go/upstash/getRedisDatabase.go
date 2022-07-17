@@ -45,18 +45,15 @@ func LookupRedisDatabase(ctx *pulumi.Context, args *LookupRedisDatabaseArgs, opt
 
 // A collection of arguments for invoking getRedisDatabase.
 type LookupRedisDatabaseArgs struct {
-	// Unique Database ID for requested database
 	DatabaseId string `pulumi:"databaseId"`
 }
 
 // A collection of values returned by getRedisDatabase.
 type LookupRedisDatabaseResult struct {
-	// When enabled database runs in Consistency Mode
-	Consistent   bool `pulumi:"consistent"`
-	CreationTime int  `pulumi:"creationTime"`
-	// Unique Database ID for requested database
-	DatabaseId string `pulumi:"databaseId"`
-	// Name of the database
+	// Deprecated: Consistent option is deprecated.
+	Consistent             bool   `pulumi:"consistent"`
+	CreationTime           int    `pulumi:"creationTime"`
+	DatabaseId             string `pulumi:"databaseId"`
 	DatabaseName           string `pulumi:"databaseName"`
 	DatabaseType           string `pulumi:"databaseType"`
 	DbDailyBandwidthLimit  int    `pulumi:"dbDailyBandwidthLimit"`
@@ -66,21 +63,17 @@ type LookupRedisDatabaseResult struct {
 	DbMaxEntrySize         int    `pulumi:"dbMaxEntrySize"`
 	DbMaxRequestSize       int    `pulumi:"dbMaxRequestSize"`
 	DbMemoryThreshold      int    `pulumi:"dbMemoryThreshold"`
-	// Database URL for connection
-	Endpoint string `pulumi:"endpoint"`
+	Endpoint               string `pulumi:"endpoint"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// When enabled database is highly available and deployed multi-zone
-	Multizone bool `pulumi:"multizone"`
-	// Password of the database
+	Id                string `pulumi:"id"`
+	Multizone         bool   `pulumi:"multizone"`
 	Password          string `pulumi:"password"`
 	Port              int    `pulumi:"port"`
 	ReadOnlyRestToken string `pulumi:"readOnlyRestToken"`
-	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
-	Region    string `pulumi:"region"`
-	RestToken string `pulumi:"restToken"`
-	State     string `pulumi:"state"`
-	// When enabled data is encrypted in transit
+	Region            string `pulumi:"region"`
+	RestToken         string `pulumi:"restToken"`
+	State             string `pulumi:"state"`
+	// Deprecated: TLS option is deprecated.
 	Tls       bool   `pulumi:"tls"`
 	UserEmail string `pulumi:"userEmail"`
 }
@@ -100,7 +93,6 @@ func LookupRedisDatabaseOutput(ctx *pulumi.Context, args LookupRedisDatabaseOutp
 
 // A collection of arguments for invoking getRedisDatabase.
 type LookupRedisDatabaseOutputArgs struct {
-	// Unique Database ID for requested database
 	DatabaseId pulumi.StringInput `pulumi:"databaseId"`
 }
 
@@ -123,7 +115,7 @@ func (o LookupRedisDatabaseResultOutput) ToLookupRedisDatabaseResultOutputWithCo
 	return o
 }
 
-// When enabled database runs in Consistency Mode
+// Deprecated: Consistent option is deprecated.
 func (o LookupRedisDatabaseResultOutput) Consistent() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Consistent }).(pulumi.BoolOutput)
 }
@@ -132,12 +124,10 @@ func (o LookupRedisDatabaseResultOutput) CreationTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) int { return v.CreationTime }).(pulumi.IntOutput)
 }
 
-// Unique Database ID for requested database
 func (o LookupRedisDatabaseResultOutput) DatabaseId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.DatabaseId }).(pulumi.StringOutput)
 }
 
-// Name of the database
 func (o LookupRedisDatabaseResultOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
@@ -174,7 +164,6 @@ func (o LookupRedisDatabaseResultOutput) DbMemoryThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) int { return v.DbMemoryThreshold }).(pulumi.IntOutput)
 }
 
-// Database URL for connection
 func (o LookupRedisDatabaseResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -184,12 +173,10 @@ func (o LookupRedisDatabaseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// When enabled database is highly available and deployed multi-zone
 func (o LookupRedisDatabaseResultOutput) Multizone() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Multizone }).(pulumi.BoolOutput)
 }
 
-// Password of the database
 func (o LookupRedisDatabaseResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -202,7 +189,6 @@ func (o LookupRedisDatabaseResultOutput) ReadOnlyRestToken() pulumi.StringOutput
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.ReadOnlyRestToken }).(pulumi.StringOutput)
 }
 
-// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
 func (o LookupRedisDatabaseResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -215,7 +201,7 @@ func (o LookupRedisDatabaseResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// When enabled data is encrypted in transit
+// Deprecated: TLS option is deprecated.
 func (o LookupRedisDatabaseResultOutput) Tls() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Tls }).(pulumi.BoolOutput)
 }

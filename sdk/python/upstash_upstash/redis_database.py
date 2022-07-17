@@ -21,17 +21,26 @@ class RedisDatabaseArgs:
         """
         The set of arguments for constructing a RedisDatabase resource.
         :param pulumi.Input[str] database_name: Name of the database
-        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+               "eu-central1"
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
-        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+               results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+               resource)
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "region", region)
         if consistent is not None:
+            warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
+        if consistent is not None:
             pulumi.set(__self__, "consistent", consistent)
         if multizone is not None:
             pulumi.set(__self__, "multizone", multizone)
+        if tls is not None:
+            warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
+            pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
 
@@ -51,7 +60,8 @@ class RedisDatabaseArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        "eu-central1"
         """
         return pulumi.get(self, "region")
 
@@ -75,7 +85,8 @@ class RedisDatabaseArgs:
     @pulumi.getter
     def multizone(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        results in deletion and recreation of the resource)
         """
         return pulumi.get(self, "multizone")
 
@@ -87,7 +98,8 @@ class RedisDatabaseArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        resource)
         """
         return pulumi.get(self, "tls")
 
@@ -136,16 +148,22 @@ class _RedisDatabaseState:
         :param pulumi.Input[int] db_max_request_size: Max request size for the database
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
-        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+               results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
-        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+               "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
         :param pulumi.Input[str] state: State of the database
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+               resource)
         :param pulumi.Input[str] user_email: User email for the database
         """
+        if consistent is not None:
+            warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
+            pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
         if consistent is not None:
             pulumi.set(__self__, "consistent", consistent)
         if creation_time is not None:
@@ -186,6 +204,9 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "rest_token", rest_token)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if tls is not None:
+            warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
+            pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if user_email is not None:
@@ -351,7 +372,8 @@ class _RedisDatabaseState:
     @pulumi.getter
     def multizone(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        results in deletion and recreation of the resource)
         """
         return pulumi.get(self, "multizone")
 
@@ -399,7 +421,8 @@ class _RedisDatabaseState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        "eu-central1"
         """
         return pulumi.get(self, "region")
 
@@ -435,7 +458,8 @@ class _RedisDatabaseState:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        resource)
         """
         return pulumi.get(self, "tls")
 
@@ -485,9 +509,12 @@ class RedisDatabase(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[str] database_name: Name of the database
-        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
-        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+               results in deletion and recreation of the resource)
+        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+               "eu-central1"
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+               resource)
         """
         ...
     @overload
@@ -543,6 +570,9 @@ class RedisDatabase(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RedisDatabaseArgs.__new__(RedisDatabaseArgs)
 
+            if consistent is not None and not opts.urn:
+                warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
+                pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
             __props__.__dict__["consistent"] = consistent
             if database_name is None and not opts.urn:
                 raise TypeError("Missing required property 'database_name'")
@@ -551,6 +581,9 @@ class RedisDatabase(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
+            if tls is not None and not opts.urn:
+                warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
+                pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
             __props__.__dict__["tls"] = tls
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["database_id"] = None
@@ -623,14 +656,17 @@ class RedisDatabase(pulumi.CustomResource):
         :param pulumi.Input[int] db_max_request_size: Max request size for the database
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
-        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+               results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
-        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+               "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
         :param pulumi.Input[str] state: State of the database
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+               resource)
         :param pulumi.Input[str] user_email: User email for the database
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -769,7 +805,8 @@ class RedisDatabase(pulumi.CustomResource):
     @pulumi.getter
     def multizone(self) -> pulumi.Output[Optional[bool]]:
         """
-        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
+        results in deletion and recreation of the resource)
         """
         return pulumi.get(self, "multizone")
 
@@ -801,7 +838,8 @@ class RedisDatabase(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
+        region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
+        "eu-central1"
         """
         return pulumi.get(self, "region")
 
@@ -823,9 +861,10 @@ class RedisDatabase(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tls(self) -> pulumi.Output[Optional[bool]]:
+    def tls(self) -> pulumi.Output[bool]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the resource)
+        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
+        resource)
         """
         return pulumi.get(self, "tls")
 

@@ -40,7 +40,7 @@ type KafkaCluster struct {
 
 	// Unique Cluster ID for created cluster
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// Name of the team
+	// Name of the cluster
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Creation time of the cluster
 	CreationTime pulumi.IntOutput `pulumi:"creationTime"`
@@ -68,7 +68,7 @@ type KafkaCluster struct {
 	TcpEndpoint pulumi.StringOutput `pulumi:"tcpEndpoint"`
 	// Type of the cluster
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Username for the cluster
+	// Base64 encoded username for the cluster
 	Username pulumi.StringOutput `pulumi:"username"`
 }
 
@@ -110,7 +110,7 @@ func GetKafkaCluster(ctx *pulumi.Context,
 type kafkaClusterState struct {
 	// Unique Cluster ID for created cluster
 	ClusterId *string `pulumi:"clusterId"`
-	// Name of the team
+	// Name of the cluster
 	ClusterName *string `pulumi:"clusterName"`
 	// Creation time of the cluster
 	CreationTime *int `pulumi:"creationTime"`
@@ -138,14 +138,14 @@ type kafkaClusterState struct {
 	TcpEndpoint *string `pulumi:"tcpEndpoint"`
 	// Type of the cluster
 	Type *string `pulumi:"type"`
-	// Username for the cluster
+	// Base64 encoded username for the cluster
 	Username *string `pulumi:"username"`
 }
 
 type KafkaClusterState struct {
 	// Unique Cluster ID for created cluster
 	ClusterId pulumi.StringPtrInput
-	// Name of the team
+	// Name of the cluster
 	ClusterName pulumi.StringPtrInput
 	// Creation time of the cluster
 	CreationTime pulumi.IntPtrInput
@@ -173,7 +173,7 @@ type KafkaClusterState struct {
 	TcpEndpoint pulumi.StringPtrInput
 	// Type of the cluster
 	Type pulumi.StringPtrInput
-	// Username for the cluster
+	// Base64 encoded username for the cluster
 	Username pulumi.StringPtrInput
 }
 
@@ -182,7 +182,7 @@ func (KafkaClusterState) ElementType() reflect.Type {
 }
 
 type kafkaClusterArgs struct {
-	// Name of the team
+	// Name of the cluster
 	ClusterName string `pulumi:"clusterName"`
 	// Whether cluster has multizone attribute
 	Multizone *bool `pulumi:"multizone"`
@@ -192,7 +192,7 @@ type kafkaClusterArgs struct {
 
 // The set of arguments for constructing a KafkaCluster resource.
 type KafkaClusterArgs struct {
-	// Name of the team
+	// Name of the cluster
 	ClusterName pulumi.StringInput
 	// Whether cluster has multizone attribute
 	Multizone pulumi.BoolPtrInput
@@ -292,7 +292,7 @@ func (o KafkaClusterOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// Name of the team
+// Name of the cluster
 func (o KafkaClusterOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
@@ -362,7 +362,7 @@ func (o KafkaClusterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Username for the cluster
+// Base64 encoded username for the cluster
 func (o KafkaClusterOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }

@@ -9,8 +9,7 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.24.1
-	github.com/pulumi/pulumi/sdk/v3 v3.33.1
-	github.com/upstash/terraform-provider-upstash v1.0.3
+	github.com/upstash/terraform-provider-upstash v1.1.1
 )
 
 require (
@@ -145,6 +144,7 @@ require (
 	github.com/pulumi/pulumi-java/pkg v0.2.0 // indirect
 	github.com/pulumi/pulumi-yaml v0.3.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.33.1 // indirect
+	github.com/pulumi/pulumi/sdk/v3 v3.33.1 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rjeczalik/notify v0.9.2 // indirect

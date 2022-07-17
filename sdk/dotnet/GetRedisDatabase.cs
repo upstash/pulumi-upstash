@@ -70,9 +70,6 @@ namespace Upstash.Upstash
 
     public sealed class GetRedisDatabaseArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Database ID for requested database
-        /// </summary>
         [Input("databaseId", required: true)]
         public string DatabaseId { get; set; } = null!;
 
@@ -83,9 +80,6 @@ namespace Upstash.Upstash
 
     public sealed class GetRedisDatabaseInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Database ID for requested database
-        /// </summary>
         [Input("databaseId", required: true)]
         public Input<string> DatabaseId { get; set; } = null!;
 
@@ -98,18 +92,9 @@ namespace Upstash.Upstash
     [OutputType]
     public sealed class GetRedisDatabaseResult
     {
-        /// <summary>
-        /// When enabled database runs in Consistency Mode
-        /// </summary>
         public readonly bool Consistent;
         public readonly int CreationTime;
-        /// <summary>
-        /// Unique Database ID for requested database
-        /// </summary>
         public readonly string DatabaseId;
-        /// <summary>
-        /// Name of the database
-        /// </summary>
         public readonly string DatabaseName;
         public readonly string DatabaseType;
         public readonly int DbDailyBandwidthLimit;
@@ -119,33 +104,18 @@ namespace Upstash.Upstash
         public readonly int DbMaxEntrySize;
         public readonly int DbMaxRequestSize;
         public readonly int DbMemoryThreshold;
-        /// <summary>
-        /// Database URL for connection
-        /// </summary>
         public readonly string Endpoint;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// When enabled database is highly available and deployed multi-zone
-        /// </summary>
         public readonly bool Multizone;
-        /// <summary>
-        /// Password of the database
-        /// </summary>
         public readonly string Password;
         public readonly int Port;
         public readonly string ReadOnlyRestToken;
-        /// <summary>
-        /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" , "eu-central1"
-        /// </summary>
         public readonly string Region;
         public readonly string RestToken;
         public readonly string State;
-        /// <summary>
-        /// When enabled data is encrypted in transit
-        /// </summary>
         public readonly bool Tls;
         public readonly string UserEmail;
 

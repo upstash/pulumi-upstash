@@ -76,17 +76,11 @@ class GetKafkaClusterResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        Unique Cluster ID for requested cluster
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
-        """
-        Name of the team
-        """
         return pulumi.get(self, "cluster_name")
 
     @property
@@ -105,105 +99,66 @@ class GetKafkaClusterResult:
     @property
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> int:
-        """
-        Max Message Size for the cluster
-        """
         return pulumi.get(self, "max_message_size")
 
     @property
     @pulumi.getter(name="maxMessagesPerSecond")
     def max_messages_per_second(self) -> int:
-        """
-        Max Messages Per Second for the cluster
-        """
         return pulumi.get(self, "max_messages_per_second")
 
     @property
     @pulumi.getter(name="maxPartitions")
     def max_partitions(self) -> int:
-        """
-        Max Partitions for the cluster
-        """
         return pulumi.get(self, "max_partitions")
 
     @property
     @pulumi.getter(name="maxRetentionSize")
     def max_retention_size(self) -> int:
-        """
-        Max Retention Size of the cluster
-        """
         return pulumi.get(self, "max_retention_size")
 
     @property
     @pulumi.getter(name="maxRetentionTime")
     def max_retention_time(self) -> int:
-        """
-        Max Retention Time of the cluster
-        """
         return pulumi.get(self, "max_retention_time")
 
     @property
     @pulumi.getter
     def multizone(self) -> bool:
-        """
-        Whether multizone replication is enabled
-        """
         return pulumi.get(self, "multizone")
 
     @property
     @pulumi.getter
     def password(self) -> str:
-        """
-        Password for the cluster
-        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        Region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="restEndpoint")
     def rest_endpoint(self) -> str:
-        """
-        REST Endpoint of the cluster
-        """
         return pulumi.get(self, "rest_endpoint")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        Current state of the cluster (active or deleted)
-        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="tcpEndpoint")
     def tcp_endpoint(self) -> str:
-        """
-        TCP Endpoint of the cluster
-        """
         return pulumi.get(self, "tcp_endpoint")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        Type of the cluster
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def username(self) -> str:
-        """
-        Username for the cluster
-        """
         return pulumi.get(self, "username")
 
 
@@ -243,9 +198,6 @@ def get_kafka_cluster(cluster_id: Optional[str] = None,
 
     cluster_data = upstash.get_kafka_cluster(cluster_id=resource["upstash_kafka_cluster"]["exampleCluster"]["cluster_id"])
     ```
-
-
-    :param str cluster_id: Unique Cluster ID for requested cluster
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -289,8 +241,5 @@ def get_kafka_cluster_output(cluster_id: Optional[pulumi.Input[str]] = None,
 
     cluster_data = upstash.get_kafka_cluster(cluster_id=resource["upstash_kafka_cluster"]["exampleCluster"]["cluster_id"])
     ```
-
-
-    :param str cluster_id: Unique Cluster ID for requested cluster
     """
     ...

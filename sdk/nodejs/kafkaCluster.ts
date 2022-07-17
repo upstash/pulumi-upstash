@@ -51,7 +51,7 @@ export class KafkaCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly clusterId!: pulumi.Output<string>;
     /**
-     * Name of the team
+     * Name of the cluster
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
@@ -107,7 +107,7 @@ export class KafkaCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
-     * Username for the cluster
+     * Base64 encoded username for the cluster
      */
     public /*out*/ readonly username!: pulumi.Output<string>;
 
@@ -179,7 +179,7 @@ export interface KafkaClusterState {
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * Name of the team
+     * Name of the cluster
      */
     clusterName?: pulumi.Input<string>;
     /**
@@ -235,7 +235,7 @@ export interface KafkaClusterState {
      */
     type?: pulumi.Input<string>;
     /**
-     * Username for the cluster
+     * Base64 encoded username for the cluster
      */
     username?: pulumi.Input<string>;
 }
@@ -245,7 +245,7 @@ export interface KafkaClusterState {
  */
 export interface KafkaClusterArgs {
     /**
-     * Name of the team
+     * Name of the cluster
      */
     clusterName: pulumi.Input<string>;
     /**

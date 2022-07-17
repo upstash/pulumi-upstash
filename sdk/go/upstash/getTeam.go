@@ -45,22 +45,17 @@ func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamArgs struct {
-	// Unique Cluster ID for requested cluster
 	TeamId string `pulumi:"teamId"`
 }
 
 // A collection of values returned by getTeam.
 type LookupTeamResult struct {
-	// Whether Credit card info is copied or not
 	CopyCc bool `pulumi:"copyCc"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Unique Cluster ID for requested cluster
-	TeamId string `pulumi:"teamId"`
-	// Members of the team. Email addresses are given as the keys with their roles as the values.
+	Id          string            `pulumi:"id"`
+	TeamId      string            `pulumi:"teamId"`
 	TeamMembers map[string]string `pulumi:"teamMembers"`
-	// Name of the team
-	TeamName string `pulumi:"teamName"`
+	TeamName    string            `pulumi:"teamName"`
 }
 
 func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
@@ -78,7 +73,6 @@ func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamOutputArgs struct {
-	// Unique Cluster ID for requested cluster
 	TeamId pulumi.StringInput `pulumi:"teamId"`
 }
 
@@ -101,7 +95,6 @@ func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.
 	return o
 }
 
-// Whether Credit card info is copied or not
 func (o LookupTeamResultOutput) CopyCc() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupTeamResult) bool { return v.CopyCc }).(pulumi.BoolOutput)
 }
@@ -111,17 +104,14 @@ func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique Cluster ID for requested cluster
 func (o LookupTeamResultOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamId }).(pulumi.StringOutput)
 }
 
-// Members of the team. Email addresses are given as the keys with their roles as the values.
 func (o LookupTeamResultOutput) TeamMembers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupTeamResult) map[string]string { return v.TeamMembers }).(pulumi.StringMapOutput)
 }
 
-// Name of the team
 func (o LookupTeamResultOutput) TeamName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamName }).(pulumi.StringOutput)
 }

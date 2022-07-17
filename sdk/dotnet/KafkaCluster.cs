@@ -42,7 +42,7 @@ namespace Upstash.Upstash
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the team
+        /// Name of the cluster
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
@@ -126,7 +126,7 @@ namespace Upstash.Upstash
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Username for the cluster
+        /// Base64 encoded username for the cluster
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
@@ -179,7 +179,7 @@ namespace Upstash.Upstash
     public sealed class KafkaClusterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the team
+        /// Name of the cluster
         /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
@@ -210,7 +210,7 @@ namespace Upstash.Upstash
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// Name of the team
+        /// Name of the cluster
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
@@ -294,7 +294,7 @@ namespace Upstash.Upstash
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Username for the cluster
+        /// Base64 encoded username for the cluster
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

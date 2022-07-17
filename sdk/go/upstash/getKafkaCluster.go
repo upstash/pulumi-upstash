@@ -45,45 +45,29 @@ func LookupKafkaCluster(ctx *pulumi.Context, args *LookupKafkaClusterArgs, opts 
 
 // A collection of arguments for invoking getKafkaCluster.
 type LookupKafkaClusterArgs struct {
-	// Unique Cluster ID for requested cluster
 	ClusterId string `pulumi:"clusterId"`
 }
 
 // A collection of values returned by getKafkaCluster.
 type LookupKafkaClusterResult struct {
-	// Unique Cluster ID for requested cluster
-	ClusterId string `pulumi:"clusterId"`
-	// Name of the team
+	ClusterId    string `pulumi:"clusterId"`
 	ClusterName  string `pulumi:"clusterName"`
 	CreationTime int    `pulumi:"creationTime"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Max Message Size for the cluster
-	MaxMessageSize int `pulumi:"maxMessageSize"`
-	// Max Messages Per Second for the cluster
-	MaxMessagesPerSecond int `pulumi:"maxMessagesPerSecond"`
-	// Max Partitions for the cluster
-	MaxPartitions int `pulumi:"maxPartitions"`
-	// Max Retention Size of the cluster
-	MaxRetentionSize int `pulumi:"maxRetentionSize"`
-	// Max Retention Time of the cluster
-	MaxRetentionTime int `pulumi:"maxRetentionTime"`
-	// Whether multizone replication is enabled
-	Multizone bool `pulumi:"multizone"`
-	// Password for the cluster
-	Password string `pulumi:"password"`
-	// Region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
-	Region string `pulumi:"region"`
-	// REST Endpoint of the cluster
-	RestEndpoint string `pulumi:"restEndpoint"`
-	// Current state of the cluster (active or deleted)
-	State string `pulumi:"state"`
-	// TCP Endpoint of the cluster
-	TcpEndpoint string `pulumi:"tcpEndpoint"`
-	// Type of the cluster
-	Type string `pulumi:"type"`
-	// Username for the cluster
-	Username string `pulumi:"username"`
+	Id                   string `pulumi:"id"`
+	MaxMessageSize       int    `pulumi:"maxMessageSize"`
+	MaxMessagesPerSecond int    `pulumi:"maxMessagesPerSecond"`
+	MaxPartitions        int    `pulumi:"maxPartitions"`
+	MaxRetentionSize     int    `pulumi:"maxRetentionSize"`
+	MaxRetentionTime     int    `pulumi:"maxRetentionTime"`
+	Multizone            bool   `pulumi:"multizone"`
+	Password             string `pulumi:"password"`
+	Region               string `pulumi:"region"`
+	RestEndpoint         string `pulumi:"restEndpoint"`
+	State                string `pulumi:"state"`
+	TcpEndpoint          string `pulumi:"tcpEndpoint"`
+	Type                 string `pulumi:"type"`
+	Username             string `pulumi:"username"`
 }
 
 func LookupKafkaClusterOutput(ctx *pulumi.Context, args LookupKafkaClusterOutputArgs, opts ...pulumi.InvokeOption) LookupKafkaClusterResultOutput {
@@ -101,7 +85,6 @@ func LookupKafkaClusterOutput(ctx *pulumi.Context, args LookupKafkaClusterOutput
 
 // A collection of arguments for invoking getKafkaCluster.
 type LookupKafkaClusterOutputArgs struct {
-	// Unique Cluster ID for requested cluster
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 }
 
@@ -124,12 +107,10 @@ func (o LookupKafkaClusterResultOutput) ToLookupKafkaClusterResultOutputWithCont
 	return o
 }
 
-// Unique Cluster ID for requested cluster
 func (o LookupKafkaClusterResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// Name of the team
 func (o LookupKafkaClusterResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
@@ -143,67 +124,54 @@ func (o LookupKafkaClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Max Message Size for the cluster
 func (o LookupKafkaClusterResultOutput) MaxMessageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) int { return v.MaxMessageSize }).(pulumi.IntOutput)
 }
 
-// Max Messages Per Second for the cluster
 func (o LookupKafkaClusterResultOutput) MaxMessagesPerSecond() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) int { return v.MaxMessagesPerSecond }).(pulumi.IntOutput)
 }
 
-// Max Partitions for the cluster
 func (o LookupKafkaClusterResultOutput) MaxPartitions() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) int { return v.MaxPartitions }).(pulumi.IntOutput)
 }
 
-// Max Retention Size of the cluster
 func (o LookupKafkaClusterResultOutput) MaxRetentionSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) int { return v.MaxRetentionSize }).(pulumi.IntOutput)
 }
 
-// Max Retention Time of the cluster
 func (o LookupKafkaClusterResultOutput) MaxRetentionTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) int { return v.MaxRetentionTime }).(pulumi.IntOutput)
 }
 
-// Whether multizone replication is enabled
 func (o LookupKafkaClusterResultOutput) Multizone() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) bool { return v.Multizone }).(pulumi.BoolOutput)
 }
 
-// Password for the cluster
 func (o LookupKafkaClusterResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Region of the cluster. Possible values (may change) are: "eu-west-1", "us-east-1"
 func (o LookupKafkaClusterResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// REST Endpoint of the cluster
 func (o LookupKafkaClusterResultOutput) RestEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.RestEndpoint }).(pulumi.StringOutput)
 }
 
-// Current state of the cluster (active or deleted)
 func (o LookupKafkaClusterResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// TCP Endpoint of the cluster
 func (o LookupKafkaClusterResultOutput) TcpEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.TcpEndpoint }).(pulumi.StringOutput)
 }
 
-// Type of the cluster
 func (o LookupKafkaClusterResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// Username for the cluster
 func (o LookupKafkaClusterResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Username }).(pulumi.StringOutput)
 }

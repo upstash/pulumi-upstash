@@ -137,7 +137,7 @@ namespace Upstash.Upstash
         public Output<string> TopicName { get; private set; } = null!;
 
         /// <summary>
-        /// Username to be used in authenticating to the cluster
+        /// Base64 encoded username to be used in authenticating to the cluster
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
@@ -329,7 +329,7 @@ namespace Upstash.Upstash
         public Input<string>? TopicName { get; set; }
 
         /// <summary>
-        /// Username to be used in authenticating to the cluster
+        /// Base64 encoded username to be used in authenticating to the cluster
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

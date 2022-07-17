@@ -40,9 +40,6 @@ class GetTeamResult:
     @property
     @pulumi.getter(name="copyCc")
     def copy_cc(self) -> bool:
-        """
-        Whether Credit card info is copied or not
-        """
         return pulumi.get(self, "copy_cc")
 
     @property
@@ -56,25 +53,16 @@ class GetTeamResult:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
-        """
-        Unique Cluster ID for requested cluster
-        """
         return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter(name="teamMembers")
     def team_members(self) -> Mapping[str, str]:
-        """
-        Members of the team. Email addresses are given as the keys with their roles as the values.
-        """
         return pulumi.get(self, "team_members")
 
     @property
     @pulumi.getter(name="teamName")
     def team_name(self) -> str:
-        """
-        Name of the team
-        """
         return pulumi.get(self, "team_name")
 
 
@@ -102,9 +90,6 @@ def get_team(team_id: Optional[str] = None,
 
     team_data = upstash.get_team(team_id=resource["upstash_team"]["exampleTeam"]["team_id"])
     ```
-
-
-    :param str team_id: Unique Cluster ID for requested cluster
     """
     __args__ = dict()
     __args__['teamId'] = team_id
@@ -136,8 +121,5 @@ def get_team_output(team_id: Optional[pulumi.Input[str]] = None,
 
     team_data = upstash.get_team(team_id=resource["upstash_team"]["exampleTeam"]["team_id"])
     ```
-
-
-    :param str team_id: Unique Cluster ID for requested cluster
     """
     ...

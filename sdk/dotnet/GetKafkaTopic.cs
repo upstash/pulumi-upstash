@@ -70,9 +70,6 @@ namespace Upstash.Upstash
 
     public sealed class GetKafkaTopicArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Topic ID for requested kafka topic
-        /// </summary>
         [Input("topicId", required: true)]
         public string TopicId { get; set; } = null!;
 
@@ -83,9 +80,6 @@ namespace Upstash.Upstash
 
     public sealed class GetKafkaTopicInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique Topic ID for requested kafka topic
-        /// </summary>
         [Input("topicId", required: true)]
         public Input<string> TopicId { get; set; } = null!;
 
@@ -98,73 +92,25 @@ namespace Upstash.Upstash
     [OutputType]
     public sealed class GetKafkaTopicResult
     {
-        /// <summary>
-        /// Cleanup policy will be used in the topic(compact or delete)
-        /// </summary>
         public readonly string CleanupPolicy;
-        /// <summary>
-        /// Id of the cluster this topic belongs to
-        /// </summary>
         public readonly string ClusterId;
-        /// <summary>
-        /// Creation time of the topic
-        /// </summary>
         public readonly int CreationTime;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Max Message Size for the topic
-        /// </summary>
         public readonly int MaxMessageSize;
-        /// <summary>
-        /// Whether multizone replication is enabled
-        /// </summary>
         public readonly bool Multizone;
-        /// <summary>
-        /// Number of partitions the topic has
-        /// </summary>
         public readonly int Partitions;
-        /// <summary>
-        /// Password to be used in authenticating to the cluster
-        /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// Region of the kafka topic. Possible values (may change) are: "eu-west-1", "us-east-1"
-        /// </summary>
         public readonly string Region;
-        /// <summary>
-        /// REST Endpoint of the topic
-        /// </summary>
         public readonly string RestEndpoint;
-        /// <summary>
-        /// Max Retention Size of the topic
-        /// </summary>
         public readonly int RetentionSize;
-        /// <summary>
-        /// Max Retention Time of the topic
-        /// </summary>
         public readonly int RetentionTime;
-        /// <summary>
-        /// State of the topic (active or deleted)
-        /// </summary>
         public readonly string State;
-        /// <summary>
-        /// TCP Endpoint of the topic
-        /// </summary>
         public readonly string TcpEndpoint;
-        /// <summary>
-        /// Unique Topic ID for requested kafka topic
-        /// </summary>
         public readonly string TopicId;
-        /// <summary>
-        /// Name of the kafka topic
-        /// </summary>
         public readonly string TopicName;
-        /// <summary>
-        /// Username to be used in authenticating to the cluster
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]
