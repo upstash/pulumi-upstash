@@ -86,8 +86,8 @@ func main() {
 			TeamName: pulumi.String("pulumi go team"),
 			CopyCc:   pulumi.Bool(false),
 			TeamMembers: pulumi.StringMap{
-				"bylmaz744@gmail.com": pulumi.String("owner"),
-				"burak@upstash.com":   pulumi.String("dev"),
+				"<owner_email>": pulumi.String("owner"),
+				"<second_email>":   pulumi.String("dev"),
 			},
 		})
 		if err != nil {

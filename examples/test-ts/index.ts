@@ -45,8 +45,8 @@ const topicFromGet = upstash.getKafkaTopicOutput({
 const createdTeam = new upstash.Team("myTeam", {
     teamName: "pulumi ts team",
     teamMembers: {
-        "bylmaz744@gmail.com": "owner",
-        "burak@upstash.com": "admin"
+        "<owner_email>": "owner",
+        "<second_email>": "admin"
     },
     copyCc : true
 })
