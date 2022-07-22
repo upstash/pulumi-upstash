@@ -653,8 +653,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
-                    "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n"
                 },
                 "userEmail": {
                     "type": "string",
@@ -680,7 +679,6 @@
                 "region",
                 "restToken",
                 "state",
-                "tls",
                 "userEmail"
             ],
             "inputProperties": {
@@ -705,8 +703,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
-                    "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
+                    "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n"
                 }
             },
             "requiredInputs": [
@@ -802,8 +799,7 @@
                     },
                     "tls": {
                         "type": "boolean",
-                        "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n",
-                        "deprecationMessage": "TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it."
+                        "description": "When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the\nresource)\n"
                     },
                     "userEmail": {
                         "type": "string",
@@ -1227,8 +1223,7 @@
                         "type": "string"
                     },
                     "tls": {
-                        "type": "boolean",
-                        "deprecationMessage": "TLS option is deprecated."
+                        "type": "boolean"
                     },
                     "userEmail": {
                         "type": "string"

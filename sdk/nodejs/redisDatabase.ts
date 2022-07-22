@@ -134,10 +134,8 @@ export class RedisDatabase extends pulumi.CustomResource {
     /**
      * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
      * resource)
-     *
-     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
-    public readonly tls!: pulumi.Output<boolean>;
+    public readonly tls!: pulumi.Output<boolean | undefined>;
     /**
      * User email for the database
      */
@@ -307,8 +305,6 @@ export interface RedisDatabaseState {
     /**
      * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
      * resource)
-     *
-     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
     tls?: pulumi.Input<boolean>;
     /**
@@ -344,8 +340,6 @@ export interface RedisDatabaseArgs {
     /**
      * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
      * resource)
-     *
-     * @deprecated TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
      */
     tls?: pulumi.Input<boolean>;
 }

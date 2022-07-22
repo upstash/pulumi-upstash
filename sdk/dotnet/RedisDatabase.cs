@@ -163,7 +163,7 @@ namespace Upstash.Upstash
         /// resource)
         /// </summary>
         [Output("tls")]
-        public Output<bool> Tls { get; private set; } = null!;
+        public Output<bool?> Tls { get; private set; } = null!;
 
         /// <summary>
         /// User email for the database

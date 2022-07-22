@@ -69,8 +69,8 @@ func main() {
 		createdCredential, err := upstash.NewKafkaCredential(ctx, "exampleCredential", &upstash.KafkaCredentialArgs{
 			ClusterId:      pulumi.StringOutput(createdCluster.ClusterId),
 			CredentialName: pulumi.String("pulumi-go-credential"),
-			Permissions: pulumi.String("ALL"),
-			Topic: pulumi.StringOutput(createdTopic.TopicName),
+			Permissions:    pulumi.String("ALL"),
+			Topic:          pulumi.StringOutput(createdTopic.TopicName),
 		})
 
 		credentialFromGet := upstash.LookupKafkaCredentialOutput(ctx, upstash.LookupKafkaCredentialOutputArgs{

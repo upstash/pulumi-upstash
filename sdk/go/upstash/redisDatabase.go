@@ -85,9 +85,7 @@ type RedisDatabase struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 	// resource)
-	//
-	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
-	Tls pulumi.BoolOutput `pulumi:"tls"`
+	Tls pulumi.BoolPtrOutput `pulumi:"tls"`
 	// User email for the database
 	UserEmail pulumi.StringOutput `pulumi:"userEmail"`
 }
@@ -178,8 +176,6 @@ type redisDatabaseState struct {
 	State *string `pulumi:"state"`
 	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 	// resource)
-	//
-	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls *bool `pulumi:"tls"`
 	// User email for the database
 	UserEmail *string `pulumi:"userEmail"`
@@ -232,8 +228,6 @@ type RedisDatabaseState struct {
 	State pulumi.StringPtrInput
 	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 	// resource)
-	//
-	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls pulumi.BoolPtrInput
 	// User email for the database
 	UserEmail pulumi.StringPtrInput
@@ -258,8 +252,6 @@ type redisDatabaseArgs struct {
 	Region string `pulumi:"region"`
 	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 	// resource)
-	//
-	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls *bool `pulumi:"tls"`
 }
 
@@ -279,8 +271,6 @@ type RedisDatabaseArgs struct {
 	Region pulumi.StringInput
 	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 	// resource)
-	//
-	// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
 	Tls pulumi.BoolPtrInput
 }
 
@@ -477,10 +467,8 @@ func (o RedisDatabaseOutput) State() pulumi.StringOutput {
 
 // When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
 // resource)
-//
-// Deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.
-func (o RedisDatabaseOutput) Tls() pulumi.BoolOutput {
-	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolOutput { return v.Tls }).(pulumi.BoolOutput)
+func (o RedisDatabaseOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
 // User email for the database

@@ -73,9 +73,8 @@ type LookupRedisDatabaseResult struct {
 	Region            string `pulumi:"region"`
 	RestToken         string `pulumi:"restToken"`
 	State             string `pulumi:"state"`
-	// Deprecated: TLS option is deprecated.
-	Tls       bool   `pulumi:"tls"`
-	UserEmail string `pulumi:"userEmail"`
+	Tls               bool   `pulumi:"tls"`
+	UserEmail         string `pulumi:"userEmail"`
 }
 
 func LookupRedisDatabaseOutput(ctx *pulumi.Context, args LookupRedisDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupRedisDatabaseResultOutput {
@@ -201,7 +200,6 @@ func (o LookupRedisDatabaseResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// Deprecated: TLS option is deprecated.
 func (o LookupRedisDatabaseResultOutput) Tls() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Tls }).(pulumi.BoolOutput)
 }
