@@ -90,10 +90,6 @@ class GetRedisDatabaseResult:
         pulumi.set(__self__, "state", state)
         if tls and not isinstance(tls, bool):
             raise TypeError("Expected argument 'tls' to be a bool")
-        if tls is not None:
-            warnings.warn("""TLS option is deprecated.""", DeprecationWarning)
-            pulumi.log.warn("""tls is deprecated: TLS option is deprecated.""")
-
         pulumi.set(__self__, "tls", tls)
         if user_email and not isinstance(user_email, str):
             raise TypeError("Expected argument 'user_email' to be a str")

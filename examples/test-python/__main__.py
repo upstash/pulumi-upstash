@@ -55,8 +55,8 @@ created_team = upstash.Team(
     team_name="pulumi team",
     copy_cc=False,
     team_members={
-        "<owner_email>": "owner",
-        "<second_email>": "admin"
+        "bylmaz744@gmail.com": "owner",
+        "burak@upstash.com": "admin"
     }
 )
 

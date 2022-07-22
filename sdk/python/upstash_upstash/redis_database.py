@@ -39,9 +39,6 @@ class RedisDatabaseArgs:
         if multizone is not None:
             pulumi.set(__self__, "multizone", multizone)
         if tls is not None:
-            warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
-            pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
-        if tls is not None:
             pulumi.set(__self__, "tls", tls)
 
     @property
@@ -204,9 +201,6 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "rest_token", rest_token)
         if state is not None:
             pulumi.set(__self__, "state", state)
-        if tls is not None:
-            warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
-            pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if user_email is not None:
@@ -581,9 +575,6 @@ class RedisDatabase(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
-            if tls is not None and not opts.urn:
-                warnings.warn("""TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""", DeprecationWarning)
-                pulumi.log.warn("""tls is deprecated: TLS option is deprecated. TLS will always be enabled. If you have a DB without tls enabled, run the same configuration with tls=true to enable it.""")
             __props__.__dict__["tls"] = tls
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["database_id"] = None
@@ -861,7 +852,7 @@ class RedisDatabase(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tls(self) -> pulumi.Output[bool]:
+    def tls(self) -> pulumi.Output[Optional[bool]]:
         """
         When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
         resource)

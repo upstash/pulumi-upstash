@@ -65,9 +65,6 @@ export interface GetRedisDatabaseResult {
     readonly region: string;
     readonly restToken: string;
     readonly state: string;
-    /**
-     * @deprecated TLS option is deprecated.
-     */
     readonly tls: boolean;
     readonly userEmail: string;
 }
