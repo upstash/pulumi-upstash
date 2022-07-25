@@ -149,7 +149,7 @@ class Team(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_team = upstash.Team("exampleTeam",
             team_name="TerraformTeam",
@@ -178,7 +178,7 @@ class Team(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_team = upstash.Team("exampleTeam",
             team_name="TerraformTeam",

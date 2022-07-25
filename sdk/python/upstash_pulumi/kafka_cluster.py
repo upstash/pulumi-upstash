@@ -342,7 +342,7 @@ class KafkaCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_cluster = upstash.KafkaCluster("exampleCluster",
             cluster_name="TerraformCluster",
@@ -367,7 +367,7 @@ class KafkaCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_cluster = upstash.KafkaCluster("exampleCluster",
             cluster_name="TerraformCluster",

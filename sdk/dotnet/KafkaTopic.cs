@@ -6,16 +6,15 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace Upstash.Upstash
+namespace Pulumi.Upstash
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using Pulumi;
-    /// using Upstash = Upstash.Upstash;
+    /// using Upstash = Pulumi.Upstash;
     /// 
     /// class MyStack : Stack
     /// {

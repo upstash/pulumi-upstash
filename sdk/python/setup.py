@@ -37,7 +37,7 @@ def readme():
         return "upstash Pulumi Package - Development Version"
 
 
-setup(name='upstash_upstash',
+setup(name='upstash_pulumi',
       version=VERSION,
       description="A Pulumi package for creating and managing upstash cloud resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='upstash_upstash',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'upstash_upstash': [
+          'upstash_pulumi': [
               'py.typed',
               'pulumi-plugin.json',
           ]

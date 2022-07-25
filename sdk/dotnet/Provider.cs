@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace Upstash.Upstash
+namespace Pulumi.Upstash
 {
     /// <summary>
     /// The provider type for the upstash package. By default, resources use package-wide configuration

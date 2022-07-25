@@ -490,7 +490,7 @@ class RedisDatabase(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_db = upstash.RedisDatabase("exampleDB",
             database_name="Terraform DB6",
@@ -521,7 +521,7 @@ class RedisDatabase(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_db = upstash.RedisDatabase("exampleDB",
             database_name="Terraform DB6",

@@ -405,7 +405,7 @@ class KafkaTopic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         # Not necessary if the topic belongs to an already created cluster.
         example_kafka_cluster = upstash.KafkaCluster("exampleKafkaCluster",
@@ -443,7 +443,7 @@ class KafkaTopic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         # Not necessary if the topic belongs to an already created cluster.
         example_kafka_cluster = upstash.KafkaCluster("exampleKafkaCluster",

@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@upstash/upstash";
+ * import * as pulumi from "@upstash/pulumi";
  *
  * // Not necessary if the topic belongs to an already created cluster.
  * const exampleKafkaCluster = new upstash.KafkaCluster("exampleKafkaCluster", {

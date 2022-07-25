@@ -19,10 +19,10 @@ from .team import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import upstash_upstash.config as __config
+    import upstash_pulumi.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('upstash_upstash.config')
+    config = _utilities.lazy_import('upstash_pulumi.config')
 
 _utilities.register(
     resource_modules="""
@@ -30,7 +30,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "mod": "index/kafkaCluster",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/kafkaCluster:KafkaCluster": "KafkaCluster"
   }
@@ -38,7 +38,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "mod": "index/kafkaCredential",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/kafkaCredential:KafkaCredential": "KafkaCredential"
   }
@@ -46,7 +46,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "mod": "index/kafkaTopic",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/kafkaTopic:KafkaTopic": "KafkaTopic"
   }
@@ -54,7 +54,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "mod": "index/redisDatabase",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/redisDatabase:RedisDatabase": "RedisDatabase"
   }
@@ -62,7 +62,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "mod": "index/team",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/team:Team": "Team"
   }
@@ -74,7 +74,7 @@ _utilities.register(
  {
   "pkg": "upstash",
   "token": "pulumi:providers:upstash",
-  "fqn": "upstash_upstash",
+  "fqn": "upstash_pulumi",
   "class": "Provider"
  }
 ]

@@ -245,7 +245,7 @@ class KafkaCredential(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_kafka_cluster = upstash.KafkaCluster("exampleKafkaCluster",
             cluster_name=var["cluster_name"],
@@ -284,7 +284,7 @@ class KafkaCredential(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import upstash_upstash as upstash
+        import upstash_pulumi as upstash
 
         example_kafka_cluster = upstash.KafkaCluster("exampleKafkaCluster",
             cluster_name=var["cluster_name"],

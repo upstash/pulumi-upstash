@@ -1,5 +1,5 @@
 {
-    "name": "@upstash/upstash",
+    "name": "@upstash/pulumi",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing upstash cloud resources.",
     "keywords": [

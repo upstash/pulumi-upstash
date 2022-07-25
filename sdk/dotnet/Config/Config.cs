@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Upstash.Upstash
+namespace Pulumi.Upstash
 {
     public static class Config
     {
