@@ -46,9 +46,9 @@ setup(name='upstash_pulumi',
           'install': InstallPluginCommand,
       },
       keywords='pulumi upstash category/cloud',
-      url='https://www.pulumi.com',
+      url='https://www.upstash.com',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-upstash'
+          'Repository': 'https://github.com/upstash/upstash-pulumi-provider'
       },
       license='Apache-2.0',
       packages=find_packages(),

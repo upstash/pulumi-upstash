@@ -7,10 +7,10 @@
         "upstash",
         "category/cloud"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://www.upstash.com",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`upstash` Terraform Provider](https://github.com/upstash/terraform-provider-upstash).",
-    "repository": "https://github.com/pulumi/pulumi-upstash",
+    "repository": "https://github.com/upstash/upstash-pulumi-provider",
     "pluginDownloadURL": "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
     "publisher": "Upstash",
     "meta": {

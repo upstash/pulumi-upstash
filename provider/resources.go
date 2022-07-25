@@ -75,8 +75,8 @@ func Provider() tfbridge.ProviderInfo {
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
 		Keywords:   []string{"pulumi", "upstash", "category/cloud"},
 		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-upstash",
+		Homepage:   "https://www.upstash.com",
+		Repository: "https://github.com/upstash/upstash-pulumi-provider",
 		// The GitHub Org for the provider - defaults to `terraform-providers`
 		GitHubOrg: "upstash",
 		Config:    map[string]*tfbridge.SchemaInfo{},

@@ -6,8 +6,8 @@
     <Company>Upstash</Company>
     <Description>A Pulumi package for creating and managing upstash cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://www.pulumi.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pulumi/pulumi-upstash</RepositoryUrl>
+    <PackageProjectUrl>https://www.upstash.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/upstash/upstash-pulumi-provider</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
     <TargetFramework>netcoreapp3.1</TargetFramework>
