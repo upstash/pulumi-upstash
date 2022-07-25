@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @upstash/upstash
+npm install @upstash/pulumi
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @upstash/upstash
+yarn add @upstash/pulumi
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @upstash/upstash
 To use from Python, install using `pip`:
 
 ```bash
-pip install upstash_upstash
+pip install upstash_pulumi
 ```
 
 ### Go
@@ -38,7 +38,7 @@ go get github.com/upstash/upstash-pulumi-provider/sdk/go/...
 
 ## Configuration
 
-The following configuration points are available for the `foo` provider:
+The following configuration points are available for the `upstash` provider:
 
 - `upstash:apiKey` (environment: `UPSTASH_API_KEY`) - the API key for `upstash`. Can be obtained from the [console](https://console.upstash.com).
 - `upstash:email` (environment: `UPSTASH_EMAIL`) - owner email of the resources
@@ -48,7 +48,7 @@ The following configuration points are available for the `foo` provider:
 ### TypeScript:
 ```
 import * as pulumi from "@pulumi/pulumi";
-import * as upstash from "@upstash/upstash";
+import * as upstash from "@upstash/pulumi";
 
 // multiple redis databases in a single for loop
 
@@ -96,7 +96,7 @@ func main() {
 ### Python: 
 ```
 import  pulumi
-import upstash_upstash as upstash
+import upstash_pulumi as upstash
 
 created_cluster = upstash.KafkaCluster(
     resource_name="myCluster",
