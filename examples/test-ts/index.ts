@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as upstash from "@upstash/upstash";
+import * as upstash from "@upstash/pulumi";
 
 
 const createdDb = new upstash.RedisDatabase("mydb", {

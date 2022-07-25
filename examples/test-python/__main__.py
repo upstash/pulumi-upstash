@@ -2,7 +2,7 @@
 
 from operator import truediv
 import  pulumi
-import upstash_upstash as upstash
+import upstash_pulumi as upstash
 
 # consistent and tls fields need some modification on schema definitions
 created_db = upstash.RedisDatabase(
