@@ -5,7 +5,7 @@ before:
   hooks:
     - make tfgen
 builds:
-  - binary: provider-resource-upstash
+  - binary: pulumi-resource-upstash
     dir: provider
     env:
       - CGO_ENABLED=0
