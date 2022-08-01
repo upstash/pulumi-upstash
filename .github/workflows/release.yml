@@ -112,7 +112,7 @@ jobs:
         working-directory: ${{github.workspace}}/sdk/nodejs/bin
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
-          npm publish --access public --tag=next
+          npm publish --access public
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
