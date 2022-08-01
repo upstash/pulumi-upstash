@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`upstash` Terraform Provider](https://github.com/upstash/terraform-provider-upstash).",
     "repository": "https://github.com/upstash/upstash-pulumi-provider",
+    "logoUrl": "https://upstash.com/static/logo/logo-light.svg",
     "pluginDownloadURL": "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
     "publisher": "Upstash",
     "meta": {
