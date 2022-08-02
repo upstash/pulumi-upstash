@@ -29,9 +29,8 @@ const createdDb = new upstash.RedisDatabase("mydb", {
 
 ```go
 import (
-	"fmt"
-	scaleway "github.com/jaxxstorm/pulumi-scaleway/sdk/go/scaleway"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
 )
 
 func main() {
