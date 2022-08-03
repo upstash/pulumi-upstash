@@ -1,6 +1,6 @@
 # Upstash Resource Provider
 
-The Upstash Pulumi Provider lets you manage [Upstash](http://upstash.com) resources programatically.
+The Upstash Pulumi Provider lets you manage [Upstash](http://upstash.com) Redis and Kafka resources programatically.
 
 ## Installing
 
