@@ -567,6 +567,316 @@
                 "type": "object"
             }
         },
+        "upstash:index/qStashEndpoint:QStashEndpoint": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi from \"@upstash/pulumi\";\n\nconst exampleQstashEndpoint = new upstash.QStashEndpoint(\"exampleQstashEndpoint\", {\n    url: \"https://***.***\",\n    topicId: resource.upstash_qstash_topic.exampleQstashTopic.topic_id,\n});\n```\n```python\nimport pulumi\nimport upstash_pulumi as upstash\n\nexample_qstash_endpoint = upstash.QStashEndpoint(\"exampleQstashEndpoint\",\n    url=\"https://***.***\",\n    topic_id=resource[\"upstash_qstash_topic\"][\"exampleQstashTopic\"][\"topic_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleQstashEndpoint = new Upstash.QStashEndpoint(\"exampleQstashEndpoint\", new Upstash.QStashEndpointArgs\n        {\n            Url = \"https://***.***\",\n            TopicId = resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewQStashEndpoint(ctx, \"exampleQstashEndpoint\", \u0026upstash.QStashEndpointArgs{\n\t\t\tUrl:     pulumi.String(\"https://***.***\"),\n\t\t\tTopicId: pulumi.Any(resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleQstashEndpoint = new QStashEndpoint(\"exampleQstashEndpoint\", QStashEndpointArgs.builder()        \n            .url(\"https://***.***\")\n            .topicId(resource.upstash_qstash_topic().exampleQstashTopic().topic_id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleQstashEndpoint:\n    type: upstash:QStashEndpoint\n    properties:\n      url: https://***.***\n      topicId: ${resource.upstash_qstash_topic.exampleQstashTopic.topic_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "endpointId": {
+                    "type": "string",
+                    "description": "Unique Qstash Endpoint ID\n"
+                },
+                "topicId": {
+                    "type": "string",
+                    "description": "Topic Id that the endpoint is added to\n"
+                },
+                "topicName": {
+                    "type": "string",
+                    "description": "Unique Qstash Topic Name for Endpoint\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL of the endpoint\n"
+                }
+            },
+            "required": [
+                "endpointId",
+                "topicId",
+                "topicName",
+                "url"
+            ],
+            "inputProperties": {
+                "topicId": {
+                    "type": "string",
+                    "description": "Topic Id that the endpoint is added to\n",
+                    "willReplaceOnChanges": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL of the endpoint\n"
+                }
+            },
+            "requiredInputs": [
+                "topicId",
+                "url"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QStashEndpoint resources.\n",
+                "properties": {
+                    "endpointId": {
+                        "type": "string",
+                        "description": "Unique Qstash Endpoint ID\n"
+                    },
+                    "topicId": {
+                        "type": "string",
+                        "description": "Topic Id that the endpoint is added to\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "topicName": {
+                        "type": "string",
+                        "description": "Unique Qstash Topic Name for Endpoint\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "URL of the endpoint\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/qStashSchedule:QStashSchedule": {
+            "properties": {
+                "body": {
+                    "type": "string",
+                    "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n"
+                },
+                "contentBasedDeduplication": {
+                    "type": "boolean",
+                    "description": "Content Based Deduplication (bool) for Qstash Scheduling.\n"
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "Content type for Qstash Scheduling.\n"
+                },
+                "createdAt": {
+                    "type": "integer",
+                    "description": "Creation time for Qstash Schedule.\n"
+                },
+                "cron": {
+                    "type": "string",
+                    "description": "Cron string for Qstash Schedule\n"
+                },
+                "deduplicationId": {
+                    "type": "string",
+                    "description": "Deduplication ID for Qstash Scheduling.\n"
+                },
+                "delay": {
+                    "type": "string",
+                    "description": "Delay for Qstash Schedule.\n"
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "Destination for Qstash Schedule. Either Topic ID or valid URL\n"
+                },
+                "forwardHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Forward headers to your API\n"
+                },
+                "notBefore": {
+                    "type": "integer",
+                    "description": "Start time for Qstash Scheduling.\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Retries for Qstash Schedule requests.\n"
+                },
+                "scheduleId": {
+                    "type": "string",
+                    "description": "Unique Qstash Schedule ID for requested schedule\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "cron",
+                "destination",
+                "scheduleId"
+            ],
+            "inputProperties": {
+                "body": {
+                    "type": "string",
+                    "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                    "willReplaceOnChanges": true
+                },
+                "contentBasedDeduplication": {
+                    "type": "boolean",
+                    "description": "Content Based Deduplication (bool) for Qstash Scheduling.\n",
+                    "willReplaceOnChanges": true
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "Content type for Qstash Scheduling.\n",
+                    "willReplaceOnChanges": true
+                },
+                "cron": {
+                    "type": "string",
+                    "description": "Cron string for Qstash Schedule\n",
+                    "willReplaceOnChanges": true
+                },
+                "deduplicationId": {
+                    "type": "string",
+                    "description": "Deduplication ID for Qstash Scheduling.\n",
+                    "willReplaceOnChanges": true
+                },
+                "delay": {
+                    "type": "string",
+                    "description": "Delay for Qstash Schedule.\n",
+                    "willReplaceOnChanges": true
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "Destination for Qstash Schedule. Either Topic ID or valid URL\n",
+                    "willReplaceOnChanges": true
+                },
+                "forwardHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Forward headers to your API\n",
+                    "willReplaceOnChanges": true
+                },
+                "notBefore": {
+                    "type": "integer",
+                    "description": "Start time for Qstash Scheduling.\n",
+                    "willReplaceOnChanges": true
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Retries for Qstash Schedule requests.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "cron",
+                "destination"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QStashSchedule resources.\n",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "contentBasedDeduplication": {
+                        "type": "boolean",
+                        "description": "Content Based Deduplication (bool) for Qstash Scheduling.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "description": "Content type for Qstash Scheduling.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "createdAt": {
+                        "type": "integer",
+                        "description": "Creation time for Qstash Schedule.\n"
+                    },
+                    "cron": {
+                        "type": "string",
+                        "description": "Cron string for Qstash Schedule\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deduplicationId": {
+                        "type": "string",
+                        "description": "Deduplication ID for Qstash Scheduling.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "delay": {
+                        "type": "string",
+                        "description": "Delay for Qstash Schedule.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "destination": {
+                        "type": "string",
+                        "description": "Destination for Qstash Schedule. Either Topic ID or valid URL\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "forwardHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Forward headers to your API\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "notBefore": {
+                        "type": "integer",
+                        "description": "Start time for Qstash Scheduling.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "retries": {
+                        "type": "integer",
+                        "description": "Retries for Qstash Schedule requests.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "scheduleId": {
+                        "type": "string",
+                        "description": "Unique Qstash Schedule ID for requested schedule\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/qStashTopic:QStashTopic": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleQstashTopic = new upstash.QStashTopic(\"exampleQstashTopic\", {});\n```\n```python\nimport pulumi\nimport upstash_pulumi as upstash\n\nexample_qstash_topic = upstash.QStashTopic(\"exampleQstashTopic\")\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleQstashTopic = new Upstash.QStashTopic(\"exampleQstashTopic\", new Upstash.QStashTopicArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewQStashTopic(ctx, \"exampleQstashTopic\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleQstashTopic = new QStashTopic(\"exampleQstashTopic\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleQstashTopic:\n    type: upstash:QStashTopic\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Endpoints for the Qstash Topic\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Qstash Topic\n"
+                },
+                "topicId": {
+                    "type": "string",
+                    "description": "Unique Qstash Topic ID for requested topic\n"
+                }
+            },
+            "required": [
+                "endpoints",
+                "name",
+                "topicId"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Qstash Topic\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QStashTopic resources.\n",
+                "properties": {
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "Endpoints for the Qstash Topic\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the Qstash Topic\n"
+                    },
+                    "topicId": {
+                        "type": "string",
+                        "description": "Unique Qstash Topic ID for requested topic\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "upstash:index/redisDatabase:RedisDatabase": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleDB = new upstash.RedisDatabase(\"exampleDB\", {\n    databaseName: \"Terraform DB6\",\n    multizone: true,\n    region: \"eu-west-1\",\n    tls: true,\n});\n```\n```python\nimport pulumi\nimport upstash_pulumi as upstash\n\nexample_db = upstash.RedisDatabase(\"exampleDB\",\n    database_name=\"Terraform DB6\",\n    multizone=True,\n    region=\"eu-west-1\",\n    tls=True)\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDB = new Upstash.RedisDatabase(\"exampleDB\", new Upstash.RedisDatabaseArgs\n        {\n            DatabaseName = \"Terraform DB6\",\n            Multizone = true,\n            Region = \"eu-west-1\",\n            Tls = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewRedisDatabase(ctx, \"exampleDB\", \u0026upstash.RedisDatabaseArgs{\n\t\t\tDatabaseName: pulumi.String(\"Terraform DB6\"),\n\t\t\tMultizone:    pulumi.Bool(true),\n\t\t\tRegion:       pulumi.String(\"eu-west-1\"),\n\t\t\tTls:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDB = new RedisDatabase(\"exampleDB\", RedisDatabaseArgs.builder()        \n            .databaseName(\"Terraform DB6\")\n            .multizone(\"true\")\n            .region(\"eu-west-1\")\n            .tls(\"true\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDB:\n    type: upstash:RedisDatabase\n    properties:\n      databaseName: Terraform DB6\n      multizone: true\n      region: eu-west-1\n      tls: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -1137,6 +1447,154 @@
                     "topicId",
                     "topicName",
                     "username",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getQStashEndpoint:getQStashEndpoint": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleQstashEndpointData = upstash.getQStashEndpoint({\n    endpointId: resource.upstash_qstash_endpoint.exampleQstashEndpoint.endpoint_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nexample_qstash_endpoint_data = upstash.get_q_stash_endpoint(endpoint_id=resource[\"upstash_qstash_endpoint\"][\"exampleQstashEndpoint\"][\"endpoint_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleQstashEndpointData = Output.Create(Upstash.GetQStashEndpoint.InvokeAsync(new Upstash.GetQStashEndpointArgs\n        {\n            EndpointId = resource.Upstash_qstash_endpoint.ExampleQstashEndpoint.Endpoint_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupQStashEndpoint(ctx, \u0026GetQStashEndpointArgs{\n\t\t\tEndpointId: resource.Upstash_qstash_endpoint.ExampleQstashEndpoint.Endpoint_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleQstashEndpointData = Output.of(UpstashFunctions.getQStashEndpoint(GetQStashEndpointArgs.builder()\n            .endpointId(resource.upstash_qstash_endpoint().exampleQstashEndpoint().endpoint_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleQstashEndpointData:\n    Fn::Invoke:\n      Function: upstash:getQStashEndpoint\n      Arguments:\n        endpointId: ${resource.upstash_qstash_endpoint.exampleQstashEndpoint.endpoint_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getQStashEndpoint.\n",
+                "properties": {
+                    "topicId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "topicId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getQStashEndpoint.\n",
+                "properties": {
+                    "endpointId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "topicId": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "endpointId",
+                    "topicId",
+                    "url",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getQStashSchedule:getQStashSchedule": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleQstashScheduleData = upstash.getQStashSchedule({\n    scheduleId: resource.upstash_qstash_schedule.exampleQstashSchedule.schedule_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_upstash as upstash\n\nexample_qstash_schedule_data = upstash.get_q_stash_schedule(schedule_id=resource[\"upstash_qstash_schedule\"][\"exampleQstashSchedule\"][\"schedule_id\"])\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleQstashScheduleData = Output.Create(Upstash.GetQStashSchedule.InvokeAsync(new Upstash.GetQStashScheduleArgs\n        {\n            ScheduleId = resource.Upstash_qstash_schedule.ExampleQstashSchedule.Schedule_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-upstash/sdk/go/upstash\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.LookupQStashSchedule(ctx, \u0026GetQStashScheduleArgs{\n\t\t\tScheduleId: resource.Upstash_qstash_schedule.ExampleQstashSchedule.Schedule_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleQstashScheduleData = Output.of(UpstashFunctions.getQStashSchedule(GetQStashScheduleArgs.builder()\n            .scheduleId(resource.upstash_qstash_schedule().exampleQstashSchedule().schedule_id())\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleQstashScheduleData:\n    Fn::Invoke:\n      Function: upstash:getQStashSchedule\n      Arguments:\n        scheduleId: ${resource.upstash_qstash_schedule.exampleQstashSchedule.schedule_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getQStashSchedule.\n",
+                "properties": {
+                    "scheduleId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "scheduleId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getQStashSchedule.\n",
+                "properties": {
+                    "body": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "integer"
+                    },
+                    "cron": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "forwardHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "notBefore": {
+                        "type": "integer"
+                    },
+                    "retries": {
+                        "type": "integer"
+                    },
+                    "scheduleId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "body",
+                    "createdAt",
+                    "cron",
+                    "destination",
+                    "forwardHeaders",
+                    "notBefore",
+                    "retries",
+                    "scheduleId",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getQStashTopic:getQStashTopic": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getQStashTopic.\n",
+                "properties": {
+                    "topicId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "topicId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getQStashTopic.\n",
+                "properties": {
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "topicId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "endpoints",
+                    "name",
+                    "topicId",
                     "id"
                 ]
             }

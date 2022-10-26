@@ -16,22 +16,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.LookupKafkaCluster(ctx, &GetKafkaClusterArgs{
-// 			ClusterId: resource.Upstash_kafka_cluster.ExampleCluster.Cluster_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.LookupKafkaCluster(ctx, &GetKafkaClusterArgs{
+//				ClusterId: resource.Upstash_kafka_cluster.ExampleCluster.Cluster_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKafkaCluster(ctx *pulumi.Context, args *LookupKafkaClusterArgs, opts ...pulumi.InvokeOption) (*LookupKafkaClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

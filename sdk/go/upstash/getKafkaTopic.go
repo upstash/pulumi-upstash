@@ -16,22 +16,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.LookupKafkaTopic(ctx, &GetKafkaTopicArgs{
-// 			TopicId: resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.LookupKafkaTopic(ctx, &GetKafkaTopicArgs{
+//				TopicId: resource.Upstash_kafka_topic.ExampleKafkaTopic.Topic_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKafkaTopic(ctx *pulumi.Context, args *LookupKafkaTopicArgs, opts ...pulumi.InvokeOption) (*LookupKafkaTopicResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -17,23 +17,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.NewKafkaCluster(ctx, "exampleCluster", &upstash.KafkaClusterArgs{
-// 			ClusterName: pulumi.String("TerraformCluster"),
-// 			Multizone:   pulumi.Bool(false),
-// 			Region:      pulumi.String("eu-west-1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.NewKafkaCluster(ctx, "exampleCluster", &upstash.KafkaClusterArgs{
+//				ClusterName: pulumi.String("TerraformCluster"),
+//				Multizone:   pulumi.Bool(false),
+//				Region:      pulumi.String("eu-west-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type KafkaCluster struct {
 	pulumi.CustomResourceState
@@ -226,7 +229,7 @@ func (i *KafkaCluster) ToKafkaClusterOutputWithContext(ctx context.Context) Kafk
 // KafkaClusterArrayInput is an input type that accepts KafkaClusterArray and KafkaClusterArrayOutput values.
 // You can construct a concrete instance of `KafkaClusterArrayInput` via:
 //
-//          KafkaClusterArray{ KafkaClusterArgs{...} }
+//	KafkaClusterArray{ KafkaClusterArgs{...} }
 type KafkaClusterArrayInput interface {
 	pulumi.Input
 
@@ -251,7 +254,7 @@ func (i KafkaClusterArray) ToKafkaClusterArrayOutputWithContext(ctx context.Cont
 // KafkaClusterMapInput is an input type that accepts KafkaClusterMap and KafkaClusterMapOutput values.
 // You can construct a concrete instance of `KafkaClusterMapInput` via:
 //
-//          KafkaClusterMap{ "key": KafkaClusterArgs{...} }
+//	KafkaClusterMap{ "key": KafkaClusterArgs{...} }
 type KafkaClusterMapInput interface {
 	pulumi.Input
 

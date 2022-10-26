@@ -17,24 +17,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.NewRedisDatabase(ctx, "exampleDB", &upstash.RedisDatabaseArgs{
-// 			DatabaseName: pulumi.String("Terraform DB6"),
-// 			Multizone:    pulumi.Bool(true),
-// 			Region:       pulumi.String("eu-west-1"),
-// 			Tls:          pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.NewRedisDatabase(ctx, "exampleDB", &upstash.RedisDatabaseArgs{
+//				DatabaseName: pulumi.String("Terraform DB6"),
+//				Multizone:    pulumi.Bool(true),
+//				Region:       pulumi.String("eu-west-1"),
+//				Tls:          pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type RedisDatabase struct {
 	pulumi.CustomResourceState
@@ -300,7 +303,7 @@ func (i *RedisDatabase) ToRedisDatabaseOutputWithContext(ctx context.Context) Re
 // RedisDatabaseArrayInput is an input type that accepts RedisDatabaseArray and RedisDatabaseArrayOutput values.
 // You can construct a concrete instance of `RedisDatabaseArrayInput` via:
 //
-//          RedisDatabaseArray{ RedisDatabaseArgs{...} }
+//	RedisDatabaseArray{ RedisDatabaseArgs{...} }
 type RedisDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -325,7 +328,7 @@ func (i RedisDatabaseArray) ToRedisDatabaseArrayOutputWithContext(ctx context.Co
 // RedisDatabaseMapInput is an input type that accepts RedisDatabaseMap and RedisDatabaseMapOutput values.
 // You can construct a concrete instance of `RedisDatabaseMapInput` via:
 //
-//          RedisDatabaseMap{ "key": RedisDatabaseArgs{...} }
+//	RedisDatabaseMap{ "key": RedisDatabaseArgs{...} }
 type RedisDatabaseMapInput interface {
 	pulumi.Input
 

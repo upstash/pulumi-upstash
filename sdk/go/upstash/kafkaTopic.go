@@ -17,35 +17,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.NewKafkaCluster(ctx, "exampleKafkaCluster", &upstash.KafkaClusterArgs{
-// 			ClusterName: pulumi.String("Terraform_Upstash_Cluster"),
-// 			Region:      pulumi.String("eu-west-1"),
-// 			Multizone:   pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = upstash.NewKafkaTopic(ctx, "exampleKafkaTopic", &upstash.KafkaTopicArgs{
-// 			TopicName:      pulumi.String("TerraformTopic"),
-// 			Partitions:     pulumi.Int(1),
-// 			RetentionTime:  pulumi.Int(625135),
-// 			RetentionSize:  pulumi.Int(725124),
-// 			MaxMessageSize: pulumi.Int(829213),
-// 			CleanupPolicy:  pulumi.String("delete"),
-// 			ClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.NewKafkaCluster(ctx, "exampleKafkaCluster", &upstash.KafkaClusterArgs{
+//				ClusterName: pulumi.String("Terraform_Upstash_Cluster"),
+//				Region:      pulumi.String("eu-west-1"),
+//				Multizone:   pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = upstash.NewKafkaTopic(ctx, "exampleKafkaTopic", &upstash.KafkaTopicArgs{
+//				TopicName:      pulumi.String("TerraformTopic"),
+//				Partitions:     pulumi.Int(1),
+//				RetentionTime:  pulumi.Int(625135),
+//				RetentionSize:  pulumi.Int(725124),
+//				MaxMessageSize: pulumi.Int(829213),
+//				CleanupPolicy:  pulumi.String("delete"),
+//				ClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type KafkaTopic struct {
 	pulumi.CustomResourceState
@@ -269,7 +272,7 @@ func (i *KafkaTopic) ToKafkaTopicOutputWithContext(ctx context.Context) KafkaTop
 // KafkaTopicArrayInput is an input type that accepts KafkaTopicArray and KafkaTopicArrayOutput values.
 // You can construct a concrete instance of `KafkaTopicArrayInput` via:
 //
-//          KafkaTopicArray{ KafkaTopicArgs{...} }
+//	KafkaTopicArray{ KafkaTopicArgs{...} }
 type KafkaTopicArrayInput interface {
 	pulumi.Input
 
@@ -294,7 +297,7 @@ func (i KafkaTopicArray) ToKafkaTopicArrayOutputWithContext(ctx context.Context)
 // KafkaTopicMapInput is an input type that accepts KafkaTopicMap and KafkaTopicMapOutput values.
 // You can construct a concrete instance of `KafkaTopicMapInput` via:
 //
-//          KafkaTopicMap{ "key": KafkaTopicArgs{...} }
+//	KafkaTopicMap{ "key": KafkaTopicArgs{...} }
 type KafkaTopicMapInput interface {
 	pulumi.Input
 

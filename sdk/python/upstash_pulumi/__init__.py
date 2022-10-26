@@ -8,12 +8,18 @@ import typing
 from .get_kafka_cluster import *
 from .get_kafka_credential import *
 from .get_kafka_topic import *
+from .get_q_stash_endpoint import *
+from .get_q_stash_schedule import *
+from .get_q_stash_topic import *
 from .get_redis_database import *
 from .get_team import *
 from .kafka_cluster import *
 from .kafka_credential import *
 from .kafka_topic import *
 from .provider import *
+from .q_stash_endpoint import *
+from .q_stash_schedule import *
+from .q_stash_topic import *
 from .redis_database import *
 from .team import *
 
@@ -49,6 +55,30 @@ _utilities.register(
   "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/kafkaTopic:KafkaTopic": "KafkaTopic"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/qStashEndpoint",
+  "fqn": "upstash_pulumi",
+  "classes": {
+   "upstash:index/qStashEndpoint:QStashEndpoint": "QStashEndpoint"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/qStashSchedule",
+  "fqn": "upstash_pulumi",
+  "classes": {
+   "upstash:index/qStashSchedule:QStashSchedule": "QStashSchedule"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/qStashTopic",
+  "fqn": "upstash_pulumi",
+  "classes": {
+   "upstash:index/qStashTopic:QStashTopic": "QStashTopic"
   }
  },
  {
