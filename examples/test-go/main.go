@@ -20,9 +20,6 @@ func main() {
 		dbFromGet := upstash.LookupRedisDatabaseOutput(ctx, upstash.LookupRedisDatabaseOutputArgs{
 			DatabaseId: createdDb.DatabaseId,
 		}, nil)
-		if err != nil {
-			return err
-		}
 
 		ctx.Export("db from get request", dbFromGet)
 
@@ -38,9 +35,6 @@ func main() {
 		clusterFromGet := upstash.LookupKafkaClusterOutput(ctx, upstash.LookupKafkaClusterOutputArgs{
 			ClusterId: createdCluster.ClusterId,
 		}, nil)
-		if err != nil {
-			return err
-		}
 
 		ctx.Export("cluster from get request", clusterFromGet)
 
@@ -60,9 +54,6 @@ func main() {
 		topicFromGet := upstash.LookupKafkaTopicOutput(ctx, upstash.LookupKafkaTopicOutputArgs{
 			TopicId: createdTopic.TopicId,
 		}, nil)
-		if err != nil {
-			return err
-		}
 
 		ctx.Export("topic from get request", topicFromGet)
 
@@ -72,13 +63,13 @@ func main() {
 			Permissions:    pulumi.String("ALL"),
 			Topic:          pulumi.StringOutput(createdTopic.TopicName),
 		})
+		if err != nil {
+			return err
+		}
 
 		credentialFromGet := upstash.LookupKafkaCredentialOutput(ctx, upstash.LookupKafkaCredentialOutputArgs{
 			CredentialId: createdCredential.CredentialId,
 		}, nil)
-		if err != nil {
-			return err
-		}
 
 		ctx.Export("credential from get request", credentialFromGet)
 
@@ -97,11 +88,37 @@ func main() {
 		teamFromGet := upstash.LookupTeamOutput(ctx, upstash.LookupTeamOutputArgs{
 			TeamId: createdTeam.TeamId,
 		}, nil)
+
+		ctx.Export("team from get request", teamFromGet)
+
+		createdQStashTopic, err := upstash.NewQStashTopic(ctx, "exampleQstashTopic", nil)
+		if err != nil {
+			return err
+		}
+		qstashTopicFromGet := upstash.LookupQStashTopicOutput(ctx, upstash.LookupQStashTopicOutputArgs{
+			TopicId: createdQStashTopic.TopicId,
+		}, nil)
+
+		ctx.Export("qstash topic from get request", qstashTopicFromGet)
+
+		createdQStashEndpoint, err := upstash.NewQStashEndpoint(ctx, "exampleQstashEndpoint", &upstash.QStashEndpointArgs{
+			Url:     pulumi.String("https://***.***"),
+			TopicId: pulumi.StringOutput(createdQStashTopic.TopicId),
+		})
+		if err != nil {
+			return err
+		}
+		ctx.Export("qstash endpoint", createdQStashEndpoint)
+
+		createdQStashSchedule, err := upstash.NewQStashSchedule(ctx, "exampleQstashSchedule2", &upstash.QStashScheduleArgs{
+			Cron:        pulumi.String("* * * * *"),
+			Destination: pulumi.StringOutput(createdQStashTopic.TopicId),
+		})
 		if err != nil {
 			return err
 		}
 
-		ctx.Export("team from get request", teamFromGet)
+		ctx.Export("qstash schedule from get request", createdQStashSchedule)
 
 		return nil
 	})

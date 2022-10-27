@@ -26,6 +26,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KafkaCredential{}
 	case "upstash:index/kafkaTopic:KafkaTopic":
 		r = &KafkaTopic{}
+	case "upstash:index/qStashEndpoint:QStashEndpoint":
+		r = &QStashEndpoint{}
+	case "upstash:index/qStashSchedule:QStashSchedule":
+		r = &QStashSchedule{}
+	case "upstash:index/qStashTopic:QStashTopic":
+		r = &QStashTopic{}
 	case "upstash:index/redisDatabase:RedisDatabase":
 		r = &RedisDatabase{}
 	case "upstash:index/team:Team":
@@ -71,6 +77,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upstash",
 		"index/kafkaTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/qStashEndpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/qStashSchedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/qStashTopic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

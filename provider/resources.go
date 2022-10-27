@@ -103,6 +103,15 @@ func Provider() tfbridge.ProviderInfo {
 			"upstash_team": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Team"),
 			},
+			"upstash_qstash_endpoint": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashEndpoint"),
+			},
+			"upstash_qstash_topic": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashTopic"),
+			},
+			"upstash_qstash_schedule": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashSchedule"),
+			},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -131,6 +140,15 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"upstash_team_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTeam"),
+			},
+			"upstash_qstash_endpoint_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashEndpoint"),
+			},
+			"upstash_qstash_topic_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashTopic"),
+			},
+			"upstash_qstash_schedule_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashSchedule"),
 			},
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.

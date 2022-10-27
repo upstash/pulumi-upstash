@@ -17,44 +17,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleKafkaCluster, err := upstash.NewKafkaCluster(ctx, "exampleKafkaCluster", &upstash.KafkaClusterArgs{
-// 			ClusterName: pulumi.Any(_var.Cluster_name),
-// 			Region:      pulumi.Any(_var.Region),
-// 			Multizone:   pulumi.Any(_var.Multizone),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleKafkaTopic, err := upstash.NewKafkaTopic(ctx, "exampleKafkaTopic", &upstash.KafkaTopicArgs{
-// 			TopicName:      pulumi.Any(_var.Topic_name),
-// 			Partitions:     pulumi.Any(_var.Partitions),
-// 			RetentionTime:  pulumi.Any(_var.Retention_time),
-// 			RetentionSize:  pulumi.Any(_var.Retention_size),
-// 			MaxMessageSize: pulumi.Any(_var.Max_message_size),
-// 			CleanupPolicy:  pulumi.Any(_var.Cleanup_policy),
-// 			ClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = upstash.NewKafkaCredential(ctx, "exampleKafkaCredential", &upstash.KafkaCredentialArgs{
-// 			ClusterId:      exampleKafkaCluster.ClusterId,
-// 			CredentialName: pulumi.String("credentialFromTerraform"),
-// 			Topic:          exampleKafkaTopic.TopicName,
-// 			Permissions:    pulumi.String("ALL"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleKafkaCluster, err := upstash.NewKafkaCluster(ctx, "exampleKafkaCluster", &upstash.KafkaClusterArgs{
+//				ClusterName: pulumi.Any(_var.Cluster_name),
+//				Region:      pulumi.Any(_var.Region),
+//				Multizone:   pulumi.Any(_var.Multizone),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleKafkaTopic, err := upstash.NewKafkaTopic(ctx, "exampleKafkaTopic", &upstash.KafkaTopicArgs{
+//				TopicName:      pulumi.Any(_var.Topic_name),
+//				Partitions:     pulumi.Any(_var.Partitions),
+//				RetentionTime:  pulumi.Any(_var.Retention_time),
+//				RetentionSize:  pulumi.Any(_var.Retention_size),
+//				MaxMessageSize: pulumi.Any(_var.Max_message_size),
+//				CleanupPolicy:  pulumi.Any(_var.Cleanup_policy),
+//				ClusterId:      pulumi.Any(resource.Upstash_kafka_cluster.ExampleKafkaCluster.Cluster_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = upstash.NewKafkaCredential(ctx, "exampleKafkaCredential", &upstash.KafkaCredentialArgs{
+//				ClusterId:      exampleKafkaCluster.ClusterId,
+//				CredentialName: pulumi.String("credentialFromTerraform"),
+//				Topic:          exampleKafkaTopic.TopicName,
+//				Permissions:    pulumi.String("ALL"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type KafkaCredential struct {
 	pulumi.CustomResourceState
@@ -215,7 +218,7 @@ func (i *KafkaCredential) ToKafkaCredentialOutputWithContext(ctx context.Context
 // KafkaCredentialArrayInput is an input type that accepts KafkaCredentialArray and KafkaCredentialArrayOutput values.
 // You can construct a concrete instance of `KafkaCredentialArrayInput` via:
 //
-//          KafkaCredentialArray{ KafkaCredentialArgs{...} }
+//	KafkaCredentialArray{ KafkaCredentialArgs{...} }
 type KafkaCredentialArrayInput interface {
 	pulumi.Input
 
@@ -240,7 +243,7 @@ func (i KafkaCredentialArray) ToKafkaCredentialArrayOutputWithContext(ctx contex
 // KafkaCredentialMapInput is an input type that accepts KafkaCredentialMap and KafkaCredentialMapOutput values.
 // You can construct a concrete instance of `KafkaCredentialMapInput` via:
 //
-//          KafkaCredentialMap{ "key": KafkaCredentialArgs{...} }
+//	KafkaCredentialMap{ "key": KafkaCredentialArgs{...} }
 type KafkaCredentialMapInput interface {
 	pulumi.Input
 

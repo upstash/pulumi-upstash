@@ -8,12 +8,18 @@ import * as utilities from "./utilities";
 export * from "./getKafkaCluster";
 export * from "./getKafkaCredential";
 export * from "./getKafkaTopic";
+export * from "./getQStashEndpoint";
+export * from "./getQStashSchedule";
+export * from "./getQStashTopic";
 export * from "./getRedisDatabase";
 export * from "./getTeam";
 export * from "./kafkaCluster";
 export * from "./kafkaCredential";
 export * from "./kafkaTopic";
 export * from "./provider";
+export * from "./qstashEndpoint";
+export * from "./qstashSchedule";
+export * from "./qstashTopic";
 export * from "./redisDatabase";
 export * from "./team";
 
@@ -28,6 +34,9 @@ export {
 import { KafkaCluster } from "./kafkaCluster";
 import { KafkaCredential } from "./kafkaCredential";
 import { KafkaTopic } from "./kafkaTopic";
+import { QStashEndpoint } from "./qstashEndpoint";
+import { QStashSchedule } from "./qstashSchedule";
+import { QStashTopic } from "./qstashTopic";
 import { RedisDatabase } from "./redisDatabase";
 import { Team } from "./team";
 
@@ -41,6 +50,12 @@ const _module = {
                 return new KafkaCredential(name, <any>undefined, { urn })
             case "upstash:index/kafkaTopic:KafkaTopic":
                 return new KafkaTopic(name, <any>undefined, { urn })
+            case "upstash:index/qStashEndpoint:QStashEndpoint":
+                return new QStashEndpoint(name, <any>undefined, { urn })
+            case "upstash:index/qStashSchedule:QStashSchedule":
+                return new QStashSchedule(name, <any>undefined, { urn })
+            case "upstash:index/qStashTopic:QStashTopic":
+                return new QStashTopic(name, <any>undefined, { urn })
             case "upstash:index/redisDatabase:RedisDatabase":
                 return new RedisDatabase(name, <any>undefined, { urn })
             case "upstash:index/team:Team":
@@ -53,6 +68,9 @@ const _module = {
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaCredential", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaTopic", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/qStashEndpoint", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/qStashSchedule", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/qStashTopic", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/redisDatabase", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/team", _module)
 

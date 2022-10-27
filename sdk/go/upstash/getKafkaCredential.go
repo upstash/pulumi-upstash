@@ -16,22 +16,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.LookupKafkaCredential(ctx, &GetKafkaCredentialArgs{
-// 			CredentialId: upstash_kafka_credential.ExampleKafkaCredential.Credential_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.LookupKafkaCredential(ctx, &GetKafkaCredentialArgs{
+//				CredentialId: upstash_kafka_credential.ExampleKafkaCredential.Credential_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKafkaCredential(ctx *pulumi.Context, args *LookupKafkaCredentialArgs, opts ...pulumi.InvokeOption) (*LookupKafkaCredentialResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

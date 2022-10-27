@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.NewTeam(ctx, "exampleTeam", &upstash.TeamArgs{
-// 			TeamName: pulumi.String("TerraformTeam"),
-// 			CopyCc:   pulumi.Bool(false),
-// 			TeamMembers: pulumi.StringMap{
-// 				"X@Y.Z": pulumi.String("owner"),
-// 				"A@B.C": pulumi.String("dev"),
-// 				"E@E.F": pulumi.String("finance"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.NewTeam(ctx, "exampleTeam", &upstash.TeamArgs{
+//				TeamName: pulumi.String("TerraformTeam"),
+//				CopyCc:   pulumi.Bool(false),
+//				TeamMembers: pulumi.StringMap{
+//					"X@Y.Z": pulumi.String("owner"),
+//					"A@B.C": pulumi.String("dev"),
+//					"E@E.F": pulumi.String("finance"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Team struct {
 	pulumi.CustomResourceState
@@ -161,7 +164,7 @@ func (i *Team) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 // TeamArrayInput is an input type that accepts TeamArray and TeamArrayOutput values.
 // You can construct a concrete instance of `TeamArrayInput` via:
 //
-//          TeamArray{ TeamArgs{...} }
+//	TeamArray{ TeamArgs{...} }
 type TeamArrayInput interface {
 	pulumi.Input
 
@@ -186,7 +189,7 @@ func (i TeamArray) ToTeamArrayOutputWithContext(ctx context.Context) TeamArrayOu
 // TeamMapInput is an input type that accepts TeamMap and TeamMapOutput values.
 // You can construct a concrete instance of `TeamMapInput` via:
 //
-//          TeamMap{ "key": TeamArgs{...} }
+//	TeamMap{ "key": TeamArgs{...} }
 type TeamMapInput interface {
 	pulumi.Input
 

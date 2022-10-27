@@ -16,22 +16,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
+//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := upstash.LookupRedisDatabase(ctx, &GetRedisDatabaseArgs{
-// 			DatabaseId: resource.Upstash_redis_database.ExampleDB.Database_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.LookupRedisDatabase(ctx, &GetRedisDatabaseArgs{
+//				DatabaseId: resource.Upstash_redis_database.ExampleDB.Database_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupRedisDatabase(ctx *pulumi.Context, args *LookupRedisDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupRedisDatabaseResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
