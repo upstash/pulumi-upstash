@@ -71,6 +71,13 @@ for i in range(0,5):
         region="eu-west-1"
     )
 
+
+created_qstash_topic = upstash.Topic(
+    resource_name="myQStashTopic",
+    name="pulumi-py-qstash-topic"
+)
+get_created_qstash_topic = upstash.get_qstash_topic_output(topic_id=created_qstash_topic.topic_id)
+
 pulumi.export("created db:", created_db)
 pulumi.export("created cluster:", created_cluster)
 pulumi.export("created topic:", created_topic)
