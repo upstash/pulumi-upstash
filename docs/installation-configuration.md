@@ -9,7 +9,7 @@ layout: installation
 The Pulumi Upstash provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@upstash/pulumi`](https://www.npmjs.com/package/@upstash/pulumi)
-* Go: [`github.com/upstash/upstash-pulumi-provider/sdk/go/upstash`](https://pkg.go.dev/github.com/upstash/upstash-pulumi-provider/sdk)
+* Go: [`github.com/upstash/pulumi-upstash/sdk/go/upstash`](https://pkg.go.dev/github.com/upstash/pulumi-upstash/sdk)
 * Python: [`upstash_pulumi`](https://pypi.org/project/upstash-pulumi/)
 
 ### Provider Binary
@@ -17,7 +17,7 @@ The Pulumi Upstash provider is available as a package in all Pulumi languages:
 The Upstash provider can be installed using the `pulumi plugin` command.
 
 ```bash
-pulumi plugin install resource upstash --server https://github.com/upstash/upstash-pulumi-provider/releases/download/v0.0.20
+pulumi plugin install resource upstash --server https://github.com/upstash/pulumi-upstash/releases/download/v0.0.20
 ```
 
 ## Setup

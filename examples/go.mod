@@ -1,3 +1,3 @@
-module github.com/upstash/upstash-pulumi-provider/examples
+module github.com/upstash/pulumi-upstash/examples
 
 go 1.16

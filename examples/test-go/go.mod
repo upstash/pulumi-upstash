@@ -39,7 +39,7 @@ require (
 	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
 	github.com/uber/jaeger-client-go v2.22.1+incompatible // indirect
 	github.com/uber/jaeger-lib v2.2.0+incompatible // indirect
-	github.com/upstash/upstash-pulumi-provider/sdk v0.0.5 // indirect
+	github.com/upstash/pulumi-upstash/sdk v0.0.5 // indirect
 	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	go.uber.org/atomic v1.6.0 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect

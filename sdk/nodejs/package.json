@@ -8,7 +8,7 @@
         "category/cloud"
     ],
     "homepage": "https://www.upstash.com",
-    "repository": "https://github.com/upstash/upstash-pulumi-provider",
+    "repository": "https://github.com/upstash/pulumi-upstash",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
@@ -24,6 +24,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}"
+        "pluginDownloadURL": "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}"
     }
 }

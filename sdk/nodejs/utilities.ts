@@ -50,5 +50,5 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}" };
+    return { version: getVersion(), pluginDownloadURL: "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}" };
 }

@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'upstash', PLUGIN_VERSION, '--server', 'https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'upstash', PLUGIN_VERSION, '--server', 'https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -48,7 +48,7 @@ setup(name='upstash_pulumi',
       keywords='pulumi upstash category/cloud',
       url='https://www.upstash.com',
       project_urls={
-          'Repository': 'https://github.com/upstash/upstash-pulumi-provider'
+          'Repository': 'https://github.com/upstash/pulumi-upstash'
       },
       license='Apache-2.0',
       packages=find_packages(),

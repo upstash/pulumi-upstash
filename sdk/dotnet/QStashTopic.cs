@@ -72,7 +72,7 @@ namespace Pulumi.Upstash
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
+                PluginDownloadURL = "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

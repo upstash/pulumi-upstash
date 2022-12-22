@@ -193,7 +193,7 @@ namespace Pulumi.Upstash
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
+                PluginDownloadURL = "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
                 AdditionalSecretOutputs =
                 {
                     "password",

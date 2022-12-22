@@ -1,4 +1,4 @@
-module github.com/upstash/upstash-pulumi-provider/provider
+module github.com/upstash/pulumi-upstash/provider
 
 go 1.18
 

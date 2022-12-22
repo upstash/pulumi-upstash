@@ -19,8 +19,8 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/upstash/pulumi-upstash/provider/pkg/version"
 	"github.com/upstash/terraform-provider-upstash/upstash"
-	"github.com/upstash/upstash-pulumi-provider/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -68,7 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/upstash/upstash-pulumi-provider/releases/download/v${VERSION}",
+		PluginDownloadURL: "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
 		Description:       "A Pulumi package for creating and managing upstash cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -76,7 +76,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:   []string{"pulumi", "upstash", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.upstash.com",
-		Repository: "https://github.com/upstash/upstash-pulumi-provider",
+		Repository: "https://github.com/upstash/pulumi-upstash",
 		// The GitHub Org for the provider - defaults to `terraform-providers`
 		GitHubOrg: "upstash",
 		Config:    map[string]*tfbridge.SchemaInfo{},
@@ -178,7 +178,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				"github.com/upstash/upstash-pulumi-provider/sdk/",
+				"github.com/upstash/pulumi-upstash/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

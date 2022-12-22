@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/upstash/upstash-pulumi-provider/sdk/go/upstash"
+	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
 )
 
 func main() {

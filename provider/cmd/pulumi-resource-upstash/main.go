@@ -18,8 +18,8 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	upstash "github.com/upstash/upstash-pulumi-provider/provider"
-	"github.com/upstash/upstash-pulumi-provider/provider/pkg/version"
+	upstash "github.com/upstash/pulumi-upstash/provider"
+	"github.com/upstash/pulumi-upstash/provider/pkg/version"
 )
 
 func main() {
