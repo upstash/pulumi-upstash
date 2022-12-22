@@ -19,6 +19,12 @@ namespace Pulumi.Upstash
         public Output<string?> Body { get; private set; } = null!;
 
         /// <summary>
+        /// Callback URL for Qstash Schedule.
+        /// </summary>
+        [Output("callback")]
+        public Output<string?> Callback { get; private set; } = null!;
+
+        /// <summary>
         /// Content Based Deduplication (bool) for Qstash Scheduling.
         /// </summary>
         [Output("contentBasedDeduplication")]
@@ -138,6 +144,12 @@ namespace Pulumi.Upstash
         public Input<string>? Body { get; set; }
 
         /// <summary>
+        /// Callback URL for Qstash Schedule.
+        /// </summary>
+        [Input("callback")]
+        public Input<string>? Callback { get; set; }
+
+        /// <summary>
         /// Content Based Deduplication (bool) for Qstash Scheduling.
         /// </summary>
         [Input("contentBasedDeduplication")]
@@ -209,6 +221,12 @@ namespace Pulumi.Upstash
         /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
+
+        /// <summary>
+        /// Callback URL for Qstash Schedule.
+        /// </summary>
+        [Input("callback")]
+        public Input<string>? Callback { get; set; }
 
         /// <summary>
         /// Content Based Deduplication (bool) for Qstash Scheduling.

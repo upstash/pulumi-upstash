@@ -16,6 +16,8 @@ type QStashSchedule struct {
 
 	// Body to send for the POST request in string format. Needs escaping (\) double quotes.
 	Body pulumi.StringPtrOutput `pulumi:"body"`
+	// Callback URL for Qstash Schedule.
+	Callback pulumi.StringPtrOutput `pulumi:"callback"`
 	// Content Based Deduplication (bool) for Qstash Scheduling.
 	ContentBasedDeduplication pulumi.BoolPtrOutput `pulumi:"contentBasedDeduplication"`
 	// Content type for Qstash Scheduling.
@@ -78,6 +80,8 @@ func GetQStashSchedule(ctx *pulumi.Context,
 type qstashScheduleState struct {
 	// Body to send for the POST request in string format. Needs escaping (\) double quotes.
 	Body *string `pulumi:"body"`
+	// Callback URL for Qstash Schedule.
+	Callback *string `pulumi:"callback"`
 	// Content Based Deduplication (bool) for Qstash Scheduling.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
 	// Content type for Qstash Scheduling.
@@ -105,6 +109,8 @@ type qstashScheduleState struct {
 type QStashScheduleState struct {
 	// Body to send for the POST request in string format. Needs escaping (\) double quotes.
 	Body pulumi.StringPtrInput
+	// Callback URL for Qstash Schedule.
+	Callback pulumi.StringPtrInput
 	// Content Based Deduplication (bool) for Qstash Scheduling.
 	ContentBasedDeduplication pulumi.BoolPtrInput
 	// Content type for Qstash Scheduling.
@@ -136,6 +142,8 @@ func (QStashScheduleState) ElementType() reflect.Type {
 type qstashScheduleArgs struct {
 	// Body to send for the POST request in string format. Needs escaping (\) double quotes.
 	Body *string `pulumi:"body"`
+	// Callback URL for Qstash Schedule.
+	Callback *string `pulumi:"callback"`
 	// Content Based Deduplication (bool) for Qstash Scheduling.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
 	// Content type for Qstash Scheduling.
@@ -160,6 +168,8 @@ type qstashScheduleArgs struct {
 type QStashScheduleArgs struct {
 	// Body to send for the POST request in string format. Needs escaping (\) double quotes.
 	Body pulumi.StringPtrInput
+	// Callback URL for Qstash Schedule.
+	Callback pulumi.StringPtrInput
 	// Content Based Deduplication (bool) for Qstash Scheduling.
 	ContentBasedDeduplication pulumi.BoolPtrInput
 	// Content type for Qstash Scheduling.
@@ -270,6 +280,11 @@ func (o QStashScheduleOutput) ToQStashScheduleOutputWithContext(ctx context.Cont
 // Body to send for the POST request in string format. Needs escaping (\) double quotes.
 func (o QStashScheduleOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *QStashSchedule) pulumi.StringPtrOutput { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// Callback URL for Qstash Schedule.
+func (o QStashScheduleOutput) Callback() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QStashSchedule) pulumi.StringPtrOutput { return v.Callback }).(pulumi.StringPtrOutput)
 }
 
 // Content Based Deduplication (bool) for Qstash Scheduling.

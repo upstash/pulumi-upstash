@@ -16,6 +16,7 @@ class QStashScheduleArgs:
                  cron: pulumi.Input[str],
                  destination: pulumi.Input[str],
                  body: Optional[pulumi.Input[str]] = None,
+                 callback: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  deduplication_id: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,7 @@ class QStashScheduleArgs:
         :param pulumi.Input[str] cron: Cron string for Qstash Schedule
         :param pulumi.Input[str] destination: Destination for Qstash Schedule. Either Topic ID or valid URL
         :param pulumi.Input[str] body: Body to send for the POST request in string format. Needs escaping (\) double quotes.
+        :param pulumi.Input[str] callback: Callback URL for Qstash Schedule.
         :param pulumi.Input[bool] content_based_deduplication: Content Based Deduplication (bool) for Qstash Scheduling.
         :param pulumi.Input[str] content_type: Content type for Qstash Scheduling.
         :param pulumi.Input[str] deduplication_id: Deduplication ID for Qstash Scheduling.
@@ -40,6 +42,8 @@ class QStashScheduleArgs:
         pulumi.set(__self__, "destination", destination)
         if body is not None:
             pulumi.set(__self__, "body", body)
+        if callback is not None:
+            pulumi.set(__self__, "callback", callback)
         if content_based_deduplication is not None:
             pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
         if content_type is not None:
@@ -90,6 +94,18 @@ class QStashScheduleArgs:
     @body.setter
     def body(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "body", value)
+
+    @property
+    @pulumi.getter
+    def callback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Callback URL for Qstash Schedule.
+        """
+        return pulumi.get(self, "callback")
+
+    @callback.setter
+    def callback(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "callback", value)
 
     @property
     @pulumi.getter(name="contentBasedDeduplication")
@@ -180,6 +196,7 @@ class QStashScheduleArgs:
 class _QStashScheduleState:
     def __init__(__self__, *,
                  body: Optional[pulumi.Input[str]] = None,
+                 callback: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[int]] = None,
@@ -194,6 +211,7 @@ class _QStashScheduleState:
         """
         Input properties used for looking up and filtering QStashSchedule resources.
         :param pulumi.Input[str] body: Body to send for the POST request in string format. Needs escaping (\) double quotes.
+        :param pulumi.Input[str] callback: Callback URL for Qstash Schedule.
         :param pulumi.Input[bool] content_based_deduplication: Content Based Deduplication (bool) for Qstash Scheduling.
         :param pulumi.Input[str] content_type: Content type for Qstash Scheduling.
         :param pulumi.Input[int] created_at: Creation time for Qstash Schedule.
@@ -208,6 +226,8 @@ class _QStashScheduleState:
         """
         if body is not None:
             pulumi.set(__self__, "body", body)
+        if callback is not None:
+            pulumi.set(__self__, "callback", callback)
         if content_based_deduplication is not None:
             pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
         if content_type is not None:
@@ -242,6 +262,18 @@ class _QStashScheduleState:
     @body.setter
     def body(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "body", value)
+
+    @property
+    @pulumi.getter
+    def callback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Callback URL for Qstash Schedule.
+        """
+        return pulumi.get(self, "callback")
+
+    @callback.setter
+    def callback(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "callback", value)
 
     @property
     @pulumi.getter(name="contentBasedDeduplication")
@@ -382,6 +414,7 @@ class QStashSchedule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  body: Optional[pulumi.Input[str]] = None,
+                 callback: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  cron: Optional[pulumi.Input[str]] = None,
@@ -397,6 +430,7 @@ class QStashSchedule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] body: Body to send for the POST request in string format. Needs escaping (\) double quotes.
+        :param pulumi.Input[str] callback: Callback URL for Qstash Schedule.
         :param pulumi.Input[bool] content_based_deduplication: Content Based Deduplication (bool) for Qstash Scheduling.
         :param pulumi.Input[str] content_type: Content type for Qstash Scheduling.
         :param pulumi.Input[str] cron: Cron string for Qstash Schedule
@@ -431,6 +465,7 @@ class QStashSchedule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  body: Optional[pulumi.Input[str]] = None,
+                 callback: Optional[pulumi.Input[str]] = None,
                  content_based_deduplication: Optional[pulumi.Input[bool]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  cron: Optional[pulumi.Input[str]] = None,
@@ -455,6 +490,7 @@ class QStashSchedule(pulumi.CustomResource):
             __props__ = QStashScheduleArgs.__new__(QStashScheduleArgs)
 
             __props__.__dict__["body"] = body
+            __props__.__dict__["callback"] = callback
             __props__.__dict__["content_based_deduplication"] = content_based_deduplication
             __props__.__dict__["content_type"] = content_type
             if cron is None and not opts.urn:
@@ -481,6 +517,7 @@ class QStashSchedule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             body: Optional[pulumi.Input[str]] = None,
+            callback: Optional[pulumi.Input[str]] = None,
             content_based_deduplication: Optional[pulumi.Input[bool]] = None,
             content_type: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[int]] = None,
@@ -500,6 +537,7 @@ class QStashSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] body: Body to send for the POST request in string format. Needs escaping (\) double quotes.
+        :param pulumi.Input[str] callback: Callback URL for Qstash Schedule.
         :param pulumi.Input[bool] content_based_deduplication: Content Based Deduplication (bool) for Qstash Scheduling.
         :param pulumi.Input[str] content_type: Content type for Qstash Scheduling.
         :param pulumi.Input[int] created_at: Creation time for Qstash Schedule.
@@ -517,6 +555,7 @@ class QStashSchedule(pulumi.CustomResource):
         __props__ = _QStashScheduleState.__new__(_QStashScheduleState)
 
         __props__.__dict__["body"] = body
+        __props__.__dict__["callback"] = callback
         __props__.__dict__["content_based_deduplication"] = content_based_deduplication
         __props__.__dict__["content_type"] = content_type
         __props__.__dict__["created_at"] = created_at
@@ -537,6 +576,14 @@ class QStashSchedule(pulumi.CustomResource):
         Body to send for the POST request in string format. Needs escaping (\) double quotes.
         """
         return pulumi.get(self, "body")
+
+    @property
+    @pulumi.getter
+    def callback(self) -> pulumi.Output[Optional[str]]:
+        """
+        Callback URL for Qstash Schedule.
+        """
+        return pulumi.get(self, "callback")
 
     @property
     @pulumi.getter(name="contentBasedDeduplication")

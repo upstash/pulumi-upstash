@@ -638,6 +638,10 @@
                     "type": "string",
                     "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n"
                 },
+                "callback": {
+                    "type": "string",
+                    "description": "Callback URL for Qstash Schedule.\n"
+                },
                 "contentBasedDeduplication": {
                     "type": "boolean",
                     "description": "Content Based Deduplication (bool) for Qstash Scheduling.\n"
@@ -696,6 +700,11 @@
                 "body": {
                     "type": "string",
                     "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                    "willReplaceOnChanges": true
+                },
+                "callback": {
+                    "type": "string",
+                    "description": "Callback URL for Qstash Schedule.\n",
                     "willReplaceOnChanges": true
                 },
                 "contentBasedDeduplication": {
@@ -757,6 +766,11 @@
                     "body": {
                         "type": "string",
                         "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "callback": {
+                        "type": "string",
+                        "description": "Callback URL for Qstash Schedule.\n",
                         "willReplaceOnChanges": true
                     },
                     "contentBasedDeduplication": {

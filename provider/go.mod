@@ -9,7 +9,7 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.24.1
-	github.com/upstash/terraform-provider-upstash v1.2.1
+	github.com/upstash/terraform-provider-upstash v1.2.3
 )
 
 require (

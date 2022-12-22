@@ -37,6 +37,10 @@ export class QStashSchedule extends pulumi.CustomResource {
      */
     public readonly body!: pulumi.Output<string | undefined>;
     /**
+     * Callback URL for Qstash Schedule.
+     */
+    public readonly callback!: pulumi.Output<string | undefined>;
+    /**
      * Content Based Deduplication (bool) for Qstash Scheduling.
      */
     public readonly contentBasedDeduplication!: pulumi.Output<boolean | undefined>;
@@ -95,6 +99,7 @@ export class QStashSchedule extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as QStashScheduleState | undefined;
             resourceInputs["body"] = state ? state.body : undefined;
+            resourceInputs["callback"] = state ? state.callback : undefined;
             resourceInputs["contentBasedDeduplication"] = state ? state.contentBasedDeduplication : undefined;
             resourceInputs["contentType"] = state ? state.contentType : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
@@ -115,6 +120,7 @@ export class QStashSchedule extends pulumi.CustomResource {
                 throw new Error("Missing required property 'destination'");
             }
             resourceInputs["body"] = args ? args.body : undefined;
+            resourceInputs["callback"] = args ? args.callback : undefined;
             resourceInputs["contentBasedDeduplication"] = args ? args.contentBasedDeduplication : undefined;
             resourceInputs["contentType"] = args ? args.contentType : undefined;
             resourceInputs["cron"] = args ? args.cron : undefined;
@@ -140,6 +146,10 @@ export interface QStashScheduleState {
      * Body to send for the POST request in string format. Needs escaping (\) double quotes.
      */
     body?: pulumi.Input<string>;
+    /**
+     * Callback URL for Qstash Schedule.
+     */
+    callback?: pulumi.Input<string>;
     /**
      * Content Based Deduplication (bool) for Qstash Scheduling.
      */
@@ -194,6 +204,10 @@ export interface QStashScheduleArgs {
      * Body to send for the POST request in string format. Needs escaping (\) double quotes.
      */
     body?: pulumi.Input<string>;
+    /**
+     * Callback URL for Qstash Schedule.
+     */
+    callback?: pulumi.Input<string>;
     /**
      * Content Based Deduplication (bool) for Qstash Scheduling.
      */
