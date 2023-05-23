@@ -59,6 +59,23 @@ created_credential = upstash.KafkaCredential(
 get_created_credential = upstash.get_kafka_credential_output(credential_id=created_credential.credential_id)
 
 
+created_connector = upstash.KafkaConnector(
+    resource_name="myConnector",
+    cluster_id=created_cluster.cluster_id,
+    name="pulumi-python-connector",
+    properties={
+        "collection": "user123",
+        "connection.uri": "mongodb+srv://test:test@cluster0.fohyg7p.mongodb.net/?retryWrites=true&w=majority",
+        "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+        "database": "myshinynewdb2",
+        "topics": created_topic.topic_id
+    },
+    running_state="running"
+)
+
+get_created_connector = upstash.get_kafka_connector_output(credential_id=created_connector.credential_id)
+
+
 created_team = upstash.Team(
     resource_name="myTeam",
     team_name="pulumi team",
@@ -92,6 +109,7 @@ pulumi.export("created globaldb:", created_globaldb)
 pulumi.export("created cluster:", created_cluster)
 pulumi.export("created topic:", created_topic)
 pulumi.export("created credential:", created_credential)
+pulumi.export("created connector:", created_connector)
 pulumi.export("created team:", created_team)
 
 
@@ -100,6 +118,7 @@ pulumi.export("get_created_globaldb", get_created_globaldb)
 pulumi.export("get_created_cluster", get_created_cluster)
 pulumi.export("get_created topic:", get_created_topic)
 pulumi.export("get_created credential:", get_created_credential)
+pulumi.export("get_created connector:", get_created_connector)
 pulumi.export("get_created team:", get_created_team)
 
 

@@ -37,7 +37,6 @@ const clusterFromGet = upstash.getKafkaClusterOutput({
 })
 
 
-
 const createdTopic = new upstash.KafkaTopic("myTopic", {
     clusterId: clusterFromGet.clusterId,
     cleanupPolicy: "delete",
@@ -54,6 +53,24 @@ const topicFromGet = upstash.getKafkaTopicOutput({
 })
 
 
+const createdConnector = new upstash.KafkaConnector("myConnector", {
+    clusterId: clusterFromGet.clusterId,
+    name: "pulumi-connector",
+    properties: {
+        "collection": "user123",
+        "connection.uri": "mongodb+srv://test:test@cluster0.fohyg7p.mongodb.net/?retryWrites=true&w=majority",
+        "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+        "database": "myshinynewdb2",
+        "topics": createdTopic.topicName
+    },
+    runningState: "running"
+})
+
+const connectorFromGet = upstash.getKafkaConnectorOutput({
+    connectorId: createdConnector.connectorId
+})
+
+
 
 const createdTeam = new upstash.Team("myTeam", {
     teamName: "pulumi ts team",
@@ -61,7 +78,7 @@ const createdTeam = new upstash.Team("myTeam", {
         "<owner_email>": "owner",
         "<second_email>": "admin"
     },
-    copyCc : true
+    copyCc: true
 })
 
 const teamFromGet = upstash.getTeamOutput({
@@ -100,6 +117,9 @@ export const clusterFromGetResult = clusterFromGet
 
 export const topic = createdTopic
 export const topicFromGetResult = topicFromGet
+
+export const connector = createdConnector
+export const connectorFromGetResult = connectorFromGet
 
 export const team = createdTeam
 export const teamFromGetResult = teamFromGet
