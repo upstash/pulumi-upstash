@@ -10,10 +10,19 @@ created_db = upstash.RedisDatabase(
     database_name="pulumi-python-db",
     consistent=False,
     tls=True,
-    region="eu-west-1"
+    region="eu-west-1",
+    eviction=True,
 )
 get_created_db = upstash.get_redis_database_output(database_id=created_db.database_id)
 
+
+created_globaldb = upstash.RedisDatabase(
+    resource_name="myglobalDb",
+    database_name="pulumi-python-db-global",
+    region="global",
+    primary_region="eu-west-1"
+)
+get_created_globaldb = upstash.get_redis_database_output(database_id=created_globaldb.database_id)
 
 created_cluster = upstash.KafkaCluster(
     resource_name="myCluster",
@@ -79,6 +88,7 @@ created_qstash_topic = upstash.Topic(
 get_created_qstash_topic = upstash.get_qstash_topic_output(topic_id=created_qstash_topic.topic_id)
 
 pulumi.export("created db:", created_db)
+pulumi.export("created globaldb:", created_globaldb)
 pulumi.export("created cluster:", created_cluster)
 pulumi.export("created topic:", created_topic)
 pulumi.export("created credential:", created_credential)
@@ -86,6 +96,7 @@ pulumi.export("created team:", created_team)
 
 
 pulumi.export("get_created_db", get_created_db)
+pulumi.export("get_created_globaldb", get_created_globaldb)
 pulumi.export("get_created_cluster", get_created_cluster)
 pulumi.export("get_created topic:", get_created_topic)
 pulumi.export("get_created credential:", get_created_credential)

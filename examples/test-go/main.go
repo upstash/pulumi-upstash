@@ -12,6 +12,7 @@ func main() {
 			Multizone:    pulumi.Bool(true),
 			Region:       pulumi.String("eu-west-1"),
 			Tls:          pulumi.Bool(true),
+			Eviction:     pulumi.Bool(true),
 		})
 		if err != nil {
 			return err
@@ -22,6 +23,21 @@ func main() {
 		}, nil)
 
 		ctx.Export("db from get request", dbFromGet)
+
+		createdGloblaDb, err := upstash.NewRedisDatabase(ctx, "exampleGlobalDB", &upstash.RedisDatabaseArgs{
+			DatabaseName:  pulumi.String("pulumi-go-db-global"),
+			Region:        pulumi.String("global"),
+			PrimaryRegion: pulumi.String("eu-west-1"),
+		})
+		if err != nil {
+			return err
+		}
+
+		globaldbFromGet := upstash.LookupRedisDatabaseOutput(ctx, upstash.LookupRedisDatabaseOutputArgs{
+			DatabaseId: createdGloblaDb.DatabaseId,
+		}, nil)
+
+		ctx.Export("global db from get request", globaldbFromGet)
 
 		createdCluster, err := upstash.NewKafkaCluster(ctx, "exampleCluster", &upstash.KafkaClusterArgs{
 			ClusterName: pulumi.String("pulumi-go-cluster"),

@@ -7,10 +7,22 @@ const createdDb = new upstash.RedisDatabase("mydb", {
     region: "eu-west-1",
     tls: true,
     multizone: true,
+    eviction: true,
 })
 
 const dbFromGet = upstash.getRedisDatabaseOutput({
     databaseId: createdDb.databaseId
+})
+
+const createdGlobalDb = new upstash.RedisDatabase("myglobaldb", {
+    databaseName: "pulumi-ts-db-global",
+    region: "global",
+    primaryRegion: "eu-west-1",
+    readRegions: ["us-east-1", "us-west-1"]
+})
+
+const globalDbFromGet = upstash.getRedisDatabaseOutput({
+    databaseId: createdGlobalDb.databaseId
 })
 
 
@@ -79,6 +91,9 @@ const qstashScheduleFromGet = upstash.getQStashScheduleOutput({
 
 export const db = createdDb
 export const dbFromGetResult = dbFromGet
+
+export const globaldb = createdGlobalDb
+export const globaldbFromGetResult = globalDbFromGet
 
 export const cluster = createdCluster
 export const clusterFromGetResult = clusterFromGet
