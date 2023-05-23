@@ -15,29 +15,51 @@ class RedisDatabaseArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str],
                  region: pulumi.Input[str],
+                 auto_scale: Optional[pulumi.Input[bool]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
+                 eviction: Optional[pulumi.Input[bool]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
+                 primary_region: Optional[pulumi.Input[str]] = None,
+                 read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a RedisDatabase resource.
         :param pulumi.Input[str] database_name: Name of the database
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
+        :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
+        :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
+        :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+               eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+               [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+               given as primary.)
         :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
                resource)
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "region", region)
+        if auto_scale is not None:
+            pulumi.set(__self__, "auto_scale", auto_scale)
         if consistent is not None:
             warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
             pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
         if consistent is not None:
             pulumi.set(__self__, "consistent", consistent)
+        if eviction is not None:
+            pulumi.set(__self__, "eviction", eviction)
+        if multizone is not None:
+            warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
+            pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
         if multizone is not None:
             pulumi.set(__self__, "multizone", multizone)
+        if primary_region is not None:
+            pulumi.set(__self__, "primary_region", primary_region)
+        if read_regions is not None:
+            pulumi.set(__self__, "read_regions", read_regions)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
 
@@ -67,6 +89,18 @@ class RedisDatabaseArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="autoScale")
+    def auto_scale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Upgrade to higher plans automatically when it hits quotas
+        """
+        return pulumi.get(self, "auto_scale")
+
+    @auto_scale.setter
+    def auto_scale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_scale", value)
+
+    @property
     @pulumi.getter
     def consistent(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -80,6 +114,18 @@ class RedisDatabaseArgs:
 
     @property
     @pulumi.getter
+    def eviction(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable eviction, to evict keys when your database reaches the max size
+        """
+        return pulumi.get(self, "eviction")
+
+    @eviction.setter
+    def eviction(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "eviction", value)
+
+    @property
+    @pulumi.getter
     def multizone(self) -> Optional[pulumi.Input[bool]]:
         """
         When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
@@ -90,6 +136,33 @@ class RedisDatabaseArgs:
     @multizone.setter
     def multizone(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "multizone", value)
+
+    @property
+    @pulumi.getter(name="primaryRegion")
+    def primary_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        """
+        return pulumi.get(self, "primary_region")
+
+    @primary_region.setter
+    def primary_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_region", value)
+
+    @property
+    @pulumi.getter(name="readRegions")
+    def read_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        given as primary.)
+        """
+        return pulumi.get(self, "read_regions")
+
+    @read_regions.setter
+    def read_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "read_regions", value)
 
     @property
     @pulumi.getter
@@ -108,6 +181,7 @@ class RedisDatabaseArgs:
 @pulumi.input_type
 class _RedisDatabaseState:
     def __init__(__self__, *,
+                 auto_scale: Optional[pulumi.Input[bool]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  creation_time: Optional[pulumi.Input[int]] = None,
                  database_id: Optional[pulumi.Input[str]] = None,
@@ -121,10 +195,13 @@ class _RedisDatabaseState:
                  db_max_request_size: Optional[pulumi.Input[int]] = None,
                  db_memory_threshold: Optional[pulumi.Input[int]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 eviction: Optional[pulumi.Input[bool]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
+                 primary_region: Optional[pulumi.Input[str]] = None,
                  read_only_rest_token: Optional[pulumi.Input[str]] = None,
+                 read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  rest_token: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -132,6 +209,7 @@ class _RedisDatabaseState:
                  user_email: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RedisDatabase resources.
+        :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[int] creation_time: Creation time of the database
         :param pulumi.Input[str] database_id: Unique Database ID for created database
@@ -145,11 +223,17 @@ class _RedisDatabaseState:
         :param pulumi.Input[int] db_max_request_size: Max request size for the database
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
+        :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
+        :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+               eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+               [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+               given as primary.)
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
@@ -158,6 +242,8 @@ class _RedisDatabaseState:
                resource)
         :param pulumi.Input[str] user_email: User email for the database
         """
+        if auto_scale is not None:
+            pulumi.set(__self__, "auto_scale", auto_scale)
         if consistent is not None:
             warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
             pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
@@ -187,14 +273,23 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "db_memory_threshold", db_memory_threshold)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
+        if eviction is not None:
+            pulumi.set(__self__, "eviction", eviction)
+        if multizone is not None:
+            warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
+            pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
         if multizone is not None:
             pulumi.set(__self__, "multizone", multizone)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if primary_region is not None:
+            pulumi.set(__self__, "primary_region", primary_region)
         if read_only_rest_token is not None:
             pulumi.set(__self__, "read_only_rest_token", read_only_rest_token)
+        if read_regions is not None:
+            pulumi.set(__self__, "read_regions", read_regions)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if rest_token is not None:
@@ -205,6 +300,18 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "tls", tls)
         if user_email is not None:
             pulumi.set(__self__, "user_email", user_email)
+
+    @property
+    @pulumi.getter(name="autoScale")
+    def auto_scale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Upgrade to higher plans automatically when it hits quotas
+        """
+        return pulumi.get(self, "auto_scale")
+
+    @auto_scale.setter
+    def auto_scale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_scale", value)
 
     @property
     @pulumi.getter
@@ -364,6 +471,18 @@ class _RedisDatabaseState:
 
     @property
     @pulumi.getter
+    def eviction(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable eviction, to evict keys when your database reaches the max size
+        """
+        return pulumi.get(self, "eviction")
+
+    @eviction.setter
+    def eviction(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "eviction", value)
+
+    @property
+    @pulumi.getter
     def multizone(self) -> Optional[pulumi.Input[bool]]:
         """
         When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
@@ -400,6 +519,19 @@ class _RedisDatabaseState:
         pulumi.set(self, "port", value)
 
     @property
+    @pulumi.getter(name="primaryRegion")
+    def primary_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        """
+        return pulumi.get(self, "primary_region")
+
+    @primary_region.setter
+    def primary_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_region", value)
+
+    @property
     @pulumi.getter(name="readOnlyRestToken")
     def read_only_rest_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -410,6 +542,20 @@ class _RedisDatabaseState:
     @read_only_rest_token.setter
     def read_only_rest_token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "read_only_rest_token", value)
+
+    @property
+    @pulumi.getter(name="readRegions")
+    def read_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        given as primary.)
+        """
+        return pulumi.get(self, "read_regions")
+
+    @read_regions.setter
+    def read_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "read_regions", value)
 
     @property
     @pulumi.getter
@@ -479,9 +625,13 @@ class RedisDatabase(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_scale: Optional[pulumi.Input[bool]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
+                 eviction: Optional[pulumi.Input[bool]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
+                 primary_region: Optional[pulumi.Input[str]] = None,
+                 read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -501,10 +651,17 @@ class RedisDatabase(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[str] database_name: Name of the database
+        :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
+        :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+               eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+               [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+               given as primary.)
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
         :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
@@ -545,9 +702,13 @@ class RedisDatabase(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_scale: Optional[pulumi.Input[bool]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
+                 eviction: Optional[pulumi.Input[bool]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
+                 primary_region: Optional[pulumi.Input[str]] = None,
+                 read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -564,6 +725,7 @@ class RedisDatabase(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RedisDatabaseArgs.__new__(RedisDatabaseArgs)
 
+            __props__.__dict__["auto_scale"] = auto_scale
             if consistent is not None and not opts.urn:
                 warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
                 pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
@@ -571,7 +733,13 @@ class RedisDatabase(pulumi.CustomResource):
             if database_name is None and not opts.urn:
                 raise TypeError("Missing required property 'database_name'")
             __props__.__dict__["database_name"] = database_name
+            __props__.__dict__["eviction"] = eviction
+            if multizone is not None and not opts.urn:
+                warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
+                pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
             __props__.__dict__["multizone"] = multizone
+            __props__.__dict__["primary_region"] = primary_region
+            __props__.__dict__["read_regions"] = read_regions
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
@@ -605,6 +773,7 @@ class RedisDatabase(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_scale: Optional[pulumi.Input[bool]] = None,
             consistent: Optional[pulumi.Input[bool]] = None,
             creation_time: Optional[pulumi.Input[int]] = None,
             database_id: Optional[pulumi.Input[str]] = None,
@@ -618,10 +787,13 @@ class RedisDatabase(pulumi.CustomResource):
             db_max_request_size: Optional[pulumi.Input[int]] = None,
             db_memory_threshold: Optional[pulumi.Input[int]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
+            eviction: Optional[pulumi.Input[bool]] = None,
             multizone: Optional[pulumi.Input[bool]] = None,
             password: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
+            primary_region: Optional[pulumi.Input[str]] = None,
             read_only_rest_token: Optional[pulumi.Input[str]] = None,
+            read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             rest_token: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
@@ -634,6 +806,7 @@ class RedisDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[int] creation_time: Creation time of the database
         :param pulumi.Input[str] database_id: Unique Database ID for created database
@@ -647,11 +820,17 @@ class RedisDatabase(pulumi.CustomResource):
         :param pulumi.Input[int] db_max_request_size: Max request size for the database
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
+        :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
+        :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+               eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+               [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+               given as primary.)
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
@@ -664,6 +843,7 @@ class RedisDatabase(pulumi.CustomResource):
 
         __props__ = _RedisDatabaseState.__new__(_RedisDatabaseState)
 
+        __props__.__dict__["auto_scale"] = auto_scale
         __props__.__dict__["consistent"] = consistent
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["database_id"] = database_id
@@ -677,16 +857,27 @@ class RedisDatabase(pulumi.CustomResource):
         __props__.__dict__["db_max_request_size"] = db_max_request_size
         __props__.__dict__["db_memory_threshold"] = db_memory_threshold
         __props__.__dict__["endpoint"] = endpoint
+        __props__.__dict__["eviction"] = eviction
         __props__.__dict__["multizone"] = multizone
         __props__.__dict__["password"] = password
         __props__.__dict__["port"] = port
+        __props__.__dict__["primary_region"] = primary_region
         __props__.__dict__["read_only_rest_token"] = read_only_rest_token
+        __props__.__dict__["read_regions"] = read_regions
         __props__.__dict__["region"] = region
         __props__.__dict__["rest_token"] = rest_token
         __props__.__dict__["state"] = state
         __props__.__dict__["tls"] = tls
         __props__.__dict__["user_email"] = user_email
         return RedisDatabase(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoScale")
+    def auto_scale(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Upgrade to higher plans automatically when it hits quotas
+        """
+        return pulumi.get(self, "auto_scale")
 
     @property
     @pulumi.getter
@@ -794,6 +985,14 @@ class RedisDatabase(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def eviction(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable eviction, to evict keys when your database reaches the max size
+        """
+        return pulumi.get(self, "eviction")
+
+    @property
+    @pulumi.getter
     def multizone(self) -> pulumi.Output[Optional[bool]]:
         """
         When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
@@ -818,12 +1017,31 @@ class RedisDatabase(pulumi.CustomResource):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="primaryRegion")
+    def primary_region(self) -> pulumi.Output[Optional[str]]:
+        """
+        Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        """
+        return pulumi.get(self, "primary_region")
+
+    @property
     @pulumi.getter(name="readOnlyRestToken")
     def read_only_rest_token(self) -> pulumi.Output[str]:
         """
         Rest Token for the database.
         """
         return pulumi.get(self, "read_only_rest_token")
+
+    @property
+    @pulumi.getter(name="readRegions")
+    def read_regions(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        given as primary.)
+        """
+        return pulumi.get(self, "read_regions")
 
     @property
     @pulumi.getter

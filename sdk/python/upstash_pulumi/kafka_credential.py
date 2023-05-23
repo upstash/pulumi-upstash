@@ -264,6 +264,11 @@ class KafkaCredential(pulumi.CustomResource):
             credential_name="credentialFromTerraform",
             topic=example_kafka_topic.topic_name,
             permissions="ALL")
+        example_kafka_credential_all_topics = upstash.KafkaCredential("exampleKafkaCredentialAllTopics",
+            cluster_id=example_kafka_cluster.cluster_id,
+            credential_name="credentialFromTerraform",
+            topic="*",
+            permissions="ALL")
         ```
 
         :param str resource_name: The name of the resource.
@@ -302,6 +307,11 @@ class KafkaCredential(pulumi.CustomResource):
             cluster_id=example_kafka_cluster.cluster_id,
             credential_name="credentialFromTerraform",
             topic=example_kafka_topic.topic_name,
+            permissions="ALL")
+        example_kafka_credential_all_topics = upstash.KafkaCredential("exampleKafkaCredentialAllTopics",
+            cluster_id=example_kafka_cluster.cluster_id,
+            credential_name="credentialFromTerraform",
+            topic="*",
             permissions="ALL")
         ```
 

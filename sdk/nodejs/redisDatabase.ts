@@ -48,6 +48,10 @@ export class RedisDatabase extends pulumi.CustomResource {
     }
 
     /**
+     * Upgrade to higher plans automatically when it hits quotas
+     */
+    public readonly autoScale!: pulumi.Output<boolean | undefined>;
+    /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
      * @deprecated Consistent option is deprecated.
@@ -102,8 +106,14 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpoint!: pulumi.Output<string>;
     /**
+     * Enable eviction, to evict keys when your database reaches the max size
+     */
+    public readonly eviction!: pulumi.Output<boolean | undefined>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
+     *
+     * @deprecated Multizone option is deprecated. It is enabled by default for paid databases.
      */
     public readonly multizone!: pulumi.Output<boolean | undefined>;
     /**
@@ -115,9 +125,20 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly port!: pulumi.Output<number>;
     /**
+     * Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+     * eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+     */
+    public readonly primaryRegion!: pulumi.Output<string | undefined>;
+    /**
      * Rest Token for the database.
      */
     public /*out*/ readonly readOnlyRestToken!: pulumi.Output<string>;
+    /**
+     * Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+     * [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+     * given as primary.)
+     */
+    public readonly readRegions!: pulumi.Output<string[] | undefined>;
     /**
      * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
      * "eu-central1"
@@ -154,6 +175,7 @@ export class RedisDatabase extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RedisDatabaseState | undefined;
+            resourceInputs["autoScale"] = state ? state.autoScale : undefined;
             resourceInputs["consistent"] = state ? state.consistent : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["databaseId"] = state ? state.databaseId : undefined;
@@ -167,10 +189,13 @@ export class RedisDatabase extends pulumi.CustomResource {
             resourceInputs["dbMaxRequestSize"] = state ? state.dbMaxRequestSize : undefined;
             resourceInputs["dbMemoryThreshold"] = state ? state.dbMemoryThreshold : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
+            resourceInputs["eviction"] = state ? state.eviction : undefined;
             resourceInputs["multizone"] = state ? state.multizone : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["primaryRegion"] = state ? state.primaryRegion : undefined;
             resourceInputs["readOnlyRestToken"] = state ? state.readOnlyRestToken : undefined;
+            resourceInputs["readRegions"] = state ? state.readRegions : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["restToken"] = state ? state.restToken : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -184,9 +209,13 @@ export class RedisDatabase extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["autoScale"] = args ? args.autoScale : undefined;
             resourceInputs["consistent"] = args ? args.consistent : undefined;
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
+            resourceInputs["eviction"] = args ? args.eviction : undefined;
             resourceInputs["multizone"] = args ? args.multizone : undefined;
+            resourceInputs["primaryRegion"] = args ? args.primaryRegion : undefined;
+            resourceInputs["readRegions"] = args ? args.readRegions : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tls"] = args ? args.tls : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -218,6 +247,10 @@ export class RedisDatabase extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RedisDatabase resources.
  */
 export interface RedisDatabaseState {
+    /**
+     * Upgrade to higher plans automatically when it hits quotas
+     */
+    autoScale?: pulumi.Input<boolean>;
     /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
@@ -273,8 +306,14 @@ export interface RedisDatabaseState {
      */
     endpoint?: pulumi.Input<string>;
     /**
+     * Enable eviction, to evict keys when your database reaches the max size
+     */
+    eviction?: pulumi.Input<boolean>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
+     *
+     * @deprecated Multizone option is deprecated. It is enabled by default for paid databases.
      */
     multizone?: pulumi.Input<boolean>;
     /**
@@ -286,9 +325,20 @@ export interface RedisDatabaseState {
      */
     port?: pulumi.Input<number>;
     /**
+     * Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+     * eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+     */
+    primaryRegion?: pulumi.Input<string>;
+    /**
      * Rest Token for the database.
      */
     readOnlyRestToken?: pulumi.Input<string>;
+    /**
+     * Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+     * [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+     * given as primary.)
+     */
+    readRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
      * "eu-central1"
@@ -318,6 +368,10 @@ export interface RedisDatabaseState {
  */
 export interface RedisDatabaseArgs {
     /**
+     * Upgrade to higher plans automatically when it hits quotas
+     */
+    autoScale?: pulumi.Input<boolean>;
+    /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
      * @deprecated Consistent option is deprecated.
@@ -328,10 +382,27 @@ export interface RedisDatabaseArgs {
      */
     databaseName: pulumi.Input<string>;
     /**
+     * Enable eviction, to evict keys when your database reaches the max size
+     */
+    eviction?: pulumi.Input<boolean>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
+     *
+     * @deprecated Multizone option is deprecated. It is enabled by default for paid databases.
      */
     multizone?: pulumi.Input<boolean>;
+    /**
+     * Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+     * eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+     */
+    primaryRegion?: pulumi.Input<string>;
+    /**
+     * Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+     * [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+     * given as primary.)
+     */
+    readRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
      * "eu-central1"

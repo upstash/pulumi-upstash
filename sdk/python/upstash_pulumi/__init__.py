@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .get_kafka_cluster import *
+from .get_kafka_connector import *
 from .get_kafka_credential import *
 from .get_kafka_topic import *
 from .get_q_stash_endpoint import *
@@ -14,6 +15,7 @@ from .get_q_stash_topic import *
 from .get_redis_database import *
 from .get_team import *
 from .kafka_cluster import *
+from .kafka_connector import *
 from .kafka_credential import *
 from .kafka_topic import *
 from .provider import *
@@ -39,6 +41,14 @@ _utilities.register(
   "fqn": "upstash_pulumi",
   "classes": {
    "upstash:index/kafkaCluster:KafkaCluster": "KafkaCluster"
+  }
+ },
+ {
+  "pkg": "upstash",
+  "mod": "index/kafkaConnector",
+  "fqn": "upstash_pulumi",
+  "classes": {
+   "upstash:index/kafkaConnector:KafkaConnector": "KafkaConnector"
   }
  },
  {

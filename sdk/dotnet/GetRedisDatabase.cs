@@ -91,6 +91,7 @@ namespace Pulumi.Upstash
     [OutputType]
     public sealed class GetRedisDatabaseResult
     {
+        public readonly bool AutoScale;
         public readonly bool Consistent;
         public readonly int CreationTime;
         public readonly string DatabaseId;
@@ -104,6 +105,7 @@ namespace Pulumi.Upstash
         public readonly int DbMaxRequestSize;
         public readonly int DbMemoryThreshold;
         public readonly string Endpoint;
+        public readonly bool Eviction;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -111,7 +113,9 @@ namespace Pulumi.Upstash
         public readonly bool Multizone;
         public readonly string Password;
         public readonly int Port;
+        public readonly string PrimaryRegion;
         public readonly string ReadOnlyRestToken;
+        public readonly ImmutableArray<string> ReadRegions;
         public readonly string Region;
         public readonly string RestToken;
         public readonly string State;
@@ -120,6 +124,8 @@ namespace Pulumi.Upstash
 
         [OutputConstructor]
         private GetRedisDatabaseResult(
+            bool autoScale,
+
             bool consistent,
 
             int creationTime,
@@ -146,6 +152,8 @@ namespace Pulumi.Upstash
 
             string endpoint,
 
+            bool eviction,
+
             string id,
 
             bool multizone,
@@ -154,7 +162,11 @@ namespace Pulumi.Upstash
 
             int port,
 
+            string primaryRegion,
+
             string readOnlyRestToken,
+
+            ImmutableArray<string> readRegions,
 
             string region,
 
@@ -166,6 +178,7 @@ namespace Pulumi.Upstash
 
             string userEmail)
         {
+            AutoScale = autoScale;
             Consistent = consistent;
             CreationTime = creationTime;
             DatabaseId = databaseId;
@@ -179,11 +192,14 @@ namespace Pulumi.Upstash
             DbMaxRequestSize = dbMaxRequestSize;
             DbMemoryThreshold = dbMemoryThreshold;
             Endpoint = endpoint;
+            Eviction = eviction;
             Id = id;
             Multizone = multizone;
             Password = password;
             Port = port;
+            PrimaryRegion = primaryRegion;
             ReadOnlyRestToken = readOnlyRestToken;
+            ReadRegions = readRegions;
             Region = region;
             RestToken = restToken;
             State = state;

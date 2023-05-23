@@ -43,6 +43,13 @@ namespace Pulumi.Upstash
     ///             Topic = exampleKafkaTopic.TopicName,
     ///             Permissions = "ALL",
     ///         });
+    ///         var exampleKafkaCredentialAllTopics = new Upstash.KafkaCredential("exampleKafkaCredentialAllTopics", new Upstash.KafkaCredentialArgs
+    ///         {
+    ///             ClusterId = exampleKafkaCluster.ClusterId,
+    ///             CredentialName = "credentialFromTerraform",
+    ///             Topic = "*",
+    ///             Permissions = "ALL",
+    ///         });
     ///     }
     /// 
     /// }
@@ -128,7 +135,7 @@ namespace Pulumi.Upstash
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
+                PluginDownloadURL = "github://api.github.com/upstash/pulumi-upstash",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

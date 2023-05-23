@@ -11,6 +11,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := upstash.NewQStashSchedule(ctx, "exampleQstashSchedule", &upstash.QStashScheduleArgs{
+//				Destination: pulumi.Any(resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id),
+//				Cron:        pulumi.String("* * * * */2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type QStashSchedule struct {
 	pulumi.CustomResourceState
 

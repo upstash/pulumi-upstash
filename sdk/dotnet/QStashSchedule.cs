@@ -9,6 +9,29 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Upstash = Pulumi.Upstash;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var exampleQstashSchedule = new Upstash.QStashSchedule("exampleQstashSchedule", new Upstash.QStashScheduleArgs
+    ///         {
+    ///             Destination = resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id,
+    ///             Cron = "* * * * */2",
+    ///         });
+    ///         // or simply provide a link
+    ///         // destination = "https://***.***"
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [UpstashResourceType("upstash:index/qStashSchedule:QStashSchedule")]
     public partial class QStashSchedule : Pulumi.CustomResource
     {
@@ -113,7 +136,7 @@ namespace Pulumi.Upstash
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
+                PluginDownloadURL = "github://api.github.com/upstash/pulumi-upstash",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

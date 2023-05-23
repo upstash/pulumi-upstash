@@ -53,7 +53,7 @@ namespace Pulumi.Upstash
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/upstash/pulumi-upstash";
             return dst;
         }
 
