@@ -68,7 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
+		PluginDownloadURL: "github://api.github.com/upstash/pulumi-upstash",
 		Description:       "A Pulumi package for creating and managing upstash cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -99,6 +99,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"upstash_kafka_credential": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaCredential"),
+			},
+			"upstash_kafka_connector": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaConnector"),
 			},
 			"upstash_team": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Team"),
@@ -137,6 +140,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"upstash_kafka_credential_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaCredential"),
+			},
+			"upstash_kafka_connector_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaConnector"),
 			},
 			"upstash_team_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTeam"),

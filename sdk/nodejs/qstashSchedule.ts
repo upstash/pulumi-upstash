@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@upstash/pulumi";
+ *
+ * const exampleQstashSchedule = new upstash.QStashSchedule("exampleQstashSchedule", {
+ *     destination: resource.upstash_qstash_topic.exampleQstashTopic.topic_id,
+ *     cron: "* * * * *&#47;2",
+ * });
+ * // or simply provide a link
+ * // destination = "https://***.***"
+ * ```
+ */
 export class QStashSchedule extends pulumi.CustomResource {
     /**
      * Get an existing QStashSchedule resource's state with the given name, ID, and optional extra

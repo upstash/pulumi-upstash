@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'upstash', PLUGIN_VERSION, '--server', 'https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'upstash', PLUGIN_VERSION, '--server', 'github://api.github.com/upstash/pulumi-upstash'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

@@ -6,6 +6,7 @@ import * as utilities from "./utilities";
 
 // Export members:
 export * from "./getKafkaCluster";
+export * from "./getKafkaConnector";
 export * from "./getKafkaCredential";
 export * from "./getKafkaTopic";
 export * from "./getQStashEndpoint";
@@ -14,6 +15,7 @@ export * from "./getQStashTopic";
 export * from "./getRedisDatabase";
 export * from "./getTeam";
 export * from "./kafkaCluster";
+export * from "./kafkaConnector";
 export * from "./kafkaCredential";
 export * from "./kafkaTopic";
 export * from "./provider";
@@ -32,6 +34,7 @@ export {
 
 // Import resources to register:
 import { KafkaCluster } from "./kafkaCluster";
+import { KafkaConnector } from "./kafkaConnector";
 import { KafkaCredential } from "./kafkaCredential";
 import { KafkaTopic } from "./kafkaTopic";
 import { QStashEndpoint } from "./qstashEndpoint";
@@ -46,6 +49,8 @@ const _module = {
         switch (type) {
             case "upstash:index/kafkaCluster:KafkaCluster":
                 return new KafkaCluster(name, <any>undefined, { urn })
+            case "upstash:index/kafkaConnector:KafkaConnector":
+                return new KafkaConnector(name, <any>undefined, { urn })
             case "upstash:index/kafkaCredential:KafkaCredential":
                 return new KafkaCredential(name, <any>undefined, { urn })
             case "upstash:index/kafkaTopic:KafkaTopic":
@@ -66,6 +71,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaCluster", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/kafkaConnector", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaCredential", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaTopic", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashEndpoint", _module)

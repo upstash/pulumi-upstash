@@ -24,6 +24,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}"
+        "pluginDownloadURL": "github://api.github.com/upstash/pulumi-upstash"
     }
 }

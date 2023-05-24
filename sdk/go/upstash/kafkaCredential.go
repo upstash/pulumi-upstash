@@ -54,6 +54,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = upstash.NewKafkaCredential(ctx, "exampleKafkaCredentialAllTopics", &upstash.KafkaCredentialArgs{
+//				ClusterId:      exampleKafkaCluster.ClusterId,
+//				CredentialName: pulumi.String("credentialFromTerraform"),
+//				Topic:          pulumi.String("*"),
+//				Permissions:    pulumi.String("ALL"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}

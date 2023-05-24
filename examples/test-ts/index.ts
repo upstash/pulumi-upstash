@@ -7,10 +7,22 @@ const createdDb = new upstash.RedisDatabase("mydb", {
     region: "eu-west-1",
     tls: true,
     multizone: true,
+    eviction: true,
 })
 
 const dbFromGet = upstash.getRedisDatabaseOutput({
     databaseId: createdDb.databaseId
+})
+
+const createdGlobalDb = new upstash.RedisDatabase("myglobaldb", {
+    databaseName: "pulumi-ts-db-global",
+    region: "global",
+    primaryRegion: "eu-west-1",
+    readRegions: ["us-east-1", "us-west-1"]
+})
+
+const globalDbFromGet = upstash.getRedisDatabaseOutput({
+    databaseId: createdGlobalDb.databaseId
 })
 
 
@@ -23,7 +35,6 @@ const createdCluster = new upstash.KafkaCluster("myCluster", {
 const clusterFromGet = upstash.getKafkaClusterOutput({
     clusterId: createdCluster.clusterId
 })
-
 
 
 const createdTopic = new upstash.KafkaTopic("myTopic", {
@@ -42,6 +53,24 @@ const topicFromGet = upstash.getKafkaTopicOutput({
 })
 
 
+const createdConnector = new upstash.KafkaConnector("myConnector", {
+    clusterId: clusterFromGet.clusterId,
+    name: "pulumi-connector",
+    properties: {
+        "collection": "user123",
+        "connection.uri": "mongodb+srv://test:test@cluster0.fohyg7p.mongodb.net/?retryWrites=true&w=majority",
+        "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+        "database": "myshinynewdb2",
+        "topics": createdTopic.topicName
+    },
+    runningState: "running"
+})
+
+const connectorFromGet = upstash.getKafkaConnectorOutput({
+    connectorId: createdConnector.connectorId
+})
+
+
 
 const createdTeam = new upstash.Team("myTeam", {
     teamName: "pulumi ts team",
@@ -49,7 +78,7 @@ const createdTeam = new upstash.Team("myTeam", {
         "<owner_email>": "owner",
         "<second_email>": "admin"
     },
-    copyCc : true
+    copyCc: true
 })
 
 const teamFromGet = upstash.getTeamOutput({
@@ -80,11 +109,17 @@ const qstashScheduleFromGet = upstash.getQStashScheduleOutput({
 export const db = createdDb
 export const dbFromGetResult = dbFromGet
 
+export const globaldb = createdGlobalDb
+export const globaldbFromGetResult = globalDbFromGet
+
 export const cluster = createdCluster
 export const clusterFromGetResult = clusterFromGet
 
 export const topic = createdTopic
 export const topicFromGetResult = topicFromGet
+
+export const connector = createdConnector
+export const connectorFromGetResult = connectorFromGet
 
 export const team = createdTeam
 export const teamFromGetResult = teamFromGet

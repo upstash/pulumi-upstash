@@ -38,6 +38,7 @@ export interface GetRedisDatabaseArgs {
  * A collection of values returned by getRedisDatabase.
  */
 export interface GetRedisDatabaseResult {
+    readonly autoScale: boolean;
     /**
      * @deprecated Consistent option is deprecated.
      */
@@ -54,14 +55,20 @@ export interface GetRedisDatabaseResult {
     readonly dbMaxRequestSize: number;
     readonly dbMemoryThreshold: number;
     readonly endpoint: string;
+    readonly eviction: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated Multizone option is deprecated. It is enabled by default for paid databases.
+     */
     readonly multizone: boolean;
     readonly password: string;
     readonly port: number;
+    readonly primaryRegion: string;
     readonly readOnlyRestToken: string;
+    readonly readRegions: string[];
     readonly region: string;
     readonly restToken: string;
     readonly state: string;

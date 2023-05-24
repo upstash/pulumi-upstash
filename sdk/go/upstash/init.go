@@ -22,6 +22,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "upstash:index/kafkaCluster:KafkaCluster":
 		r = &KafkaCluster{}
+	case "upstash:index/kafkaConnector:KafkaConnector":
+		r = &KafkaConnector{}
 	case "upstash:index/kafkaCredential:KafkaCredential":
 		r = &KafkaCredential{}
 	case "upstash:index/kafkaTopic:KafkaTopic":
@@ -67,6 +69,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upstash",
 		"index/kafkaCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/kafkaConnector",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

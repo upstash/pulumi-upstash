@@ -36,6 +36,12 @@ namespace Pulumi.Upstash
     public partial class RedisDatabase : Pulumi.CustomResource
     {
         /// <summary>
+        /// Upgrade to higher plans automatically when it hits quotas
+        /// </summary>
+        [Output("autoScale")]
+        public Output<bool?> AutoScale { get; private set; } = null!;
+
+        /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
         /// </summary>
         [Output("consistent")]
@@ -114,6 +120,12 @@ namespace Pulumi.Upstash
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
+        /// Enable eviction, to evict keys when your database reaches the max size
+        /// </summary>
+        [Output("eviction")]
+        public Output<bool?> Eviction { get; private set; } = null!;
+
+        /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
         /// </summary>
@@ -133,10 +145,25 @@ namespace Pulumi.Upstash
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
+        /// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        /// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        /// </summary>
+        [Output("primaryRegion")]
+        public Output<string?> PrimaryRegion { get; private set; } = null!;
+
+        /// <summary>
         /// Rest Token for the database.
         /// </summary>
         [Output("readOnlyRestToken")]
         public Output<string> ReadOnlyRestToken { get; private set; } = null!;
+
+        /// <summary>
+        /// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        /// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        /// given as primary.)
+        /// </summary>
+        [Output("readRegions")]
+        public Output<ImmutableArray<string>> ReadRegions { get; private set; } = null!;
 
         /// <summary>
         /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
@@ -193,7 +220,7 @@ namespace Pulumi.Upstash
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/upstash/pulumi-upstash/releases/download/v${VERSION}",
+                PluginDownloadURL = "github://api.github.com/upstash/pulumi-upstash",
                 AdditionalSecretOutputs =
                 {
                     "password",
@@ -222,6 +249,12 @@ namespace Pulumi.Upstash
     public sealed class RedisDatabaseArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Upgrade to higher plans automatically when it hits quotas
+        /// </summary>
+        [Input("autoScale")]
+        public Input<bool>? AutoScale { get; set; }
+
+        /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
         /// </summary>
         [Input("consistent")]
@@ -234,11 +267,38 @@ namespace Pulumi.Upstash
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
+        /// Enable eviction, to evict keys when your database reaches the max size
+        /// </summary>
+        [Input("eviction")]
+        public Input<bool>? Eviction { get; set; }
+
+        /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
         /// </summary>
         [Input("multizone")]
         public Input<bool>? Multizone { get; set; }
+
+        /// <summary>
+        /// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        /// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        /// </summary>
+        [Input("primaryRegion")]
+        public Input<string>? PrimaryRegion { get; set; }
+
+        [Input("readRegions")]
+        private InputList<string>? _readRegions;
+
+        /// <summary>
+        /// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        /// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        /// given as primary.)
+        /// </summary>
+        public InputList<string> ReadRegions
+        {
+            get => _readRegions ?? (_readRegions = new InputList<string>());
+            set => _readRegions = value;
+        }
 
         /// <summary>
         /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
@@ -261,6 +321,12 @@ namespace Pulumi.Upstash
 
     public sealed class RedisDatabaseState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Upgrade to higher plans automatically when it hits quotas
+        /// </summary>
+        [Input("autoScale")]
+        public Input<bool>? AutoScale { get; set; }
+
         /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
         /// </summary>
@@ -340,6 +406,12 @@ namespace Pulumi.Upstash
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
+        /// Enable eviction, to evict keys when your database reaches the max size
+        /// </summary>
+        [Input("eviction")]
+        public Input<bool>? Eviction { get; set; }
+
+        /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
         /// </summary>
@@ -369,10 +441,31 @@ namespace Pulumi.Upstash
         public Input<int>? Port { get; set; }
 
         /// <summary>
+        /// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+        /// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        /// </summary>
+        [Input("primaryRegion")]
+        public Input<string>? PrimaryRegion { get; set; }
+
+        /// <summary>
         /// Rest Token for the database.
         /// </summary>
         [Input("readOnlyRestToken")]
         public Input<string>? ReadOnlyRestToken { get; set; }
+
+        [Input("readRegions")]
+        private InputList<string>? _readRegions;
+
+        /// <summary>
+        /// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+        /// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+        /// given as primary.)
+        /// </summary>
+        public InputList<string> ReadRegions
+        {
+            get => _readRegions ?? (_readRegions = new InputList<string>());
+            set => _readRegions = value;
+        }
 
         /// <summary>
         /// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,

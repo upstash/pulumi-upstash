@@ -31,6 +31,12 @@ import * as utilities from "./utilities";
  *     topic: exampleKafkaTopic.topicName,
  *     permissions: "ALL",
  * });
+ * const exampleKafkaCredentialAllTopics = new upstash.KafkaCredential("exampleKafkaCredentialAllTopics", {
+ *     clusterId: exampleKafkaCluster.clusterId,
+ *     credentialName: "credentialFromTerraform",
+ *     topic: "*",
+ *     permissions: "ALL",
+ * });
  * ```
  */
 export class KafkaCredential extends pulumi.CustomResource {

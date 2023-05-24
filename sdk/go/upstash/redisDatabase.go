@@ -42,6 +42,8 @@ import (
 type RedisDatabase struct {
 	pulumi.CustomResourceState
 
+	// Upgrade to higher plans automatically when it hits quotas
+	AutoScale pulumi.BoolPtrOutput `pulumi:"autoScale"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -70,15 +72,26 @@ type RedisDatabase struct {
 	DbMemoryThreshold pulumi.IntOutput `pulumi:"dbMemoryThreshold"`
 	// Database URL for connection
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
+	// Enable eviction, to evict keys when your database reaches the max size
+	Eviction pulumi.BoolPtrOutput `pulumi:"eviction"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
+	//
+	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone pulumi.BoolPtrOutput `pulumi:"multizone"`
 	// Password of the database
 	Password pulumi.StringOutput `pulumi:"password"`
 	// Port of the endpoint
 	Port pulumi.IntOutput `pulumi:"port"`
+	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+	PrimaryRegion pulumi.StringPtrOutput `pulumi:"primaryRegion"`
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringOutput `pulumi:"readOnlyRestToken"`
+	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+	// given as primary.)
+	ReadRegions pulumi.StringArrayOutput `pulumi:"readRegions"`
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -133,6 +146,8 @@ func GetRedisDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RedisDatabase resources.
 type redisDatabaseState struct {
+	// Upgrade to higher plans automatically when it hits quotas
+	AutoScale *bool `pulumi:"autoScale"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -161,15 +176,26 @@ type redisDatabaseState struct {
 	DbMemoryThreshold *int `pulumi:"dbMemoryThreshold"`
 	// Database URL for connection
 	Endpoint *string `pulumi:"endpoint"`
+	// Enable eviction, to evict keys when your database reaches the max size
+	Eviction *bool `pulumi:"eviction"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
+	//
+	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone *bool `pulumi:"multizone"`
 	// Password of the database
 	Password *string `pulumi:"password"`
 	// Port of the endpoint
 	Port *int `pulumi:"port"`
+	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+	PrimaryRegion *string `pulumi:"primaryRegion"`
 	// Rest Token for the database.
 	ReadOnlyRestToken *string `pulumi:"readOnlyRestToken"`
+	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+	// given as primary.)
+	ReadRegions []string `pulumi:"readRegions"`
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region *string `pulumi:"region"`
@@ -185,6 +211,8 @@ type redisDatabaseState struct {
 }
 
 type RedisDatabaseState struct {
+	// Upgrade to higher plans automatically when it hits quotas
+	AutoScale pulumi.BoolPtrInput
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -213,15 +241,26 @@ type RedisDatabaseState struct {
 	DbMemoryThreshold pulumi.IntPtrInput
 	// Database URL for connection
 	Endpoint pulumi.StringPtrInput
+	// Enable eviction, to evict keys when your database reaches the max size
+	Eviction pulumi.BoolPtrInput
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
+	//
+	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone pulumi.BoolPtrInput
 	// Password of the database
 	Password pulumi.StringPtrInput
 	// Port of the endpoint
 	Port pulumi.IntPtrInput
+	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+	PrimaryRegion pulumi.StringPtrInput
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringPtrInput
+	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+	// given as primary.)
+	ReadRegions pulumi.StringArrayInput
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region pulumi.StringPtrInput
@@ -241,15 +280,28 @@ func (RedisDatabaseState) ElementType() reflect.Type {
 }
 
 type redisDatabaseArgs struct {
+	// Upgrade to higher plans automatically when it hits quotas
+	AutoScale *bool `pulumi:"autoScale"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
 	Consistent *bool `pulumi:"consistent"`
 	// Name of the database
 	DatabaseName string `pulumi:"databaseName"`
+	// Enable eviction, to evict keys when your database reaches the max size
+	Eviction *bool `pulumi:"eviction"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
+	//
+	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone *bool `pulumi:"multizone"`
+	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+	PrimaryRegion *string `pulumi:"primaryRegion"`
+	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+	// given as primary.)
+	ReadRegions []string `pulumi:"readRegions"`
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region string `pulumi:"region"`
@@ -260,15 +312,28 @@ type redisDatabaseArgs struct {
 
 // The set of arguments for constructing a RedisDatabase resource.
 type RedisDatabaseArgs struct {
+	// Upgrade to higher plans automatically when it hits quotas
+	AutoScale pulumi.BoolPtrInput
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
 	Consistent pulumi.BoolPtrInput
 	// Name of the database
 	DatabaseName pulumi.StringInput
+	// Enable eviction, to evict keys when your database reaches the max size
+	Eviction pulumi.BoolPtrInput
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
+	//
+	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone pulumi.BoolPtrInput
+	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+	PrimaryRegion pulumi.StringPtrInput
+	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+	// given as primary.)
+	ReadRegions pulumi.StringArrayInput
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region pulumi.StringInput
@@ -364,6 +429,11 @@ func (o RedisDatabaseOutput) ToRedisDatabaseOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Upgrade to higher plans automatically when it hits quotas
+func (o RedisDatabaseOutput) AutoScale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.AutoScale }).(pulumi.BoolPtrOutput)
+}
+
 // When enabled, all writes are synchronously persisted to the disk.
 //
 // Deprecated: Consistent option is deprecated.
@@ -431,8 +501,15 @@ func (o RedisDatabaseOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
+// Enable eviction, to evict keys when your database reaches the max size
+func (o RedisDatabaseOutput) Eviction() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Eviction }).(pulumi.BoolPtrOutput)
+}
+
 // When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 // results in deletion and recreation of the resource)
+//
+// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 func (o RedisDatabaseOutput) Multizone() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Multizone }).(pulumi.BoolPtrOutput)
 }
@@ -447,9 +524,22 @@ func (o RedisDatabaseOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
+// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
+// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+func (o RedisDatabaseOutput) PrimaryRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.StringPtrOutput { return v.PrimaryRegion }).(pulumi.StringPtrOutput)
+}
+
 // Rest Token for the database.
 func (o RedisDatabaseOutput) ReadOnlyRestToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.ReadOnlyRestToken }).(pulumi.StringOutput)
+}
+
+// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
+// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
+// given as primary.)
+func (o RedisDatabaseOutput) ReadRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.StringArrayOutput { return v.ReadRegions }).(pulumi.StringArrayOutput)
 }
 
 // region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,

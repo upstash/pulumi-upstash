@@ -12,6 +12,7 @@ func main() {
 			Multizone:    pulumi.Bool(true),
 			Region:       pulumi.String("eu-west-1"),
 			Tls:          pulumi.Bool(true),
+			Eviction:     pulumi.Bool(true),
 		})
 		if err != nil {
 			return err
@@ -22,6 +23,21 @@ func main() {
 		}, nil)
 
 		ctx.Export("db from get request", dbFromGet)
+
+		createdGloblaDb, err := upstash.NewRedisDatabase(ctx, "exampleGlobalDB", &upstash.RedisDatabaseArgs{
+			DatabaseName:  pulumi.String("pulumi-go-db-global"),
+			Region:        pulumi.String("global"),
+			PrimaryRegion: pulumi.String("eu-west-1"),
+		})
+		if err != nil {
+			return err
+		}
+
+		globaldbFromGet := upstash.LookupRedisDatabaseOutput(ctx, upstash.LookupRedisDatabaseOutputArgs{
+			DatabaseId: createdGloblaDb.DatabaseId,
+		}, nil)
+
+		ctx.Export("global db from get request", globaldbFromGet)
 
 		createdCluster, err := upstash.NewKafkaCluster(ctx, "exampleCluster", &upstash.KafkaClusterArgs{
 			ClusterName: pulumi.String("pulumi-go-cluster"),
@@ -72,6 +88,28 @@ func main() {
 		}, nil)
 
 		ctx.Export("credential from get request", credentialFromGet)
+
+		createdConnector, err := upstash.NewKafkaConnector(ctx, "exampleConnector", &upstash.KafkaConnectorArgs{
+			ClusterId: pulumi.StringOutput(createdCluster.ClusterId),
+			Name:      pulumi.String("pulumi-go-connector"),
+			Properties: pulumi.StringMap{
+				"collection":      pulumi.String("user123"),
+				"connection.uri":  pulumi.String("mongodb+srv://test:test@cluster0.fohyg7p.mongodb.net/?retryWrites=true&w=majority"),
+				"connector.class": pulumi.String("com.mongodb.kafka.connect.MongoSourceConnector"),
+				"database":        pulumi.String("myshinynewdb2"),
+				"topics":          pulumi.String(createdTopic.TopicId),
+			},
+			RunningState: pulumi.String("running"),
+		})
+		if err != nil {
+			return err
+		}
+
+		connectorFromGet := upstash.LookupKafkaConnectorOutput(ctx, upstash.LookupKafkaConnectorOutputArgs{
+			ConnectorId: createdConnector.ConnectorId,
+		}, nil)
+
+		ctx.Export("connector from get request", connectorFromGet)
 
 		createdTeam, err := upstash.NewTeam(ctx, "exampleTeam", &upstash.TeamArgs{
 			TeamName: pulumi.String("pulumi go team"),
