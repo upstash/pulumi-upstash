@@ -11,9 +11,12 @@ export * from "./getKafkaCredential";
 export * from "./getKafkaTopic";
 export * from "./getQStashEndpoint";
 export * from "./getQStashSchedule";
+export * from "./getQStashScheduleV2";
 export * from "./getQStashTopic";
+export * from "./getQStashTopicV2";
 export * from "./getRedisDatabase";
 export * from "./getTeam";
+export * from "./getVectorIndex";
 export * from "./kafkaCluster";
 export * from "./kafkaConnector";
 export * from "./kafkaCredential";
@@ -21,9 +24,12 @@ export * from "./kafkaTopic";
 export * from "./provider";
 export * from "./qstashEndpoint";
 export * from "./qstashSchedule";
+export * from "./qstashScheduleV2";
 export * from "./qstashTopic";
+export * from "./qstashTopicV2";
 export * from "./redisDatabase";
 export * from "./team";
+export * from "./vectorIndex";
 
 // Export sub-modules:
 import * as config from "./config";
@@ -39,9 +45,12 @@ import { KafkaCredential } from "./kafkaCredential";
 import { KafkaTopic } from "./kafkaTopic";
 import { QStashEndpoint } from "./qstashEndpoint";
 import { QStashSchedule } from "./qstashSchedule";
+import { QStashScheduleV2 } from "./qstashScheduleV2";
 import { QStashTopic } from "./qstashTopic";
+import { QStashTopicV2 } from "./qstashTopicV2";
 import { RedisDatabase } from "./redisDatabase";
 import { Team } from "./team";
+import { VectorIndex } from "./vectorIndex";
 
 const _module = {
     version: utilities.getVersion(),
@@ -59,12 +68,18 @@ const _module = {
                 return new QStashEndpoint(name, <any>undefined, { urn })
             case "upstash:index/qStashSchedule:QStashSchedule":
                 return new QStashSchedule(name, <any>undefined, { urn })
+            case "upstash:index/qStashScheduleV2:QStashScheduleV2":
+                return new QStashScheduleV2(name, <any>undefined, { urn })
             case "upstash:index/qStashTopic:QStashTopic":
                 return new QStashTopic(name, <any>undefined, { urn })
+            case "upstash:index/qStashTopicV2:QStashTopicV2":
+                return new QStashTopicV2(name, <any>undefined, { urn })
             case "upstash:index/redisDatabase:RedisDatabase":
                 return new RedisDatabase(name, <any>undefined, { urn })
             case "upstash:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
+            case "upstash:index/vectorIndex:VectorIndex":
+                return new VectorIndex(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -76,9 +91,12 @@ pulumi.runtime.registerResourceModule("upstash", "index/kafkaCredential", _modul
 pulumi.runtime.registerResourceModule("upstash", "index/kafkaTopic", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashEndpoint", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashSchedule", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/qStashScheduleV2", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashTopic", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/qStashTopicV2", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/redisDatabase", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/team", _module)
+pulumi.runtime.registerResourceModule("upstash", "index/vectorIndex", _module)
 
 import { Provider } from "./provider";
 

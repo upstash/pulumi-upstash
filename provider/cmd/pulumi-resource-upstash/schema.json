@@ -567,8 +567,7 @@
                 },
                 "partitions": {
                     "type": "integer",
-                    "description": "The number of partitions the topic will have\n",
-                    "willReplaceOnChanges": true
+                    "description": "The number of partitions the topic will have\n"
                 },
                 "retentionSize": {
                     "type": "integer",
@@ -620,8 +619,7 @@
                     },
                     "partitions": {
                         "type": "integer",
-                        "description": "The number of partitions the topic will have\n",
-                        "willReplaceOnChanges": true
+                        "description": "The number of partitions the topic will have\n"
                     },
                     "password": {
                         "type": "string",
@@ -935,6 +933,188 @@
                 "type": "object"
             }
         },
+        "upstash:index/qStashScheduleV2:QStashScheduleV2": {
+            "properties": {
+                "body": {
+                    "type": "string",
+                    "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n"
+                },
+                "callback": {
+                    "type": "string",
+                    "description": "Callback URL for Qstash Schedule.\n"
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "Content type for Qstash Scheduling.\n"
+                },
+                "createdAt": {
+                    "type": "integer",
+                    "description": "Creation time for Qstash Schedule.\n"
+                },
+                "cron": {
+                    "type": "string",
+                    "description": "Cron string for Qstash Schedule\n"
+                },
+                "delay": {
+                    "type": "string",
+                    "description": "Delay for Qstash Schedule. Delay should be given in seconds\n"
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "Destination for Qstash Schedule. Either Topic Name or valid URL\n"
+                },
+                "forwardHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Forward headers to your API\n"
+                },
+                "header": {
+                    "type": "string",
+                    "description": "Headers for the QStash schedule\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Method of Http Request on QStash\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Retries for Qstash Schedule requests.\n"
+                },
+                "scheduleId": {
+                    "type": "string",
+                    "description": "Unique Qstash Schedule ID for requested schedule\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "cron",
+                "destination",
+                "header",
+                "scheduleId"
+            ],
+            "inputProperties": {
+                "body": {
+                    "type": "string",
+                    "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                    "willReplaceOnChanges": true
+                },
+                "callback": {
+                    "type": "string",
+                    "description": "Callback URL for Qstash Schedule.\n",
+                    "willReplaceOnChanges": true
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "Content type for Qstash Scheduling.\n",
+                    "willReplaceOnChanges": true
+                },
+                "cron": {
+                    "type": "string",
+                    "description": "Cron string for Qstash Schedule\n",
+                    "willReplaceOnChanges": true
+                },
+                "delay": {
+                    "type": "string",
+                    "description": "Delay for Qstash Schedule. Delay should be given in seconds\n",
+                    "willReplaceOnChanges": true
+                },
+                "destination": {
+                    "type": "string",
+                    "description": "Destination for Qstash Schedule. Either Topic Name or valid URL\n",
+                    "willReplaceOnChanges": true
+                },
+                "forwardHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Forward headers to your API\n",
+                    "willReplaceOnChanges": true
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Method of Http Request on QStash\n",
+                    "willReplaceOnChanges": true
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Retries for Qstash Schedule requests.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "cron",
+                "destination"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QStashScheduleV2 resources.\n",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "description": "Body to send for the POST request in string format. Needs escaping (\\) double quotes.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "callback": {
+                        "type": "string",
+                        "description": "Callback URL for Qstash Schedule.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "description": "Content type for Qstash Scheduling.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "createdAt": {
+                        "type": "integer",
+                        "description": "Creation time for Qstash Schedule.\n"
+                    },
+                    "cron": {
+                        "type": "string",
+                        "description": "Cron string for Qstash Schedule\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "delay": {
+                        "type": "string",
+                        "description": "Delay for Qstash Schedule. Delay should be given in seconds\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "destination": {
+                        "type": "string",
+                        "description": "Destination for Qstash Schedule. Either Topic Name or valid URL\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "forwardHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Forward headers to your API\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "header": {
+                        "type": "string",
+                        "description": "Headers for the QStash schedule\n"
+                    },
+                    "method": {
+                        "type": "string",
+                        "description": "Method of Http Request on QStash\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "retries": {
+                        "type": "integer",
+                        "description": "Retries for Qstash Schedule requests.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "scheduleId": {
+                        "type": "string",
+                        "description": "Unique Qstash Schedule ID for requested schedule\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "upstash:index/qStashTopic:QStashTopic": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst exampleQstashTopic = new upstash.QStashTopic(\"exampleQstashTopic\", {});\n```\n```python\nimport pulumi\nimport upstash_pulumi as upstash\n\nexample_qstash_topic = upstash.QStashTopic(\"exampleQstashTopic\")\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleQstashTopic = new Upstash.QStashTopic(\"exampleQstashTopic\", new Upstash.QStashTopicArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/pulumi-upstash/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewQStashTopic(ctx, \"exampleQstashTopic\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleQstashTopic = new QStashTopic(\"exampleQstashTopic\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleQstashTopic:\n    type: upstash:QStashTopic\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -988,6 +1168,78 @@
                     "topicId": {
                         "type": "string",
                         "description": "Unique Qstash Topic ID for requested topic\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/qStashTopicV2:QStashTopicV2": {
+            "properties": {
+                "createdAt": {
+                    "type": "integer",
+                    "description": "Creation time for Qstash Topic.\n"
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Endpoints for the Qstash Topic\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Qstash Topic\n"
+                },
+                "updatedAt": {
+                    "type": "integer",
+                    "description": "Last Update time for Qstash Topic.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "endpoints",
+                "name",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Endpoints for the Qstash Topic\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Qstash Topic\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "endpoints"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QStashTopicV2 resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "integer",
+                        "description": "Creation time for Qstash Topic.\n"
+                    },
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Endpoints for the Qstash Topic\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the Qstash Topic\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "updatedAt": {
+                        "type": "integer",
+                        "description": "Last Update time for Qstash Topic.\n"
                     }
                 },
                 "type": "object"
@@ -1374,6 +1626,231 @@
                         "type": "string",
                         "description": "Name of the team\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "upstash:index/vectorIndex:VectorIndex": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as upstash from \"@pulumi/upstash\";\n\nconst vectorResource = new upstash.VectorIndex(\"vectorResource\", {\n    dimensionCount: 1536,\n    region: \"us-east-1\",\n    similarityFunction: \"COSINE\",\n    type: \"fixed\",\n});\n```\n```python\nimport pulumi\nimport upstash_pulumi as upstash\n\nvector_resource = upstash.VectorIndex(\"vectorResource\",\n    dimension_count=1536,\n    region=\"us-east-1\",\n    similarity_function=\"COSINE\",\n    type=\"fixed\")\n```\n```csharp\nusing Pulumi;\nusing Upstash = Pulumi.Upstash;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vectorResource = new Upstash.VectorIndex(\"vectorResource\", new Upstash.VectorIndexArgs\n        {\n            DimensionCount = 1536,\n            Region = \"us-east-1\",\n            SimilarityFunction = \"COSINE\",\n            Type = \"fixed\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/upstash/pulumi-upstash/sdk/go/upstash\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := upstash.NewVectorIndex(ctx, \"vectorResource\", \u0026upstash.VectorIndexArgs{\n\t\t\tDimensionCount:     pulumi.Int(1536),\n\t\t\tRegion:             pulumi.String(\"us-east-1\"),\n\t\t\tSimilarityFunction: pulumi.String(\"COSINE\"),\n\t\t\tType:               pulumi.String(\"fixed\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vectorResource = new VectorIndex(\"vectorResource\", VectorIndexArgs.builder()        \n            .dimensionCount(1536)\n            .region(\"us-east-1\")\n            .similarityFunction(\"COSINE\")\n            .type(\"fixed\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vectorResource:\n    type: upstash:VectorIndex\n    properties:\n      dimensionCount: 1536\n      region: us-east-1\n      similarityFunction: COSINE\n      type: fixed\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "creationTime": {
+                    "type": "integer",
+                    "description": "The creation time of the vector index in UTC as unix timestamp.\n"
+                },
+                "customerId": {
+                    "type": "string",
+                    "description": "The unique ID associated to the owner of this index.\n"
+                },
+                "dimensionCount": {
+                    "type": "integer",
+                    "description": "Size of the vector array.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Associated endpoint of your index.\n"
+                },
+                "maxDailyQueries": {
+                    "type": "integer",
+                    "description": "The number of maximum query operations you can perform in a day. Only query operations are included in query count.\n"
+                },
+                "maxDailyUpdates": {
+                    "type": "integer",
+                    "description": "The number of maximum update operations you can perform in a day. Only upsert operations are included in update count.\n"
+                },
+                "maxMonthlyBandwidth": {
+                    "type": "integer",
+                    "description": "The maximum amount of monthly bandwidth for the index. Unit is bytes. `-1` if the limit is unlimited.\n"
+                },
+                "maxQueryPerSecond": {
+                    "type": "integer",
+                    "description": "The number of maximum query operations you can perform per second. Only query operations are included in query count.\n"
+                },
+                "maxReadsPerRequest": {
+                    "type": "integer",
+                    "description": "The number of maximum vectors in a read operation. Query and fetch operations are included in read operations.\n"
+                },
+                "maxTotalMetadataSize": {
+                    "type": "integer",
+                    "description": "The amount of maximum size for the total metadata sizes in your index.\n"
+                },
+                "maxVectorCount": {
+                    "type": "integer",
+                    "description": "The number of maximum that your index can contain.\n"
+                },
+                "maxWritesPerRequest": {
+                    "type": "integer",
+                    "description": "The number of maximum vectors in a write operation. Only upsert operations are included in write operations.\n"
+                },
+                "maxWritesPerSecond": {
+                    "type": "integer",
+                    "description": "The number of maximum write operations you can perform per second. Only upsert operations are included in write count.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the index.\n"
+                },
+                "readOnlyToken": {
+                    "type": "string",
+                    "description": "Readonly REST token to send request to the related index. You can't perform update operation with this token.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where your index is deployed.\n"
+                },
+                "reservedPrice": {
+                    "type": "number",
+                    "description": "Monthly pricing of your index. Only available for fixed and pro plans.\n"
+                },
+                "similarityFunction": {
+                    "type": "string",
+                    "description": "Associated distance metric to calculate the similarity.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "REST token to send request to the related index.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Associated plan of the index. Either `free`, `paid`, `fixed` or `pro`.\n"
+                }
+            },
+            "required": [
+                "creationTime",
+                "customerId",
+                "dimensionCount",
+                "endpoint",
+                "maxDailyQueries",
+                "maxDailyUpdates",
+                "maxMonthlyBandwidth",
+                "maxQueryPerSecond",
+                "maxReadsPerRequest",
+                "maxTotalMetadataSize",
+                "maxVectorCount",
+                "maxWritesPerRequest",
+                "maxWritesPerSecond",
+                "name",
+                "readOnlyToken",
+                "region",
+                "reservedPrice",
+                "similarityFunction",
+                "token",
+                "type"
+            ],
+            "inputProperties": {
+                "dimensionCount": {
+                    "type": "integer",
+                    "description": "Size of the vector array.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the index.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where your index is deployed.\n"
+                },
+                "reservedPrice": {
+                    "type": "number",
+                    "description": "Monthly pricing of your index. Only available for fixed and pro plans.\n"
+                },
+                "similarityFunction": {
+                    "type": "string",
+                    "description": "Associated distance metric to calculate the similarity.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Associated plan of the index. Either `free`, `paid`, `fixed` or `pro`.\n"
+                }
+            },
+            "requiredInputs": [
+                "dimensionCount",
+                "region",
+                "similarityFunction",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VectorIndex resources.\n",
+                "properties": {
+                    "creationTime": {
+                        "type": "integer",
+                        "description": "The creation time of the vector index in UTC as unix timestamp.\n"
+                    },
+                    "customerId": {
+                        "type": "string",
+                        "description": "The unique ID associated to the owner of this index.\n"
+                    },
+                    "dimensionCount": {
+                        "type": "integer",
+                        "description": "Size of the vector array.\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "Associated endpoint of your index.\n"
+                    },
+                    "maxDailyQueries": {
+                        "type": "integer",
+                        "description": "The number of maximum query operations you can perform in a day. Only query operations are included in query count.\n"
+                    },
+                    "maxDailyUpdates": {
+                        "type": "integer",
+                        "description": "The number of maximum update operations you can perform in a day. Only upsert operations are included in update count.\n"
+                    },
+                    "maxMonthlyBandwidth": {
+                        "type": "integer",
+                        "description": "The maximum amount of monthly bandwidth for the index. Unit is bytes. `-1` if the limit is unlimited.\n"
+                    },
+                    "maxQueryPerSecond": {
+                        "type": "integer",
+                        "description": "The number of maximum query operations you can perform per second. Only query operations are included in query count.\n"
+                    },
+                    "maxReadsPerRequest": {
+                        "type": "integer",
+                        "description": "The number of maximum vectors in a read operation. Query and fetch operations are included in read operations.\n"
+                    },
+                    "maxTotalMetadataSize": {
+                        "type": "integer",
+                        "description": "The amount of maximum size for the total metadata sizes in your index.\n"
+                    },
+                    "maxVectorCount": {
+                        "type": "integer",
+                        "description": "The number of maximum that your index can contain.\n"
+                    },
+                    "maxWritesPerRequest": {
+                        "type": "integer",
+                        "description": "The number of maximum vectors in a write operation. Only upsert operations are included in write operations.\n"
+                    },
+                    "maxWritesPerSecond": {
+                        "type": "integer",
+                        "description": "The number of maximum write operations you can perform per second. Only upsert operations are included in write count.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the index.\n"
+                    },
+                    "readOnlyToken": {
+                        "type": "string",
+                        "description": "Readonly REST token to send request to the related index. You can't perform update operation with this token.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where your index is deployed.\n"
+                    },
+                    "reservedPrice": {
+                        "type": "number",
+                        "description": "Monthly pricing of your index. Only available for fixed and pro plans.\n"
+                    },
+                    "similarityFunction": {
+                        "type": "string",
+                        "description": "Associated distance metric to calculate the similarity.\n"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "REST token to send request to the related index.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Associated plan of the index. Either `free`, `paid`, `fixed` or `pro`.\n"
                     }
                 },
                 "type": "object"
@@ -1832,6 +2309,83 @@
                 ]
             }
         },
+        "upstash:index/getQStashScheduleV2:getQStashScheduleV2": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getQStashScheduleV2.\n",
+                "properties": {
+                    "body": {
+                        "type": "string"
+                    },
+                    "callback": {
+                        "type": "string"
+                    },
+                    "delay": {
+                        "type": "string"
+                    },
+                    "header": {
+                        "type": "string"
+                    },
+                    "retries": {
+                        "type": "integer"
+                    },
+                    "scheduleId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "scheduleId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getQStashScheduleV2.\n",
+                "properties": {
+                    "body": {
+                        "type": "string"
+                    },
+                    "callback": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "integer"
+                    },
+                    "cron": {
+                        "type": "string"
+                    },
+                    "delay": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "header": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "method": {
+                        "type": "string"
+                    },
+                    "retries": {
+                        "type": "integer"
+                    },
+                    "scheduleId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "cron",
+                    "destination",
+                    "method",
+                    "scheduleId",
+                    "id"
+                ]
+            }
+        },
         "upstash:index/getQStashTopic:getQStashTopic": {
             "inputs": {
                 "description": "A collection of arguments for invoking getQStashTopic.\n",
@@ -1873,6 +2427,52 @@
                     "endpoints",
                     "name",
                     "topicId",
+                    "id"
+                ]
+            }
+        },
+        "upstash:index/getQStashTopicV2:getQStashTopicV2": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getQStashTopicV2.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getQStashTopicV2.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "integer"
+                    },
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "endpoints",
+                    "name",
+                    "updatedAt",
                     "id"
                 ]
             }
@@ -2058,6 +2658,112 @@
                     "teamMembers",
                     "teamName",
                     "id"
+                ]
+            }
+        },
+        "upstash:index/getVectorIndex:getVectorIndex": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVectorIndex.\n",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVectorIndex.\n",
+                "properties": {
+                    "creationTime": {
+                        "type": "integer"
+                    },
+                    "customerId": {
+                        "type": "string"
+                    },
+                    "dimensionCount": {
+                        "type": "integer"
+                    },
+                    "endpoint": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "maxDailyQueries": {
+                        "type": "integer"
+                    },
+                    "maxDailyUpdates": {
+                        "type": "integer"
+                    },
+                    "maxMonthlyBandwidth": {
+                        "type": "integer"
+                    },
+                    "maxQueryPerSecond": {
+                        "type": "integer"
+                    },
+                    "maxReadsPerRequest": {
+                        "type": "integer"
+                    },
+                    "maxTotalMetadataSize": {
+                        "type": "integer"
+                    },
+                    "maxVectorCount": {
+                        "type": "integer"
+                    },
+                    "maxWritesPerRequest": {
+                        "type": "integer"
+                    },
+                    "maxWritesPerSecond": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "readOnlyToken": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "reservedPrice": {
+                        "type": "number"
+                    },
+                    "similarityFunction": {
+                        "type": "string"
+                    },
+                    "token": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "creationTime",
+                    "customerId",
+                    "dimensionCount",
+                    "endpoint",
+                    "id",
+                    "maxDailyQueries",
+                    "maxDailyUpdates",
+                    "maxMonthlyBandwidth",
+                    "maxQueryPerSecond",
+                    "maxReadsPerRequest",
+                    "maxTotalMetadataSize",
+                    "maxVectorCount",
+                    "maxWritesPerRequest",
+                    "maxWritesPerSecond",
+                    "name",
+                    "readOnlyToken",
+                    "region",
+                    "reservedPrice",
+                    "similarityFunction",
+                    "token",
+                    "type"
                 ]
             }
         }

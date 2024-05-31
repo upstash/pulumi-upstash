@@ -1,6 +1,8 @@
 module github.com/upstash/pulumi-upstash/provider
 
-go 1.18
+go 1.21
+
+toolchain go1.22.3
 
 replace (
 	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
@@ -9,7 +11,7 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.24.1
-	github.com/upstash/terraform-provider-upstash v1.4.0
+	github.com/upstash/terraform-provider-upstash v1.5.3
 )
 
 require (

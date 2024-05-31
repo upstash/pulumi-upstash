@@ -70,7 +70,32 @@ const connectorFromGet = upstash.getKafkaConnectorOutput({
     connectorId: createdConnector.connectorId
 })
 
+const createdQStashTopicV2 = new upstash.QStashTopicV2("myTopic", {
+    name: "pulumi-qstash-topic",
+    endpoints: ["https://testing1.com", "https://testing2.com"]
+})
 
+const createdScheduleV2 = new upstash.QStashScheduleV2("mySchedule", {
+    body: "{\"key\": \"value\"}",
+    destination: createdQStashTopicV2.name,
+    cron: "* * * * */3",
+})
+
+const qstashScheduleFromGetV2 = upstash.getQStashScheduleV2Output({
+    scheduleId: createdScheduleV2.scheduleId
+})
+
+const createIndex = new upstash.VectorIndex("myindex", {
+    name: "pulumi-ts-index",
+    region: "eu-west-1",
+    dimensionCount: 1536,
+    similarityFunction: "COSINE",
+    type: "payg"
+})
+
+const indexFromGet = upstash.getVectorIndexOutput({
+    id: createIndex.id
+})
 
 const createdTeam = new upstash.Team("myTeam", {
     teamName: "pulumi ts team",
@@ -84,27 +109,6 @@ const createdTeam = new upstash.Team("myTeam", {
 const teamFromGet = upstash.getTeamOutput({
     teamId: createdTeam.teamId
 })
-
-
-
-const createdQStashTopic = new upstash.QStashTopic("myTopic", {
-    name: "pulumi-qstash-topic"
-})
-const createdEndpoint = new upstash.QStashEndpoint("myEndpoint", {
-    topicId: createdQStashTopic.topicId,
-    url: "https://testing1.com",
-
-})
-const createdSchedule = new upstash.QStashSchedule("mySchedule", {
-    body: "{\"key\": \"value\"}",
-    destination: createdQStashTopic.topicId,
-    cron: "* * * * */3",
-})
-
-const qstashScheduleFromGet = upstash.getQStashScheduleOutput({
-    scheduleId: createdSchedule.scheduleId
-})
-
 
 export const db = createdDb
 export const dbFromGetResult = dbFromGet
@@ -121,10 +125,12 @@ export const topicFromGetResult = topicFromGet
 export const connector = createdConnector
 export const connectorFromGetResult = connectorFromGet
 
+export const QStashTopicV2 = createdQStashTopicV2
+export const QStashScheduleV2 = createdScheduleV2
+export const qstashScheduleFromGetV2Result = qstashScheduleFromGetV2
+
+export const index = createIndex
+export const indexFromGetResult = indexFromGet
+
 export const team = createdTeam
 export const teamFromGetResult = teamFromGet
-
-export const qstashTopic = createdQStashTopic
-export const qstashEndpoint = createdEndpoint
-export const qstashSchedule = createdSchedule
-export const qstashScheduleFromGetResult = qstashScheduleFromGet

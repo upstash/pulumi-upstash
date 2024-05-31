@@ -32,12 +32,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &QStashEndpoint{}
 	case "upstash:index/qStashSchedule:QStashSchedule":
 		r = &QStashSchedule{}
+	case "upstash:index/qStashScheduleV2:QStashScheduleV2":
+		r = &QStashScheduleV2{}
 	case "upstash:index/qStashTopic:QStashTopic":
 		r = &QStashTopic{}
+	case "upstash:index/qStashTopicV2:QStashTopicV2":
+		r = &QStashTopicV2{}
 	case "upstash:index/redisDatabase:RedisDatabase":
 		r = &RedisDatabase{}
 	case "upstash:index/team:Team":
 		r = &Team{}
+	case "upstash:index/vectorIndex:VectorIndex":
+		r = &VectorIndex{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -98,7 +104,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"upstash",
+		"index/qStashScheduleV2",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
 		"index/qStashTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/qStashTopicV2",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -109,6 +125,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"upstash",
 		"index/team",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"upstash",
+		"index/vectorIndex",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(
