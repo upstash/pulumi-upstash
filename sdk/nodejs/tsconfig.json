@@ -21,9 +21,12 @@
         "getKafkaTopic.ts",
         "getQStashEndpoint.ts",
         "getQStashSchedule.ts",
+        "getQStashScheduleV2.ts",
         "getQStashTopic.ts",
+        "getQStashTopicV2.ts",
         "getRedisDatabase.ts",
         "getTeam.ts",
+        "getVectorIndex.ts",
         "index.ts",
         "kafkaCluster.ts",
         "kafkaConnector.ts",
@@ -32,9 +35,12 @@
         "provider.ts",
         "qstashEndpoint.ts",
         "qstashSchedule.ts",
+        "qstashScheduleV2.ts",
         "qstashTopic.ts",
+        "qstashTopicV2.ts",
         "redisDatabase.ts",
         "team.ts",
-        "utilities.ts"
+        "utilities.ts",
+        "vectorIndex.ts"
     ]
 }

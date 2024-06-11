@@ -112,9 +112,20 @@ func Provider() tfbridge.ProviderInfo {
 			"upstash_qstash_topic": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashTopic"),
 			},
+			"upstash_qstash_topic_v2": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashTopicV2"),
+			},
 			"upstash_qstash_schedule": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashSchedule"),
 			},
+			"upstash_qstash_schedule_v2": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "QStashScheduleV2"),
+			},
+			"upstash_vector_index": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "VectorIndex"),
+			},
+
+
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -153,9 +164,19 @@ func Provider() tfbridge.ProviderInfo {
 			"upstash_qstash_topic_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashTopic"),
 			},
+			"upstash_qstash_topic_v2_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashTopicV2"),
+			},
 			"upstash_qstash_schedule_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashSchedule"),
 			},
+			"upstash_qstash_schedule_v2_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getQStashScheduleV2"),
+			},
+			"upstash_vector_index_data": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVectorIndex"),
+			},
+
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},

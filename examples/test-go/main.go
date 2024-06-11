@@ -129,34 +129,56 @@ func main() {
 
 		ctx.Export("team from get request", teamFromGet)
 
-		createdQStashTopic, err := upstash.NewQStashTopic(ctx, "exampleQstashTopic", nil)
+		
+		createdQStashTopicV2, err := upstash.NewQStashTopicV2(ctx, "exampleQStashTopicV2", nil)
 		if err != nil {
 			return err
 		}
-		qstashTopicFromGet := upstash.LookupQStashTopicOutput(ctx, upstash.LookupQStashTopicOutputArgs{
-			TopicId: createdQStashTopic.TopicId,
-		}, nil)
 
-		ctx.Export("qstash topic from get request", qstashTopicFromGet)
+		ctx.export("created qstash topic", createdQStashTopicV2)
 
-		createdQStashEndpoint, err := upstash.NewQStashEndpoint(ctx, "exampleQstashEndpoint", &upstash.QStashEndpointArgs{
-			Url:     pulumi.String("https://***.***"),
-			TopicId: pulumi.StringOutput(createdQStashTopic.TopicId),
-		})
-		if err != nil {
-			return err
-		}
-		ctx.Export("qstash endpoint", createdQStashEndpoint)
-
-		createdQStashSchedule, err := upstash.NewQStashSchedule(ctx, "exampleQstashSchedule2", &upstash.QStashScheduleArgs{
-			Cron:        pulumi.String("* * * * *"),
-			Destination: pulumi.StringOutput(createdQStashTopic.TopicId),
+		createdQStashScheduleV2, err := upstash.NewQStashScheduleV2(ctx, "exampleQStashScheduleV2", &upstash.QStashScheduleV2Args{
+			Cron: pulumi.String("* * * * *"),
+			Destination: pulumi.StringOutput(createdQStashTopicV2.name),
 		})
 		if err != nil {
 			return err
 		}
 
-		ctx.Export("qstash schedule from get request", createdQStashSchedule)
+		ctx.export("created qstash schedule", createdQStashScheduleV2)
+
+
+		qstashScheduleV2Get, err := upstash.LookupQStashScheduleV2(ctx, &upstash.LookupQStashScheduleV2Args {
+			id: createdQStashScheduleV2.id,
+		})
+		if err!= nil {
+			return err
+		}
+
+		ctx.export("qstash schedule from get request", qstashScheduleV2Get)
+
+		createdVectorIndex, err := upstash.NewVectorIndex(ctx, "exampleVectorIndex", &upstash.VectorIndexArgs{
+			Name: pulumi.String("pulumi-vector-index"),
+			DimensionCount: pulumi.Int(1536),
+			Region: pulumi.String("eu-west-1"),
+			SimilarityFunction: pulumi.String("COSINE"),
+			Type: pulumi.String("payg"),
+		})
+
+		if err!=nil {
+			return err
+		}
+		pulumi.export("created vector index", createdVectorIndex)
+
+		vectorIndexGet, err := upstash.LookupVectorIndex(ctx, &upstash.LookupVectorIndexArgs{
+			id: createdVectorIndex.id,
+		})
+
+		if err!=nil {
+			return err
+		}
+		pulumi.export("vector index from get request", vectorIndexGet)
+
 
 		return nil
 	})
