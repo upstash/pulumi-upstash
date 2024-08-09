@@ -135,7 +135,7 @@ func main() {
 			return err
 		}
 
-		ctx.export("created qstash topic", createdQStashTopicV2)
+		ctx.Export("created qstash topic", createdQStashTopicV2)
 
 		createdQStashScheduleV2, err := upstash.NewQStashScheduleV2(ctx, "exampleQStashScheduleV2", &upstash.QStashScheduleV2Args{
 			Cron: pulumi.String("* * * * *"),
@@ -145,17 +145,17 @@ func main() {
 			return err
 		}
 
-		ctx.export("created qstash schedule", createdQStashScheduleV2)
+		ctx.Export("created qstash schedule", createdQStashScheduleV2)
 
 
 		qstashScheduleV2Get, err := upstash.LookupQStashScheduleV2(ctx, &upstash.LookupQStashScheduleV2Args {
-			id: createdQStashScheduleV2.id,
+			Id: createdQStashScheduleV2.id,
 		})
 		if err!= nil {
 			return err
 		}
 
-		ctx.export("qstash schedule from get request", qstashScheduleV2Get)
+		ctx.Export("qstash schedule from get request", qstashScheduleV2Get)
 
 		createdVectorIndex, err := upstash.NewVectorIndex(ctx, "exampleVectorIndex", &upstash.VectorIndexArgs{
 			Name: pulumi.String("pulumi-vector-index"),
@@ -168,16 +168,16 @@ func main() {
 		if err!=nil {
 			return err
 		}
-		pulumi.export("created vector index", createdVectorIndex)
+		pulumi.Export("created vector index", createdVectorIndex)
 
 		vectorIndexGet, err := upstash.LookupVectorIndex(ctx, &upstash.LookupVectorIndexArgs{
-			id: createdVectorIndex.id,
+			Id: createdVectorIndex.id,
 		})
 
 		if err!=nil {
 			return err
 		}
-		pulumi.export("vector index from get request", vectorIndexGet)
+		pulumi.Export("vector index from get request", vectorIndexGet)
 
 
 		return nil
