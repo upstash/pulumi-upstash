@@ -53,6 +53,8 @@ jobs:
           distribution: goreleaser
           version: "~> v1"
           args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: true
       matrix:
