@@ -52,7 +52,7 @@ jobs:
         with:
           distribution: goreleaser
           args: release --clean
-          version: "~> v2"
+          version: 2
     strategy:
       fail-fast: true
       matrix:
