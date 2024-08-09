@@ -46,11 +46,12 @@ The following configuration points are available for the `upstash` provider:
 ## Some Examples
 
 ### TypeScript:
+
 ```
 import * as pulumi from "@pulumi/pulumi";
 import * as upstash from "@upstash/pulumi";
 
-// multiple redis databases in a single for loop
+// multiple redis databases in a single for loop:
 
 for (let i = 0; i < 5; i++) {
     new upstash.RedisDatabase("mydb" + i, {
@@ -63,6 +64,7 @@ for (let i = 0; i < 5; i++) {
 ```
 
 ### Go:
+
 ```
 package main
 
@@ -92,8 +94,8 @@ func main() {
 
 ```
 
+### Python:
 
-### Python: 
 ```
 import  pulumi
 import upstash_pulumi as upstash
