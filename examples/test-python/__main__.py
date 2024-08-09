@@ -1,7 +1,7 @@
 # """A Python Pulumi program"""
 
 from operator import truediv
-import  pulumi
+import pulumi
 import upstash_pulumi as upstash
 
 # consistent and tls fields need some modification on schema definitions
@@ -20,18 +20,21 @@ created_globaldb = upstash.RedisDatabase(
     resource_name="myglobalDb",
     database_name="pulumi-python-db-global",
     region="global",
-    primary_region="eu-west-1"
+    primary_region="eu-west-1",
 )
-get_created_globaldb = upstash.get_redis_database_output(database_id=created_globaldb.database_id)
+get_created_globaldb = upstash.get_redis_database_output(
+    database_id=created_globaldb.database_id
+)
 
 created_cluster = upstash.KafkaCluster(
     resource_name="myCluster",
     cluster_name="pulumi-python-cluster",
     multizone=False,
-    region="eu-west-1"
-
+    region="eu-west-1",
 )
-get_created_cluster = upstash.get_kafka_cluster_output(cluster_id=created_cluster.cluster_id)
+get_created_cluster = upstash.get_kafka_cluster_output(
+    cluster_id=created_cluster.cluster_id
+)
 
 
 created_topic = upstash.KafkaTopic(
@@ -42,7 +45,7 @@ created_topic = upstash.KafkaTopic(
     retention_size=111111,
     max_message_size=111111,
     cleanup_policy="delete",
-    cluster_id=created_cluster.cluster_id
+    cluster_id=created_cluster.cluster_id,
 )
 
 get_created_topic = upstash.get_kafka_topic_output(topic_id=created_topic.topic_id)
@@ -53,10 +56,12 @@ created_credential = upstash.KafkaCredential(
     cluster_id=created_cluster.cluster_id,
     credential_name="pulumi-python-credential",
     permissions="ALL",
-    topic=created_topic.topic_name
+    topic=created_topic.topic_name,
 )
 
-get_created_credential = upstash.get_kafka_credential_output(credential_id=created_credential.credential_id)
+get_created_credential = upstash.get_kafka_credential_output(
+    credential_id=created_credential.credential_id
+)
 
 
 created_connector = upstash.KafkaConnector(
@@ -68,57 +73,58 @@ created_connector = upstash.KafkaConnector(
         "connection.uri": "mongodb+srv://test:test@cluster0.fohyg7p.mongodb.net/?retryWrites=true&w=majority",
         "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
         "database": "myshinynewdb2",
-        "topics": created_topic.topic_id
+        "topics": created_topic.topic_id,
     },
-    running_state="running"
+    running_state="running",
 )
 
-get_created_connector = upstash.get_kafka_connector_output(credential_id=created_connector.credential_id)
+get_created_connector = upstash.get_kafka_connector_output(
+    credential_id=created_connector.credential_id
+)
 
 
 created_team = upstash.Team(
     resource_name="myTeam",
     team_name="pulumi team",
     copy_cc=False,
-    team_members={
-        "<owner_email>": "owner",
-        "<second_email>": "admin"
-    }
+    team_members={"<owner_email>": "owner", "<second_email>": "admin"},
 )
 
 get_created_team = upstash.get_team_output(team_id=created_team.team_id)
 
-for i in range(0,5):
+for i in range(0, 5):
     created_db = upstash.RedisDatabase(
         resource_name="myDb" + str(i),
         database_name="pulumi-python-db2" + str(i),
         consistent=False,
         tls=True,
-        region="eu-west-1"
+        region="eu-west-1",
     )
 
 created_qstash_topic_v2 = upstash.QStashTopicV2(
     resource_name="myQStashTopicV2",
     name="pulumi-py-qstash-topic-v2",
-    endpoints=["https://qstash-endpoint.com"]
+    endpoints=["https://qstash-endpoint.com"],
 )
 
 created_qstash_schedule_v2 = upstash.QStashScheduleV2(
     resource_name="myQStashScheduleV2",
     name="pulumi-py-qstash-schedule-v2",
     schedule="0 0 * * *",
-    destination=created_qstash_topic_v2.name
+    destination=created_qstash_topic_v2.name,
 )
 
-get_created_qstash_schedule_v2 = upstash.get_qstash_schedule_v2_output(schedule_id=created_qstash_schedule_v2.schedule_id)
+get_created_qstash_schedule_v2 = upstash.get_qstash_schedule_v2_output(
+    schedule_id=created_qstash_schedule_v2.schedule_id
+)
 
 
 created_vector_index = upstash.VectorIndex(
     name="pulumi-py-vector-index",
-    dimension_count=1536
-    region="eu-west-1"
-    similarity_function="COSINE"
-    type="payg"
+    dimension_count=1536,
+    region="eu-west-1",
+    similarity_function="COSINE",
+    type="payg",
 )
 
 get_created_vector_index = upstash.get_vector_index_output(id=created_vector_index.id)
@@ -145,5 +151,3 @@ pulumi.export("get created connector:", get_created_connector)
 pulumi.export("get created qstash schedule v2:", get_created_qstash_schedule_v2)
 pulumi.export("get created vector index:", get_created_vector_index)
 pulumi.export("get created team:", get_created_team)
-
-
