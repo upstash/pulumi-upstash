@@ -1340,7 +1340,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central-1\"\n"
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n"
                 },
                 "restToken": {
                     "type": "string",
@@ -1418,7 +1418,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central-1\"\n",
+                    "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n",
                     "willReplaceOnChanges": true
                 },
                 "tls": {
@@ -1527,7 +1527,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central-1\"\n",
+                        "description": "region of the database. Possible values are: \"global\", \"eu-west-1\", \"us-east-1\", \"us-west-1\", \"ap-northeast-1\" ,\n\"eu-central1\"\n",
                         "willReplaceOnChanges": true
                     },
                     "restToken": {
