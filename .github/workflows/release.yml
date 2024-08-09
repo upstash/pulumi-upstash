@@ -46,21 +46,13 @@ jobs:
         with:
           repo: pulumi/pulumictl
       - name: Set PreRelease Version
-        run: |
-          GENERIC_VERSION=$(pulumictl get version --language generic)
-          if [ -z "$GENERIC_VERSION" ]; then
-            echo "Failed to get version from pulumictl"
-            exit 1
-          fi
-          echo "GORELEASER_CURRENT_TAG=v${GENERIC_VERSION}" >> $GITHUB_ENV
+        run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
           distribution: goreleaser
-          version: latest
+          version: "~> v1"
           args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: true
       matrix:
