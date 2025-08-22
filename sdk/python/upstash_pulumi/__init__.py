@@ -5,10 +5,6 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .get_kafka_cluster import *
-from .get_kafka_connector import *
-from .get_kafka_credential import *
-from .get_kafka_topic import *
 from .get_q_stash_endpoint import *
 from .get_q_stash_schedule import *
 from .get_q_stash_schedule_v2 import *
@@ -17,10 +13,6 @@ from .get_q_stash_topic_v2 import *
 from .get_redis_database import *
 from .get_team import *
 from .get_vector_index import *
-from .kafka_cluster import *
-from .kafka_connector import *
-from .kafka_credential import *
-from .kafka_topic import *
 from .provider import *
 from .q_stash_endpoint import *
 from .q_stash_schedule import *
@@ -41,38 +33,6 @@ else:
 _utilities.register(
     resource_modules="""
 [
- {
-  "pkg": "upstash",
-  "mod": "index/kafkaCluster",
-  "fqn": "upstash_pulumi",
-  "classes": {
-   "upstash:index/kafkaCluster:KafkaCluster": "KafkaCluster"
-  }
- },
- {
-  "pkg": "upstash",
-  "mod": "index/kafkaConnector",
-  "fqn": "upstash_pulumi",
-  "classes": {
-   "upstash:index/kafkaConnector:KafkaConnector": "KafkaConnector"
-  }
- },
- {
-  "pkg": "upstash",
-  "mod": "index/kafkaCredential",
-  "fqn": "upstash_pulumi",
-  "classes": {
-   "upstash:index/kafkaCredential:KafkaCredential": "KafkaCredential"
-  }
- },
- {
-  "pkg": "upstash",
-  "mod": "index/kafkaTopic",
-  "fqn": "upstash_pulumi",
-  "classes": {
-   "upstash:index/kafkaTopic:KafkaTopic": "KafkaTopic"
-  }
- },
  {
   "pkg": "upstash",
   "mod": "index/qStashEndpoint",

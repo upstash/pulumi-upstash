@@ -82,14 +82,7 @@ class AwaitableGetTeamResult(GetTeamResult):
 def get_team(team_id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    team_data = upstash.get_team(team_id=resource["upstash_team"]["exampleTeam"]["team_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['teamId'] = team_id
@@ -113,13 +106,6 @@ def get_team(team_id: Optional[str] = None,
 def get_team_output(team_id: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    team_data = upstash.get_team(team_id=resource["upstash_team"]["exampleTeam"]["team_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     ...

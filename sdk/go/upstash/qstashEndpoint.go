@@ -11,32 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upstash.NewQStashEndpoint(ctx, "exampleQstashEndpoint", &upstash.QStashEndpointArgs{
-//				Url:     pulumi.String("https://***.***"),
-//				TopicId: pulumi.Any(resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type QStashEndpoint struct {
 	pulumi.CustomResourceState
 

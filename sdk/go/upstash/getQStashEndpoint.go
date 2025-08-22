@@ -10,32 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upstash.LookupQStashEndpoint(ctx, &GetQStashEndpointArgs{
-//				EndpointId: resource.Upstash_qstash_endpoint.ExampleQstashEndpoint.Endpoint_id,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupQStashEndpoint(ctx *pulumi.Context, args *LookupQStashEndpointArgs, opts ...pulumi.InvokeOption) (*LookupQStashEndpointResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupQStashEndpointResult

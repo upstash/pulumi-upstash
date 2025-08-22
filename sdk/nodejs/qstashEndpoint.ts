@@ -4,19 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@upstash/pulumi";
- *
- * const exampleQstashEndpoint = new upstash.QStashEndpoint("exampleQstashEndpoint", {
- *     url: "https://***.***",
- *     topicId: resource.upstash_qstash_topic.exampleQstashTopic.topic_id,
- * });
- * ```
- */
 export class QStashEndpoint extends pulumi.CustomResource {
     /**
      * Get an existing QStashEndpoint resource's state with the given name, ID, and optional extra

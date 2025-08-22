@@ -129,17 +129,7 @@ class QStashEndpoint(pulumi.CustomResource):
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_endpoint = upstash.QStashEndpoint("exampleQstashEndpoint",
-            url="https://***.***",
-            topic_id=resource["upstash_qstash_topic"]["exampleQstashTopic"]["topic_id"])
-        ```
-
+        Create a QStashEndpoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] topic_id: Topic Id that the endpoint is added to
@@ -152,17 +142,7 @@ class QStashEndpoint(pulumi.CustomResource):
                  args: QStashEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_endpoint = upstash.QStashEndpoint("exampleQstashEndpoint",
-            url="https://***.***",
-            topic_id=resource["upstash_qstash_topic"]["exampleQstashTopic"]["topic_id"])
-        ```
-
+        Create a QStashEndpoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param QStashEndpointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

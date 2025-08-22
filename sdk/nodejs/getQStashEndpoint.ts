@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const exampleQstashEndpointData = upstash.getQStashEndpoint({
- *     endpointId: resource.upstash_qstash_endpoint.exampleQstashEndpoint.endpoint_id,
- * });
- * ```
- */
 export function getQStashEndpoint(args: GetQStashEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetQStashEndpointResult> {
     if (!opts) {
         opts = {}

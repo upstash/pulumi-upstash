@@ -9,29 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Upstash = Pulumi.Upstash;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var exampleQstashSchedule = new Upstash.QStashSchedule("exampleQstashSchedule", new Upstash.QStashScheduleArgs
-    ///         {
-    ///             Destination = resource.Upstash_qstash_topic.ExampleQstashTopic.Topic_id,
-    ///             Cron = "* * * * */2",
-    ///         });
-    ///         // or simply provide a link
-    ///         // destination = "https://***.***"
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [UpstashResourceType("upstash:index/qStashSchedule:QStashSchedule")]
     public partial class QStashSchedule : Pulumi.CustomResource
     {

@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const teamData = upstash.getTeam({
- *     teamId: resource.upstash_team.exampleTeam.team_id,
- * });
- * ```
- */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
     if (!opts) {
         opts = {}

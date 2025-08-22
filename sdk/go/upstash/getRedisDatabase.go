@@ -10,32 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-upstash/sdk/go/upstash"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upstash.LookupRedisDatabase(ctx, &GetRedisDatabaseArgs{
-//				DatabaseId: resource.Upstash_redis_database.ExampleDB.Database_id,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupRedisDatabase(ctx *pulumi.Context, args *LookupRedisDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupRedisDatabaseResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRedisDatabaseResult
@@ -54,6 +28,7 @@ type LookupRedisDatabaseArgs struct {
 // A collection of values returned by getRedisDatabase.
 type LookupRedisDatabaseResult struct {
 	AutoScale bool `pulumi:"autoScale"`
+	Budget    int  `pulumi:"budget"`
 	// Deprecated: Consistent option is deprecated.
 	Consistent             bool   `pulumi:"consistent"`
 	CreationTime           int    `pulumi:"creationTime"`
@@ -70,19 +45,22 @@ type LookupRedisDatabaseResult struct {
 	Endpoint               string `pulumi:"endpoint"`
 	Eviction               bool   `pulumi:"eviction"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id           string   `pulumi:"id"`
+	IpAllowlists []string `pulumi:"ipAllowlists"`
 	// Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 	Multizone         bool     `pulumi:"multizone"`
 	Password          string   `pulumi:"password"`
 	Port              int      `pulumi:"port"`
 	PrimaryRegion     string   `pulumi:"primaryRegion"`
+	ProdPack          bool     `pulumi:"prodPack"`
 	ReadOnlyRestToken string   `pulumi:"readOnlyRestToken"`
 	ReadRegions       []string `pulumi:"readRegions"`
 	Region            string   `pulumi:"region"`
 	RestToken         string   `pulumi:"restToken"`
 	State             string   `pulumi:"state"`
-	Tls               bool     `pulumi:"tls"`
-	UserEmail         string   `pulumi:"userEmail"`
+	// Deprecated: TLS option is deprecated. It's enabled by default for all databases.
+	Tls       bool   `pulumi:"tls"`
+	UserEmail string `pulumi:"userEmail"`
 }
 
 func LookupRedisDatabaseOutput(ctx *pulumi.Context, args LookupRedisDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupRedisDatabaseResultOutput {
@@ -124,6 +102,10 @@ func (o LookupRedisDatabaseResultOutput) ToLookupRedisDatabaseResultOutputWithCo
 
 func (o LookupRedisDatabaseResultOutput) AutoScale() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.AutoScale }).(pulumi.BoolOutput)
+}
+
+func (o LookupRedisDatabaseResultOutput) Budget() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRedisDatabaseResult) int { return v.Budget }).(pulumi.IntOutput)
 }
 
 // Deprecated: Consistent option is deprecated.
@@ -188,6 +170,10 @@ func (o LookupRedisDatabaseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupRedisDatabaseResultOutput) IpAllowlists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRedisDatabaseResult) []string { return v.IpAllowlists }).(pulumi.StringArrayOutput)
+}
+
 // Deprecated: Multizone option is deprecated. It is enabled by default for paid databases.
 func (o LookupRedisDatabaseResultOutput) Multizone() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Multizone }).(pulumi.BoolOutput)
@@ -203,6 +189,10 @@ func (o LookupRedisDatabaseResultOutput) Port() pulumi.IntOutput {
 
 func (o LookupRedisDatabaseResultOutput) PrimaryRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.PrimaryRegion }).(pulumi.StringOutput)
+}
+
+func (o LookupRedisDatabaseResultOutput) ProdPack() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.ProdPack }).(pulumi.BoolOutput)
 }
 
 func (o LookupRedisDatabaseResultOutput) ReadOnlyRestToken() pulumi.StringOutput {
@@ -225,6 +215,7 @@ func (o LookupRedisDatabaseResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// Deprecated: TLS option is deprecated. It's enabled by default for all databases.
 func (o LookupRedisDatabaseResultOutput) Tls() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRedisDatabaseResult) bool { return v.Tls }).(pulumi.BoolOutput)
 }

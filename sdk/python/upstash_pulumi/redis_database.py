@@ -16,10 +16,13 @@ class RedisDatabaseArgs:
                  database_name: pulumi.Input[str],
                  region: pulumi.Input[str],
                  auto_scale: Optional[pulumi.Input[bool]] = None,
+                 budget: Optional[pulumi.Input[int]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  eviction: Optional[pulumi.Input[bool]] = None,
+                 ip_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
                  primary_region: Optional[pulumi.Input[str]] = None,
+                 prod_pack: Optional[pulumi.Input[bool]] = None,
                  read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls: Optional[pulumi.Input[bool]] = None):
         """
@@ -28,22 +31,28 @@ class RedisDatabaseArgs:
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
         :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
+        :param pulumi.Input[int] budget: Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+               database will be throttled until the next month.
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_allowlists: Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
                eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[bool] prod_pack: Whether Prod Pack is enabled for the database.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
                [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
                given as primary.)
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-               resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+               disabled.
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "region", region)
         if auto_scale is not None:
             pulumi.set(__self__, "auto_scale", auto_scale)
+        if budget is not None:
+            pulumi.set(__self__, "budget", budget)
         if consistent is not None:
             warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
             pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
@@ -51,6 +60,8 @@ class RedisDatabaseArgs:
             pulumi.set(__self__, "consistent", consistent)
         if eviction is not None:
             pulumi.set(__self__, "eviction", eviction)
+        if ip_allowlists is not None:
+            pulumi.set(__self__, "ip_allowlists", ip_allowlists)
         if multizone is not None:
             warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
             pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
@@ -58,6 +69,8 @@ class RedisDatabaseArgs:
             pulumi.set(__self__, "multizone", multizone)
         if primary_region is not None:
             pulumi.set(__self__, "primary_region", primary_region)
+        if prod_pack is not None:
+            pulumi.set(__self__, "prod_pack", prod_pack)
         if read_regions is not None:
             pulumi.set(__self__, "read_regions", read_regions)
         if tls is not None:
@@ -102,6 +115,19 @@ class RedisDatabaseArgs:
 
     @property
     @pulumi.getter
+    def budget(self) -> Optional[pulumi.Input[int]]:
+        """
+        Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        database will be throttled until the next month.
+        """
+        return pulumi.get(self, "budget")
+
+    @budget.setter
+    def budget(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "budget", value)
+
+    @property
+    @pulumi.getter
     def consistent(self) -> Optional[pulumi.Input[bool]]:
         """
         When enabled, all writes are synchronously persisted to the disk.
@@ -123,6 +149,18 @@ class RedisDatabaseArgs:
     @eviction.setter
     def eviction(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "eviction", value)
+
+    @property
+    @pulumi.getter(name="ipAllowlists")
+    def ip_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        """
+        return pulumi.get(self, "ip_allowlists")
+
+    @ip_allowlists.setter
+    def ip_allowlists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_allowlists", value)
 
     @property
     @pulumi.getter
@@ -151,6 +189,18 @@ class RedisDatabaseArgs:
         pulumi.set(self, "primary_region", value)
 
     @property
+    @pulumi.getter(name="prodPack")
+    def prod_pack(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether Prod Pack is enabled for the database.
+        """
+        return pulumi.get(self, "prod_pack")
+
+    @prod_pack.setter
+    def prod_pack(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "prod_pack", value)
+
+    @property
     @pulumi.getter(name="readRegions")
     def read_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -168,8 +218,8 @@ class RedisDatabaseArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        resource)
+        When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        disabled.
         """
         return pulumi.get(self, "tls")
 
@@ -182,6 +232,7 @@ class RedisDatabaseArgs:
 class _RedisDatabaseState:
     def __init__(__self__, *,
                  auto_scale: Optional[pulumi.Input[bool]] = None,
+                 budget: Optional[pulumi.Input[int]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  creation_time: Optional[pulumi.Input[int]] = None,
                  database_id: Optional[pulumi.Input[str]] = None,
@@ -196,10 +247,12 @@ class _RedisDatabaseState:
                  db_memory_threshold: Optional[pulumi.Input[int]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  eviction: Optional[pulumi.Input[bool]] = None,
+                 ip_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  primary_region: Optional[pulumi.Input[str]] = None,
+                 prod_pack: Optional[pulumi.Input[bool]] = None,
                  read_only_rest_token: Optional[pulumi.Input[str]] = None,
                  read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -210,6 +263,8 @@ class _RedisDatabaseState:
         """
         Input properties used for looking up and filtering RedisDatabase resources.
         :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
+        :param pulumi.Input[int] budget: Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+               database will be throttled until the next month.
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[int] creation_time: Creation time of the database
         :param pulumi.Input[str] database_id: Unique Database ID for created database
@@ -224,12 +279,14 @@ class _RedisDatabaseState:
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
         :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_allowlists: Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
         :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
                eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[bool] prod_pack: Whether Prod Pack is enabled for the database.
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
                [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
@@ -238,12 +295,14 @@ class _RedisDatabaseState:
                "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
         :param pulumi.Input[str] state: State of the database
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-               resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+               disabled.
         :param pulumi.Input[str] user_email: User email for the database
         """
         if auto_scale is not None:
             pulumi.set(__self__, "auto_scale", auto_scale)
+        if budget is not None:
+            pulumi.set(__self__, "budget", budget)
         if consistent is not None:
             warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
             pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
@@ -275,6 +334,8 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "endpoint", endpoint)
         if eviction is not None:
             pulumi.set(__self__, "eviction", eviction)
+        if ip_allowlists is not None:
+            pulumi.set(__self__, "ip_allowlists", ip_allowlists)
         if multizone is not None:
             warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
             pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
@@ -286,6 +347,8 @@ class _RedisDatabaseState:
             pulumi.set(__self__, "port", port)
         if primary_region is not None:
             pulumi.set(__self__, "primary_region", primary_region)
+        if prod_pack is not None:
+            pulumi.set(__self__, "prod_pack", prod_pack)
         if read_only_rest_token is not None:
             pulumi.set(__self__, "read_only_rest_token", read_only_rest_token)
         if read_regions is not None:
@@ -312,6 +375,19 @@ class _RedisDatabaseState:
     @auto_scale.setter
     def auto_scale(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_scale", value)
+
+    @property
+    @pulumi.getter
+    def budget(self) -> Optional[pulumi.Input[int]]:
+        """
+        Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        database will be throttled until the next month.
+        """
+        return pulumi.get(self, "budget")
+
+    @budget.setter
+    def budget(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "budget", value)
 
     @property
     @pulumi.getter
@@ -482,6 +558,18 @@ class _RedisDatabaseState:
         pulumi.set(self, "eviction", value)
 
     @property
+    @pulumi.getter(name="ipAllowlists")
+    def ip_allowlists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        """
+        return pulumi.get(self, "ip_allowlists")
+
+    @ip_allowlists.setter
+    def ip_allowlists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_allowlists", value)
+
+    @property
     @pulumi.getter
     def multizone(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -530,6 +618,18 @@ class _RedisDatabaseState:
     @primary_region.setter
     def primary_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "primary_region", value)
+
+    @property
+    @pulumi.getter(name="prodPack")
+    def prod_pack(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether Prod Pack is enabled for the database.
+        """
+        return pulumi.get(self, "prod_pack")
+
+    @prod_pack.setter
+    def prod_pack(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "prod_pack", value)
 
     @property
     @pulumi.getter(name="readOnlyRestToken")
@@ -598,8 +698,8 @@ class _RedisDatabaseState:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        resource)
+        When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        disabled.
         """
         return pulumi.get(self, "tls")
 
@@ -626,46 +726,41 @@ class RedisDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_scale: Optional[pulumi.Input[bool]] = None,
+                 budget: Optional[pulumi.Input[int]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  eviction: Optional[pulumi.Input[bool]] = None,
+                 ip_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
                  primary_region: Optional[pulumi.Input[str]] = None,
+                 prod_pack: Optional[pulumi.Input[bool]] = None,
                  read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_db = upstash.RedisDatabase("exampleDB",
-            database_name="Terraform DB6",
-            multizone=True,
-            region="eu-west-1",
-            tls=True)
-        ```
-
+        Create a RedisDatabase resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
+        :param pulumi.Input[int] budget: Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+               database will be throttled until the next month.
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[str] database_name: Name of the database
         :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_allowlists: Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
                eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[bool] prod_pack: Whether Prod Pack is enabled for the database.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
                [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
                given as primary.)
         :param pulumi.Input[str] region: region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
                "eu-central1"
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-               resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+               disabled.
         """
         ...
     @overload
@@ -674,19 +769,7 @@ class RedisDatabase(pulumi.CustomResource):
                  args: RedisDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_db = upstash.RedisDatabase("exampleDB",
-            database_name="Terraform DB6",
-            multizone=True,
-            region="eu-west-1",
-            tls=True)
-        ```
-
+        Create a RedisDatabase resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param RedisDatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -703,11 +786,14 @@ class RedisDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_scale: Optional[pulumi.Input[bool]] = None,
+                 budget: Optional[pulumi.Input[int]] = None,
                  consistent: Optional[pulumi.Input[bool]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  eviction: Optional[pulumi.Input[bool]] = None,
+                 ip_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  multizone: Optional[pulumi.Input[bool]] = None,
                  primary_region: Optional[pulumi.Input[str]] = None,
+                 prod_pack: Optional[pulumi.Input[bool]] = None,
                  read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
@@ -726,6 +812,7 @@ class RedisDatabase(pulumi.CustomResource):
             __props__ = RedisDatabaseArgs.__new__(RedisDatabaseArgs)
 
             __props__.__dict__["auto_scale"] = auto_scale
+            __props__.__dict__["budget"] = budget
             if consistent is not None and not opts.urn:
                 warnings.warn("""Consistent option is deprecated.""", DeprecationWarning)
                 pulumi.log.warn("""consistent is deprecated: Consistent option is deprecated.""")
@@ -734,11 +821,13 @@ class RedisDatabase(pulumi.CustomResource):
                 raise TypeError("Missing required property 'database_name'")
             __props__.__dict__["database_name"] = database_name
             __props__.__dict__["eviction"] = eviction
+            __props__.__dict__["ip_allowlists"] = ip_allowlists
             if multizone is not None and not opts.urn:
                 warnings.warn("""Multizone option is deprecated. It is enabled by default for paid databases.""", DeprecationWarning)
                 pulumi.log.warn("""multizone is deprecated: Multizone option is deprecated. It is enabled by default for paid databases.""")
             __props__.__dict__["multizone"] = multizone
             __props__.__dict__["primary_region"] = primary_region
+            __props__.__dict__["prod_pack"] = prod_pack
             __props__.__dict__["read_regions"] = read_regions
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
@@ -774,6 +863,7 @@ class RedisDatabase(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_scale: Optional[pulumi.Input[bool]] = None,
+            budget: Optional[pulumi.Input[int]] = None,
             consistent: Optional[pulumi.Input[bool]] = None,
             creation_time: Optional[pulumi.Input[int]] = None,
             database_id: Optional[pulumi.Input[str]] = None,
@@ -788,10 +878,12 @@ class RedisDatabase(pulumi.CustomResource):
             db_memory_threshold: Optional[pulumi.Input[int]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
             eviction: Optional[pulumi.Input[bool]] = None,
+            ip_allowlists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             multizone: Optional[pulumi.Input[bool]] = None,
             password: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             primary_region: Optional[pulumi.Input[str]] = None,
+            prod_pack: Optional[pulumi.Input[bool]] = None,
             read_only_rest_token: Optional[pulumi.Input[str]] = None,
             read_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -807,6 +899,8 @@ class RedisDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_scale: Upgrade to higher plans automatically when it hits quotas
+        :param pulumi.Input[int] budget: Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+               database will be throttled until the next month.
         :param pulumi.Input[bool] consistent: When enabled, all writes are synchronously persisted to the disk.
         :param pulumi.Input[int] creation_time: Creation time of the database
         :param pulumi.Input[str] database_id: Unique Database ID for created database
@@ -821,12 +915,14 @@ class RedisDatabase(pulumi.CustomResource):
         :param pulumi.Input[int] db_memory_threshold: Memory threshold for the database
         :param pulumi.Input[str] endpoint: Database URL for connection
         :param pulumi.Input[bool] eviction: Enable eviction, to evict keys when your database reaches the max size
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_allowlists: Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
         :param pulumi.Input[bool] multizone: When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
                results in deletion and recreation of the resource)
         :param pulumi.Input[str] password: Password of the database
         :param pulumi.Input[int] port: Port of the endpoint
         :param pulumi.Input[str] primary_region: Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
                eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
+        :param pulumi.Input[bool] prod_pack: Whether Prod Pack is enabled for the database.
         :param pulumi.Input[str] read_only_rest_token: Rest Token for the database.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] read_regions: Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
                [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
@@ -835,8 +931,8 @@ class RedisDatabase(pulumi.CustomResource):
                "eu-central1"
         :param pulumi.Input[str] rest_token: Rest Token for the database.
         :param pulumi.Input[str] state: State of the database
-        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-               resource)
+        :param pulumi.Input[bool] tls: When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+               disabled.
         :param pulumi.Input[str] user_email: User email for the database
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -844,6 +940,7 @@ class RedisDatabase(pulumi.CustomResource):
         __props__ = _RedisDatabaseState.__new__(_RedisDatabaseState)
 
         __props__.__dict__["auto_scale"] = auto_scale
+        __props__.__dict__["budget"] = budget
         __props__.__dict__["consistent"] = consistent
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["database_id"] = database_id
@@ -858,10 +955,12 @@ class RedisDatabase(pulumi.CustomResource):
         __props__.__dict__["db_memory_threshold"] = db_memory_threshold
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["eviction"] = eviction
+        __props__.__dict__["ip_allowlists"] = ip_allowlists
         __props__.__dict__["multizone"] = multizone
         __props__.__dict__["password"] = password
         __props__.__dict__["port"] = port
         __props__.__dict__["primary_region"] = primary_region
+        __props__.__dict__["prod_pack"] = prod_pack
         __props__.__dict__["read_only_rest_token"] = read_only_rest_token
         __props__.__dict__["read_regions"] = read_regions
         __props__.__dict__["region"] = region
@@ -878,6 +977,15 @@ class RedisDatabase(pulumi.CustomResource):
         Upgrade to higher plans automatically when it hits quotas
         """
         return pulumi.get(self, "auto_scale")
+
+    @property
+    @pulumi.getter
+    def budget(self) -> pulumi.Output[Optional[int]]:
+        """
+        Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        database will be throttled until the next month.
+        """
+        return pulumi.get(self, "budget")
 
     @property
     @pulumi.getter
@@ -992,6 +1100,14 @@ class RedisDatabase(pulumi.CustomResource):
         return pulumi.get(self, "eviction")
 
     @property
+    @pulumi.getter(name="ipAllowlists")
+    def ip_allowlists(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        """
+        return pulumi.get(self, "ip_allowlists")
+
+    @property
     @pulumi.getter
     def multizone(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1024,6 +1140,14 @@ class RedisDatabase(pulumi.CustomResource):
         eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
         """
         return pulumi.get(self, "primary_region")
+
+    @property
+    @pulumi.getter(name="prodPack")
+    def prod_pack(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether Prod Pack is enabled for the database.
+        """
+        return pulumi.get(self, "prod_pack")
 
     @property
     @pulumi.getter(name="readOnlyRestToken")
@@ -1072,8 +1196,8 @@ class RedisDatabase(pulumi.CustomResource):
     @pulumi.getter
     def tls(self) -> pulumi.Output[Optional[bool]]:
         """
-        When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        resource)
+        When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        disabled.
         """
         return pulumi.get(self, "tls")
 

@@ -451,19 +451,7 @@ class VectorIndex(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        vector_resource = upstash.VectorIndex("vectorResource",
-            dimension_count=1536,
-            region="us-east-1",
-            similarity_function="COSINE",
-            type="fixed")
-        ```
-
+        Create a VectorIndex resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dimension_count: Size of the vector array.
@@ -480,19 +468,7 @@ class VectorIndex(pulumi.CustomResource):
                  args: VectorIndexArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        vector_resource = upstash.VectorIndex("vectorResource",
-            dimension_count=1536,
-            region="us-east-1",
-            similarity_function="COSINE",
-            type="fixed")
-        ```
-
+        Create a VectorIndex resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VectorIndexArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

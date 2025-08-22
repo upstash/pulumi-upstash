@@ -73,14 +73,7 @@ class AwaitableGetQStashEndpointResult(GetQStashEndpointResult):
 def get_q_stash_endpoint(topic_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetQStashEndpointResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_qstash_endpoint_data = upstash.get_q_stash_endpoint(endpoint_id=resource["upstash_qstash_endpoint"]["exampleQstashEndpoint"]["endpoint_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['topicId'] = topic_id
@@ -103,13 +96,6 @@ def get_q_stash_endpoint(topic_id: Optional[str] = None,
 def get_q_stash_endpoint_output(topic_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetQStashEndpointResult]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_qstash_endpoint_data = upstash.get_q_stash_endpoint(endpoint_id=resource["upstash_qstash_endpoint"]["exampleQstashEndpoint"]["endpoint_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     ...

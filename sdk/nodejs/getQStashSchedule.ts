@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const exampleQstashScheduleData = upstash.getQStashSchedule({
- *     scheduleId: resource.upstash_qstash_schedule.exampleQstashSchedule.schedule_id,
- * });
- * ```
- */
 export function getQStashSchedule(args: GetQStashScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetQStashScheduleResult> {
     if (!opts) {
         opts = {}

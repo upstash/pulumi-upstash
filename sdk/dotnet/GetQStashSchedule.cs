@@ -11,57 +11,9 @@ namespace Pulumi.Upstash
 {
     public static class GetQStashSchedule
     {
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleQstashScheduleData = Output.Create(Upstash.GetQStashSchedule.InvokeAsync(new Upstash.GetQStashScheduleArgs
-        ///         {
-        ///             ScheduleId = resource.Upstash_qstash_schedule.ExampleQstashSchedule.Schedule_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetQStashScheduleResult> InvokeAsync(GetQStashScheduleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetQStashScheduleResult>("upstash:index/getQStashSchedule:getQStashSchedule", args ?? new GetQStashScheduleArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleQstashScheduleData = Output.Create(Upstash.GetQStashSchedule.InvokeAsync(new Upstash.GetQStashScheduleArgs
-        ///         {
-        ///             ScheduleId = resource.Upstash_qstash_schedule.ExampleQstashSchedule.Schedule_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetQStashScheduleResult> Invoke(GetQStashScheduleInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetQStashScheduleResult>("upstash:index/getQStashSchedule:getQStashSchedule", args ?? new GetQStashScheduleInvokeArgs(), options.WithDefaults());
     }

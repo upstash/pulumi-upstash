@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const exampleDB = new upstash.RedisDatabase("exampleDB", {
- *     databaseName: "Terraform DB6",
- *     multizone: true,
- *     region: "eu-west-1",
- *     tls: true,
- * });
- * ```
- */
 export class RedisDatabase extends pulumi.CustomResource {
     /**
      * Get an existing RedisDatabase resource's state with the given name, ID, and optional extra
@@ -51,6 +36,11 @@ export class RedisDatabase extends pulumi.CustomResource {
      * Upgrade to higher plans automatically when it hits quotas
      */
     public readonly autoScale!: pulumi.Output<boolean | undefined>;
+    /**
+     * Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+     * database will be throttled until the next month.
+     */
+    public readonly budget!: pulumi.Output<number | undefined>;
     /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
@@ -110,6 +100,10 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public readonly eviction!: pulumi.Output<boolean | undefined>;
     /**
+     * Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+     */
+    public readonly ipAllowlists!: pulumi.Output<string[] | undefined>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
      *
@@ -129,6 +123,10 @@ export class RedisDatabase extends pulumi.CustomResource {
      * eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
      */
     public readonly primaryRegion!: pulumi.Output<string | undefined>;
+    /**
+     * Whether Prod Pack is enabled for the database.
+     */
+    public readonly prodPack!: pulumi.Output<boolean | undefined>;
     /**
      * Rest Token for the database.
      */
@@ -153,8 +151,8 @@ export class RedisDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-     * resource)
+     * When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+     * disabled.
      */
     public readonly tls!: pulumi.Output<boolean | undefined>;
     /**
@@ -176,6 +174,7 @@ export class RedisDatabase extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RedisDatabaseState | undefined;
             resourceInputs["autoScale"] = state ? state.autoScale : undefined;
+            resourceInputs["budget"] = state ? state.budget : undefined;
             resourceInputs["consistent"] = state ? state.consistent : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["databaseId"] = state ? state.databaseId : undefined;
@@ -190,10 +189,12 @@ export class RedisDatabase extends pulumi.CustomResource {
             resourceInputs["dbMemoryThreshold"] = state ? state.dbMemoryThreshold : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["eviction"] = state ? state.eviction : undefined;
+            resourceInputs["ipAllowlists"] = state ? state.ipAllowlists : undefined;
             resourceInputs["multizone"] = state ? state.multizone : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["primaryRegion"] = state ? state.primaryRegion : undefined;
+            resourceInputs["prodPack"] = state ? state.prodPack : undefined;
             resourceInputs["readOnlyRestToken"] = state ? state.readOnlyRestToken : undefined;
             resourceInputs["readRegions"] = state ? state.readRegions : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -210,11 +211,14 @@ export class RedisDatabase extends pulumi.CustomResource {
                 throw new Error("Missing required property 'region'");
             }
             resourceInputs["autoScale"] = args ? args.autoScale : undefined;
+            resourceInputs["budget"] = args ? args.budget : undefined;
             resourceInputs["consistent"] = args ? args.consistent : undefined;
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
             resourceInputs["eviction"] = args ? args.eviction : undefined;
+            resourceInputs["ipAllowlists"] = args ? args.ipAllowlists : undefined;
             resourceInputs["multizone"] = args ? args.multizone : undefined;
             resourceInputs["primaryRegion"] = args ? args.primaryRegion : undefined;
+            resourceInputs["prodPack"] = args ? args.prodPack : undefined;
             resourceInputs["readRegions"] = args ? args.readRegions : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tls"] = args ? args.tls : undefined;
@@ -251,6 +255,11 @@ export interface RedisDatabaseState {
      * Upgrade to higher plans automatically when it hits quotas
      */
     autoScale?: pulumi.Input<boolean>;
+    /**
+     * Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+     * database will be throttled until the next month.
+     */
+    budget?: pulumi.Input<number>;
     /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
@@ -310,6 +319,10 @@ export interface RedisDatabaseState {
      */
     eviction?: pulumi.Input<boolean>;
     /**
+     * Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+     */
+    ipAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
      *
@@ -329,6 +342,10 @@ export interface RedisDatabaseState {
      * eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
      */
     primaryRegion?: pulumi.Input<string>;
+    /**
+     * Whether Prod Pack is enabled for the database.
+     */
+    prodPack?: pulumi.Input<boolean>;
     /**
      * Rest Token for the database.
      */
@@ -353,8 +370,8 @@ export interface RedisDatabaseState {
      */
     state?: pulumi.Input<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-     * resource)
+     * When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+     * disabled.
      */
     tls?: pulumi.Input<boolean>;
     /**
@@ -372,6 +389,11 @@ export interface RedisDatabaseArgs {
      */
     autoScale?: pulumi.Input<boolean>;
     /**
+     * Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+     * database will be throttled until the next month.
+     */
+    budget?: pulumi.Input<number>;
+    /**
      * When enabled, all writes are synchronously persisted to the disk.
      *
      * @deprecated Consistent option is deprecated.
@@ -386,6 +408,10 @@ export interface RedisDatabaseArgs {
      */
     eviction?: pulumi.Input<boolean>;
     /**
+     * Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+     */
+    ipAllowlists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
      * results in deletion and recreation of the resource)
      *
@@ -398,6 +424,10 @@ export interface RedisDatabaseArgs {
      */
     primaryRegion?: pulumi.Input<string>;
     /**
+     * Whether Prod Pack is enabled for the database.
+     */
+    prodPack?: pulumi.Input<boolean>;
+    /**
      * Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
      * [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
      * given as primary.)
@@ -409,8 +439,8 @@ export interface RedisDatabaseArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-     * resource)
+     * When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+     * disabled.
      */
     tls?: pulumi.Input<boolean>;
 }

@@ -9,29 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Upstash = Pulumi.Upstash;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var vectorResource = new Upstash.VectorIndex("vectorResource", new Upstash.VectorIndexArgs
-    ///         {
-    ///             DimensionCount = 1536,
-    ///             Region = "us-east-1",
-    ///             SimilarityFunction = "COSINE",
-    ///             Type = "fixed",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [UpstashResourceType("upstash:index/vectorIndex:VectorIndex")]
     public partial class VectorIndex : Pulumi.CustomResource
     {

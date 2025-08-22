@@ -9,33 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Upstash = Pulumi.Upstash;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var exampleTeam = new Upstash.Team("exampleTeam", new Upstash.TeamArgs
-    ///         {
-    ///             TeamName = "TerraformTeam",
-    ///             CopyCc = false,
-    ///             TeamMembers = 
-    ///             {
-    ///                 { "X@Y.Z", "owner" },
-    ///                 { "A@B.C", "dev" },
-    ///                 { "E@E.F", "finance" },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [UpstashResourceType("upstash:index/team:Team")]
     public partial class Team : Pulumi.CustomResource
     {

@@ -9,25 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Upstash = Pulumi.Upstash;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var exampleQstashTopic = new Upstash.QStashTopic("exampleQstashTopic", new Upstash.QStashTopicArgs
-    ///         {
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [UpstashResourceType("upstash:index/qStashTopic:QStashTopic")]
     public partial class QStashTopic : Pulumi.CustomResource
     {

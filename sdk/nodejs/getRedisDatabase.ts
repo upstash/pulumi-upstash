@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const exampleDBData = upstash.getRedisDatabase({
- *     databaseId: resource.upstash_redis_database.exampleDB.database_id,
- * });
- * ```
- */
 export function getRedisDatabase(args: GetRedisDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisDatabaseResult> {
     if (!opts) {
         opts = {}
@@ -39,6 +27,7 @@ export interface GetRedisDatabaseArgs {
  */
 export interface GetRedisDatabaseResult {
     readonly autoScale: boolean;
+    readonly budget: number;
     /**
      * @deprecated Consistent option is deprecated.
      */
@@ -60,6 +49,7 @@ export interface GetRedisDatabaseResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly ipAllowlists: string[];
     /**
      * @deprecated Multizone option is deprecated. It is enabled by default for paid databases.
      */
@@ -67,11 +57,15 @@ export interface GetRedisDatabaseResult {
     readonly password: string;
     readonly port: number;
     readonly primaryRegion: string;
+    readonly prodPack: boolean;
     readonly readOnlyRestToken: string;
     readonly readRegions: string[];
     readonly region: string;
     readonly restToken: string;
     readonly state: string;
+    /**
+     * @deprecated TLS option is deprecated. It's enabled by default for all databases.
+     */
     readonly tls: boolean;
     readonly userEmail: string;
 }

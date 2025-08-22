@@ -20,14 +20,6 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "upstash:index/kafkaCluster:KafkaCluster":
-		r = &KafkaCluster{}
-	case "upstash:index/kafkaConnector:KafkaConnector":
-		r = &KafkaConnector{}
-	case "upstash:index/kafkaCredential:KafkaCredential":
-		r = &KafkaCredential{}
-	case "upstash:index/kafkaTopic:KafkaTopic":
-		r = &KafkaTopic{}
 	case "upstash:index/qStashEndpoint:QStashEndpoint":
 		r = &QStashEndpoint{}
 	case "upstash:index/qStashSchedule:QStashSchedule":
@@ -72,26 +64,6 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 
 func init() {
 	version, _ := PkgVersion()
-	pulumi.RegisterResourceModule(
-		"upstash",
-		"index/kafkaCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"upstash",
-		"index/kafkaConnector",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"upstash",
-		"index/kafkaCredential",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"upstash",
-		"index/kafkaTopic",
-		&module{version},
-	)
 	pulumi.RegisterResourceModule(
 		"upstash",
 		"index/qStashEndpoint",

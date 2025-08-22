@@ -1,6 +1,6 @@
 module test-go
 
-go 1.17
+go 1.24
 
 require github.com/pulumi/pulumi/sdk/v3 v3.35.3
 

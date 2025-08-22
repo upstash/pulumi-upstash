@@ -9,29 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Upstash
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Upstash = Pulumi.Upstash;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var exampleDB = new Upstash.RedisDatabase("exampleDB", new Upstash.RedisDatabaseArgs
-    ///         {
-    ///             DatabaseName = "Terraform DB6",
-    ///             Multizone = true,
-    ///             Region = "eu-west-1",
-    ///             Tls = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [UpstashResourceType("upstash:index/redisDatabase:RedisDatabase")]
     public partial class RedisDatabase : Pulumi.CustomResource
     {
@@ -40,6 +17,13 @@ namespace Pulumi.Upstash
         /// </summary>
         [Output("autoScale")]
         public Output<bool?> AutoScale { get; private set; } = null!;
+
+        /// <summary>
+        /// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        /// database will be throttled until the next month.
+        /// </summary>
+        [Output("budget")]
+        public Output<int?> Budget { get; private set; } = null!;
 
         /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
@@ -126,6 +110,12 @@ namespace Pulumi.Upstash
         public Output<bool?> Eviction { get; private set; } = null!;
 
         /// <summary>
+        /// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        /// </summary>
+        [Output("ipAllowlists")]
+        public Output<ImmutableArray<string>> IpAllowlists { get; private set; } = null!;
+
+        /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
         /// </summary>
@@ -150,6 +140,12 @@ namespace Pulumi.Upstash
         /// </summary>
         [Output("primaryRegion")]
         public Output<string?> PrimaryRegion { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether Prod Pack is enabled for the database.
+        /// </summary>
+        [Output("prodPack")]
+        public Output<bool?> ProdPack { get; private set; } = null!;
 
         /// <summary>
         /// Rest Token for the database.
@@ -185,8 +181,8 @@ namespace Pulumi.Upstash
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        /// resource)
+        /// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        /// disabled.
         /// </summary>
         [Output("tls")]
         public Output<bool?> Tls { get; private set; } = null!;
@@ -255,6 +251,13 @@ namespace Pulumi.Upstash
         public Input<bool>? AutoScale { get; set; }
 
         /// <summary>
+        /// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        /// database will be throttled until the next month.
+        /// </summary>
+        [Input("budget")]
+        public Input<int>? Budget { get; set; }
+
+        /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
         /// </summary>
         [Input("consistent")]
@@ -272,6 +275,18 @@ namespace Pulumi.Upstash
         [Input("eviction")]
         public Input<bool>? Eviction { get; set; }
 
+        [Input("ipAllowlists")]
+        private InputList<string>? _ipAllowlists;
+
+        /// <summary>
+        /// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        /// </summary>
+        public InputList<string> IpAllowlists
+        {
+            get => _ipAllowlists ?? (_ipAllowlists = new InputList<string>());
+            set => _ipAllowlists = value;
+        }
+
         /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
@@ -285,6 +300,12 @@ namespace Pulumi.Upstash
         /// </summary>
         [Input("primaryRegion")]
         public Input<string>? PrimaryRegion { get; set; }
+
+        /// <summary>
+        /// Whether Prod Pack is enabled for the database.
+        /// </summary>
+        [Input("prodPack")]
+        public Input<bool>? ProdPack { get; set; }
 
         [Input("readRegions")]
         private InputList<string>? _readRegions;
@@ -308,8 +329,8 @@ namespace Pulumi.Upstash
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        /// resource)
+        /// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        /// disabled.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
@@ -326,6 +347,13 @@ namespace Pulumi.Upstash
         /// </summary>
         [Input("autoScale")]
         public Input<bool>? AutoScale { get; set; }
+
+        /// <summary>
+        /// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+        /// database will be throttled until the next month.
+        /// </summary>
+        [Input("budget")]
+        public Input<int>? Budget { get; set; }
 
         /// <summary>
         /// When enabled, all writes are synchronously persisted to the disk.
@@ -411,6 +439,18 @@ namespace Pulumi.Upstash
         [Input("eviction")]
         public Input<bool>? Eviction { get; set; }
 
+        [Input("ipAllowlists")]
+        private InputList<string>? _ipAllowlists;
+
+        /// <summary>
+        /// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+        /// </summary>
+        public InputList<string> IpAllowlists
+        {
+            get => _ipAllowlists ?? (_ipAllowlists = new InputList<string>());
+            set => _ipAllowlists = value;
+        }
+
         /// <summary>
         /// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
         /// results in deletion and recreation of the resource)
@@ -446,6 +486,12 @@ namespace Pulumi.Upstash
         /// </summary>
         [Input("primaryRegion")]
         public Input<string>? PrimaryRegion { get; set; }
+
+        /// <summary>
+        /// Whether Prod Pack is enabled for the database.
+        /// </summary>
+        [Input("prodPack")]
+        public Input<bool>? ProdPack { get; set; }
 
         /// <summary>
         /// Rest Token for the database.
@@ -487,8 +533,8 @@ namespace Pulumi.Upstash
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-        /// resource)
+        /// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+        /// disabled.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }

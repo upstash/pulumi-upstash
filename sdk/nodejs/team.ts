@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@upstash/pulumi";
- *
- * const exampleTeam = new upstash.Team("exampleTeam", {
- *     teamName: "TerraformTeam",
- *     copyCc: false,
- *     teamMembers: {
- *         "X@Y.Z": "owner",
- *         "A@B.C": "dev",
- *         "E@E.F": "finance",
- *     },
- * });
- * ```
- */
 export class Team extends pulumi.CustomResource {
     /**
      * Get an existing Team resource's state with the given name, ID, and optional extra

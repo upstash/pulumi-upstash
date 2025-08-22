@@ -11,57 +11,9 @@ namespace Pulumi.Upstash
 {
     public static class GetRedisDatabase
     {
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleDBData = Output.Create(Upstash.GetRedisDatabase.InvokeAsync(new Upstash.GetRedisDatabaseArgs
-        ///         {
-        ///             DatabaseId = resource.Upstash_redis_database.ExampleDB.Database_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetRedisDatabaseResult> InvokeAsync(GetRedisDatabaseArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRedisDatabaseResult>("upstash:index/getRedisDatabase:getRedisDatabase", args ?? new GetRedisDatabaseArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleDBData = Output.Create(Upstash.GetRedisDatabase.InvokeAsync(new Upstash.GetRedisDatabaseArgs
-        ///         {
-        ///             DatabaseId = resource.Upstash_redis_database.ExampleDB.Database_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetRedisDatabaseResult> Invoke(GetRedisDatabaseInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetRedisDatabaseResult>("upstash:index/getRedisDatabase:getRedisDatabase", args ?? new GetRedisDatabaseInvokeArgs(), options.WithDefaults());
     }
@@ -92,6 +44,7 @@ namespace Pulumi.Upstash
     public sealed class GetRedisDatabaseResult
     {
         public readonly bool AutoScale;
+        public readonly int Budget;
         public readonly bool Consistent;
         public readonly int CreationTime;
         public readonly string DatabaseId;
@@ -110,10 +63,12 @@ namespace Pulumi.Upstash
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<string> IpAllowlists;
         public readonly bool Multizone;
         public readonly string Password;
         public readonly int Port;
         public readonly string PrimaryRegion;
+        public readonly bool ProdPack;
         public readonly string ReadOnlyRestToken;
         public readonly ImmutableArray<string> ReadRegions;
         public readonly string Region;
@@ -125,6 +80,8 @@ namespace Pulumi.Upstash
         [OutputConstructor]
         private GetRedisDatabaseResult(
             bool autoScale,
+
+            int budget,
 
             bool consistent,
 
@@ -156,6 +113,8 @@ namespace Pulumi.Upstash
 
             string id,
 
+            ImmutableArray<string> ipAllowlists,
+
             bool multizone,
 
             string password,
@@ -163,6 +122,8 @@ namespace Pulumi.Upstash
             int port,
 
             string primaryRegion,
+
+            bool prodPack,
 
             string readOnlyRestToken,
 
@@ -179,6 +140,7 @@ namespace Pulumi.Upstash
             string userEmail)
         {
             AutoScale = autoScale;
+            Budget = budget;
             Consistent = consistent;
             CreationTime = creationTime;
             DatabaseId = databaseId;
@@ -194,10 +156,12 @@ namespace Pulumi.Upstash
             Endpoint = endpoint;
             Eviction = eviction;
             Id = id;
+            IpAllowlists = ipAllowlists;
             Multizone = multizone;
             Password = password;
             Port = port;
             PrimaryRegion = primaryRegion;
+            ProdPack = prodPack;
             ReadOnlyRestToken = readOnlyRestToken;
             ReadRegions = readRegions;
             Region = region;

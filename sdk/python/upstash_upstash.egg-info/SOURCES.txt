@@ -2,12 +2,8 @@ README.md
 setup.py
 upstash_upstash/__init__.py
 upstash_upstash/_utilities.py
-upstash_upstash/get_kafka_cluster.py
-upstash_upstash/get_kafka_topic.py
 upstash_upstash/get_redis_database.py
 upstash_upstash/get_team.py
-upstash_upstash/kafka_cluster.py
-upstash_upstash/kafka_topic.py
 upstash_upstash/provider.py
 upstash_upstash/pulumi-plugin.json
 upstash_upstash/py.typed

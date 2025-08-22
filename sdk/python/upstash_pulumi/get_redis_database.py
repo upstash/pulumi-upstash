@@ -20,10 +20,13 @@ class GetRedisDatabaseResult:
     """
     A collection of values returned by getRedisDatabase.
     """
-    def __init__(__self__, auto_scale=None, consistent=None, creation_time=None, database_id=None, database_name=None, database_type=None, db_daily_bandwidth_limit=None, db_disk_threshold=None, db_max_clients=None, db_max_commands_per_second=None, db_max_entry_size=None, db_max_request_size=None, db_memory_threshold=None, endpoint=None, eviction=None, id=None, multizone=None, password=None, port=None, primary_region=None, read_only_rest_token=None, read_regions=None, region=None, rest_token=None, state=None, tls=None, user_email=None):
+    def __init__(__self__, auto_scale=None, budget=None, consistent=None, creation_time=None, database_id=None, database_name=None, database_type=None, db_daily_bandwidth_limit=None, db_disk_threshold=None, db_max_clients=None, db_max_commands_per_second=None, db_max_entry_size=None, db_max_request_size=None, db_memory_threshold=None, endpoint=None, eviction=None, id=None, ip_allowlists=None, multizone=None, password=None, port=None, primary_region=None, prod_pack=None, read_only_rest_token=None, read_regions=None, region=None, rest_token=None, state=None, tls=None, user_email=None):
         if auto_scale and not isinstance(auto_scale, bool):
             raise TypeError("Expected argument 'auto_scale' to be a bool")
         pulumi.set(__self__, "auto_scale", auto_scale)
+        if budget and not isinstance(budget, int):
+            raise TypeError("Expected argument 'budget' to be a int")
+        pulumi.set(__self__, "budget", budget)
         if consistent and not isinstance(consistent, bool):
             raise TypeError("Expected argument 'consistent' to be a bool")
         if consistent is not None:
@@ -73,6 +76,9 @@ class GetRedisDatabaseResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ip_allowlists and not isinstance(ip_allowlists, list):
+            raise TypeError("Expected argument 'ip_allowlists' to be a list")
+        pulumi.set(__self__, "ip_allowlists", ip_allowlists)
         if multizone and not isinstance(multizone, bool):
             raise TypeError("Expected argument 'multizone' to be a bool")
         if multizone is not None:
@@ -89,6 +95,9 @@ class GetRedisDatabaseResult:
         if primary_region and not isinstance(primary_region, str):
             raise TypeError("Expected argument 'primary_region' to be a str")
         pulumi.set(__self__, "primary_region", primary_region)
+        if prod_pack and not isinstance(prod_pack, bool):
+            raise TypeError("Expected argument 'prod_pack' to be a bool")
+        pulumi.set(__self__, "prod_pack", prod_pack)
         if read_only_rest_token and not isinstance(read_only_rest_token, str):
             raise TypeError("Expected argument 'read_only_rest_token' to be a str")
         pulumi.set(__self__, "read_only_rest_token", read_only_rest_token)
@@ -106,6 +115,10 @@ class GetRedisDatabaseResult:
         pulumi.set(__self__, "state", state)
         if tls and not isinstance(tls, bool):
             raise TypeError("Expected argument 'tls' to be a bool")
+        if tls is not None:
+            warnings.warn("""TLS option is deprecated. It's enabled by default for all databases.""", DeprecationWarning)
+            pulumi.log.warn("""tls is deprecated: TLS option is deprecated. It's enabled by default for all databases.""")
+
         pulumi.set(__self__, "tls", tls)
         if user_email and not isinstance(user_email, str):
             raise TypeError("Expected argument 'user_email' to be a str")
@@ -115,6 +128,11 @@ class GetRedisDatabaseResult:
     @pulumi.getter(name="autoScale")
     def auto_scale(self) -> bool:
         return pulumi.get(self, "auto_scale")
+
+    @property
+    @pulumi.getter
+    def budget(self) -> int:
+        return pulumi.get(self, "budget")
 
     @property
     @pulumi.getter
@@ -195,6 +213,11 @@ class GetRedisDatabaseResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="ipAllowlists")
+    def ip_allowlists(self) -> Sequence[str]:
+        return pulumi.get(self, "ip_allowlists")
+
+    @property
     @pulumi.getter
     def multizone(self) -> bool:
         return pulumi.get(self, "multizone")
@@ -213,6 +236,11 @@ class GetRedisDatabaseResult:
     @pulumi.getter(name="primaryRegion")
     def primary_region(self) -> str:
         return pulumi.get(self, "primary_region")
+
+    @property
+    @pulumi.getter(name="prodPack")
+    def prod_pack(self) -> bool:
+        return pulumi.get(self, "prod_pack")
 
     @property
     @pulumi.getter(name="readOnlyRestToken")
@@ -257,6 +285,7 @@ class AwaitableGetRedisDatabaseResult(GetRedisDatabaseResult):
             yield self
         return GetRedisDatabaseResult(
             auto_scale=self.auto_scale,
+            budget=self.budget,
             consistent=self.consistent,
             creation_time=self.creation_time,
             database_id=self.database_id,
@@ -272,10 +301,12 @@ class AwaitableGetRedisDatabaseResult(GetRedisDatabaseResult):
             endpoint=self.endpoint,
             eviction=self.eviction,
             id=self.id,
+            ip_allowlists=self.ip_allowlists,
             multizone=self.multizone,
             password=self.password,
             port=self.port,
             primary_region=self.primary_region,
+            prod_pack=self.prod_pack,
             read_only_rest_token=self.read_only_rest_token,
             read_regions=self.read_regions,
             region=self.region,
@@ -288,14 +319,7 @@ class AwaitableGetRedisDatabaseResult(GetRedisDatabaseResult):
 def get_redis_database(database_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisDatabaseResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_db_data = upstash.get_redis_database(database_id=resource["upstash_redis_database"]["exampleDB"]["database_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['databaseId'] = database_id
@@ -309,6 +333,7 @@ def get_redis_database(database_id: Optional[str] = None,
 
     return AwaitableGetRedisDatabaseResult(
         auto_scale=__ret__.auto_scale,
+        budget=__ret__.budget,
         consistent=__ret__.consistent,
         creation_time=__ret__.creation_time,
         database_id=__ret__.database_id,
@@ -324,10 +349,12 @@ def get_redis_database(database_id: Optional[str] = None,
         endpoint=__ret__.endpoint,
         eviction=__ret__.eviction,
         id=__ret__.id,
+        ip_allowlists=__ret__.ip_allowlists,
         multizone=__ret__.multizone,
         password=__ret__.password,
         port=__ret__.port,
         primary_region=__ret__.primary_region,
+        prod_pack=__ret__.prod_pack,
         read_only_rest_token=__ret__.read_only_rest_token,
         read_regions=__ret__.read_regions,
         region=__ret__.region,
@@ -341,13 +368,6 @@ def get_redis_database(database_id: Optional[str] = None,
 def get_redis_database_output(database_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisDatabaseResult]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_db_data = upstash.get_redis_database(database_id=resource["upstash_redis_database"]["exampleDB"]["database_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     ...
