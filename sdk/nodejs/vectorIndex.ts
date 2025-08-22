@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as upstash from "@pulumi/upstash";
- *
- * const vectorResource = new upstash.VectorIndex("vectorResource", {
- *     dimensionCount: 1536,
- *     region: "us-east-1",
- *     similarityFunction: "COSINE",
- *     type: "fixed",
- * });
- * ```
- */
 export class VectorIndex extends pulumi.CustomResource {
     /**
      * Get an existing VectorIndex resource's state with the given name, ID, and optional extra

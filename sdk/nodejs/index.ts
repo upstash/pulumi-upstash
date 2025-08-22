@@ -5,10 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./getKafkaCluster";
-export * from "./getKafkaConnector";
-export * from "./getKafkaCredential";
-export * from "./getKafkaTopic";
 export * from "./getQStashEndpoint";
 export * from "./getQStashSchedule";
 export * from "./getQStashScheduleV2";
@@ -17,10 +13,6 @@ export * from "./getQStashTopicV2";
 export * from "./getRedisDatabase";
 export * from "./getTeam";
 export * from "./getVectorIndex";
-export * from "./kafkaCluster";
-export * from "./kafkaConnector";
-export * from "./kafkaCredential";
-export * from "./kafkaTopic";
 export * from "./provider";
 export * from "./qstashEndpoint";
 export * from "./qstashSchedule";
@@ -39,10 +31,6 @@ export {
 };
 
 // Import resources to register:
-import { KafkaCluster } from "./kafkaCluster";
-import { KafkaConnector } from "./kafkaConnector";
-import { KafkaCredential } from "./kafkaCredential";
-import { KafkaTopic } from "./kafkaTopic";
 import { QStashEndpoint } from "./qstashEndpoint";
 import { QStashSchedule } from "./qstashSchedule";
 import { QStashScheduleV2 } from "./qstashScheduleV2";
@@ -56,14 +44,6 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "upstash:index/kafkaCluster:KafkaCluster":
-                return new KafkaCluster(name, <any>undefined, { urn })
-            case "upstash:index/kafkaConnector:KafkaConnector":
-                return new KafkaConnector(name, <any>undefined, { urn })
-            case "upstash:index/kafkaCredential:KafkaCredential":
-                return new KafkaCredential(name, <any>undefined, { urn })
-            case "upstash:index/kafkaTopic:KafkaTopic":
-                return new KafkaTopic(name, <any>undefined, { urn })
             case "upstash:index/qStashEndpoint:QStashEndpoint":
                 return new QStashEndpoint(name, <any>undefined, { urn })
             case "upstash:index/qStashSchedule:QStashSchedule":
@@ -85,10 +65,6 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("upstash", "index/kafkaCluster", _module)
-pulumi.runtime.registerResourceModule("upstash", "index/kafkaConnector", _module)
-pulumi.runtime.registerResourceModule("upstash", "index/kafkaCredential", _module)
-pulumi.runtime.registerResourceModule("upstash", "index/kafkaTopic", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashEndpoint", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashSchedule", _module)
 pulumi.runtime.registerResourceModule("upstash", "index/qStashScheduleV2", _module)

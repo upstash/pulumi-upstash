@@ -118,14 +118,7 @@ class AwaitableGetQStashScheduleResult(GetQStashScheduleResult):
 def get_q_stash_schedule(schedule_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetQStashScheduleResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_qstash_schedule_data = upstash.get_q_stash_schedule(schedule_id=resource["upstash_qstash_schedule"]["exampleQstashSchedule"]["schedule_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['scheduleId'] = schedule_id
@@ -153,13 +146,6 @@ def get_q_stash_schedule(schedule_id: Optional[str] = None,
 def get_q_stash_schedule_output(schedule_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetQStashScheduleResult]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_upstash as upstash
-
-    example_qstash_schedule_data = upstash.get_q_stash_schedule(schedule_id=resource["upstash_qstash_schedule"]["exampleQstashSchedule"]["schedule_id"])
-    ```
+    Use this data source to access information about an existing resource.
     """
     ...

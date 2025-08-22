@@ -1,6 +1,6 @@
 # Upstash Resource Provider
 
-The Upstash Pulumi Provider lets you manage [Upstash](http://upstash.com) Redis and Kafka resources programatically.
+The Upstash Pulumi Provider lets you manage [Upstash](http://upstash.com) Redis & QStash & Vector resources programatically.
 
 ## Installing
 
@@ -55,7 +55,8 @@ import * as upstash from "@upstash/pulumi";
 for (let i = 0; i < 5; i++) {
     new upstash.RedisDatabase("mydb" + i, {
         databaseName: "pulumi-ts-db" + i,
-        region: "eu-west-1",
+        region: "global",
+        primaryRegion: "eu-west-1",
         tls: true
     })
 }
@@ -95,15 +96,16 @@ func main() {
 
 ### Python: 
 ```
-import  pulumi
+import pulumi
 import upstash_pulumi as upstash
 
-created_cluster = upstash.KafkaCluster(
-    resource_name="myCluster",
-    cluster_name="pulumi-python-cluster",
-    multizone=False,
-    region="eu-west-1"
+example_db = upstash.RedisDatabase("exampleDB",
+    database_name="Pulumi DB",
+    region="global",
+	primary_region="us-east-1"
+    tls=True
 )
+
 ```
 
 ## Reference

@@ -11,34 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upstash.NewVectorIndex(ctx, "vectorResource", &upstash.VectorIndexArgs{
-//				DimensionCount:     pulumi.Int(1536),
-//				Region:             pulumi.String("us-east-1"),
-//				SimilarityFunction: pulumi.String("COSINE"),
-//				Type:               pulumi.String("fixed"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type VectorIndex struct {
 	pulumi.CustomResourceState
 

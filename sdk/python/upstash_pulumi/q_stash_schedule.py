@@ -426,19 +426,7 @@ class QStashSchedule(pulumi.CustomResource):
                  retries: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_schedule = upstash.QStashSchedule("exampleQstashSchedule",
-            destination=resource["upstash_qstash_topic"]["exampleQstashTopic"]["topic_id"],
-            cron="* * * * */2")
-        # or simply provide a link
-        # destination = "https://***.***"
-        ```
-
+        Create a QStashSchedule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] body: Body to send for the POST request in string format. Needs escaping (\) double quotes.
@@ -460,19 +448,7 @@ class QStashSchedule(pulumi.CustomResource):
                  args: QStashScheduleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_schedule = upstash.QStashSchedule("exampleQstashSchedule",
-            destination=resource["upstash_qstash_topic"]["exampleQstashTopic"]["topic_id"],
-            cron="* * * * */2")
-        # or simply provide a link
-        # destination = "https://***.***"
-        ```
-
+        Create a QStashSchedule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param QStashScheduleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

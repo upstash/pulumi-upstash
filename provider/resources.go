@@ -20,7 +20,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/upstash/pulumi-upstash/provider/pkg/version"
-	"github.com/upstash/terraform-provider-upstash/upstash"
+	"github.com/upstash/terraform-provider-upstash/v2/upstash"
 )
 
 // all of the token components used below.
@@ -91,18 +91,6 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"upstash_kafka_cluster": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaCluster"),
-			},
-			"upstash_kafka_topic": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaTopic"),
-			},
-			"upstash_kafka_credential": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaCredential"),
-			},
-			"upstash_kafka_connector": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "KafkaConnector"),
-			},
 			"upstash_team": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Team"),
 			},
@@ -125,7 +113,6 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "VectorIndex"),
 			},
 
-
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -142,18 +129,6 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"upstash_redis_database_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRedisDatabase"),
-			},
-			"upstash_kafka_cluster_data": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaCluster"),
-			},
-			"upstash_kafka_topic_data": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaTopic"),
-			},
-			"upstash_kafka_credential_data": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaCredential"),
-			},
-			"upstash_kafka_connector_data": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getKafkaConnector"),
 			},
 			"upstash_team_data": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTeam"),

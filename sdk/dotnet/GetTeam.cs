@@ -11,57 +11,9 @@ namespace Pulumi.Upstash
 {
     public static class GetTeam
     {
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var teamData = Output.Create(Upstash.GetTeam.InvokeAsync(new Upstash.GetTeamArgs
-        ///         {
-        ///             TeamId = resource.Upstash_team.ExampleTeam.Team_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetTeamResult> InvokeAsync(GetTeamArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("upstash:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Upstash = Pulumi.Upstash;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var teamData = Output.Create(Upstash.GetTeam.InvokeAsync(new Upstash.GetTeamArgs
-        ///         {
-        ///             TeamId = resource.Upstash_team.ExampleTeam.Team_id,
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetTeamResult>("upstash:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
     }

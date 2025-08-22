@@ -98,15 +98,7 @@ class QStashTopic(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_topic = upstash.QStashTopic("exampleQstashTopic")
-        ```
-
+        Create a QStashTopic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the Qstash Topic
@@ -118,15 +110,7 @@ class QStashTopic(pulumi.CustomResource):
                  args: Optional[QStashTopicArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_qstash_topic = upstash.QStashTopic("exampleQstashTopic")
-        ```
-
+        Create a QStashTopic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param QStashTopicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -145,22 +145,7 @@ class Team(pulumi.CustomResource):
                  team_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_team = upstash.Team("exampleTeam",
-            team_name="TerraformTeam",
-            copy_cc=False,
-            team_members={
-                "X@Y.Z": "owner",
-                "A@B.C": "dev",
-                "E@E.F": "finance",
-            })
-        ```
-
+        Create a Team resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] copy_cc: Whether Credit Card is copied
@@ -174,22 +159,7 @@ class Team(pulumi.CustomResource):
                  args: TeamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import upstash_pulumi as upstash
-
-        example_team = upstash.Team("exampleTeam",
-            team_name="TerraformTeam",
-            copy_cc=False,
-            team_members={
-                "X@Y.Z": "owner",
-                "A@B.C": "dev",
-                "E@E.F": "finance",
-            })
-        ```
-
+        Create a Team resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

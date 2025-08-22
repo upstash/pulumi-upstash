@@ -11,39 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/upstash/pulumi-upstash/sdk/go/upstash"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := upstash.NewRedisDatabase(ctx, "exampleDB", &upstash.RedisDatabaseArgs{
-//				DatabaseName: pulumi.String("Terraform DB6"),
-//				Multizone:    pulumi.Bool(true),
-//				Region:       pulumi.String("eu-west-1"),
-//				Tls:          pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type RedisDatabase struct {
 	pulumi.CustomResourceState
 
 	// Upgrade to higher plans automatically when it hits quotas
 	AutoScale pulumi.BoolPtrOutput `pulumi:"autoScale"`
+	// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+	// database will be throttled until the next month.
+	Budget pulumi.IntPtrOutput `pulumi:"budget"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -74,6 +49,8 @@ type RedisDatabase struct {
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// Enable eviction, to evict keys when your database reaches the max size
 	Eviction pulumi.BoolPtrOutput `pulumi:"eviction"`
+	// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+	IpAllowlists pulumi.StringArrayOutput `pulumi:"ipAllowlists"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
 	//
@@ -86,6 +63,8 @@ type RedisDatabase struct {
 	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
 	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 	PrimaryRegion pulumi.StringPtrOutput `pulumi:"primaryRegion"`
+	// Whether Prod Pack is enabled for the database.
+	ProdPack pulumi.BoolPtrOutput `pulumi:"prodPack"`
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringOutput `pulumi:"readOnlyRestToken"`
 	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
@@ -99,8 +78,8 @@ type RedisDatabase struct {
 	RestToken pulumi.StringOutput `pulumi:"restToken"`
 	// State of the database
 	State pulumi.StringOutput `pulumi:"state"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-	// resource)
+	// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+	// disabled.
 	Tls pulumi.BoolPtrOutput `pulumi:"tls"`
 	// User email for the database
 	UserEmail pulumi.StringOutput `pulumi:"userEmail"`
@@ -148,6 +127,9 @@ func GetRedisDatabase(ctx *pulumi.Context,
 type redisDatabaseState struct {
 	// Upgrade to higher plans automatically when it hits quotas
 	AutoScale *bool `pulumi:"autoScale"`
+	// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+	// database will be throttled until the next month.
+	Budget *int `pulumi:"budget"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -178,6 +160,8 @@ type redisDatabaseState struct {
 	Endpoint *string `pulumi:"endpoint"`
 	// Enable eviction, to evict keys when your database reaches the max size
 	Eviction *bool `pulumi:"eviction"`
+	// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+	IpAllowlists []string `pulumi:"ipAllowlists"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
 	//
@@ -190,6 +174,8 @@ type redisDatabaseState struct {
 	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
 	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 	PrimaryRegion *string `pulumi:"primaryRegion"`
+	// Whether Prod Pack is enabled for the database.
+	ProdPack *bool `pulumi:"prodPack"`
 	// Rest Token for the database.
 	ReadOnlyRestToken *string `pulumi:"readOnlyRestToken"`
 	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
@@ -203,8 +189,8 @@ type redisDatabaseState struct {
 	RestToken *string `pulumi:"restToken"`
 	// State of the database
 	State *string `pulumi:"state"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-	// resource)
+	// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+	// disabled.
 	Tls *bool `pulumi:"tls"`
 	// User email for the database
 	UserEmail *string `pulumi:"userEmail"`
@@ -213,6 +199,9 @@ type redisDatabaseState struct {
 type RedisDatabaseState struct {
 	// Upgrade to higher plans automatically when it hits quotas
 	AutoScale pulumi.BoolPtrInput
+	// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+	// database will be throttled until the next month.
+	Budget pulumi.IntPtrInput
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -243,6 +232,8 @@ type RedisDatabaseState struct {
 	Endpoint pulumi.StringPtrInput
 	// Enable eviction, to evict keys when your database reaches the max size
 	Eviction pulumi.BoolPtrInput
+	// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+	IpAllowlists pulumi.StringArrayInput
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
 	//
@@ -255,6 +246,8 @@ type RedisDatabaseState struct {
 	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
 	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 	PrimaryRegion pulumi.StringPtrInput
+	// Whether Prod Pack is enabled for the database.
+	ProdPack pulumi.BoolPtrInput
 	// Rest Token for the database.
 	ReadOnlyRestToken pulumi.StringPtrInput
 	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
@@ -268,8 +261,8 @@ type RedisDatabaseState struct {
 	RestToken pulumi.StringPtrInput
 	// State of the database
 	State pulumi.StringPtrInput
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-	// resource)
+	// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+	// disabled.
 	Tls pulumi.BoolPtrInput
 	// User email for the database
 	UserEmail pulumi.StringPtrInput
@@ -282,6 +275,9 @@ func (RedisDatabaseState) ElementType() reflect.Type {
 type redisDatabaseArgs struct {
 	// Upgrade to higher plans automatically when it hits quotas
 	AutoScale *bool `pulumi:"autoScale"`
+	// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+	// database will be throttled until the next month.
+	Budget *int `pulumi:"budget"`
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -290,6 +286,8 @@ type redisDatabaseArgs struct {
 	DatabaseName string `pulumi:"databaseName"`
 	// Enable eviction, to evict keys when your database reaches the max size
 	Eviction *bool `pulumi:"eviction"`
+	// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+	IpAllowlists []string `pulumi:"ipAllowlists"`
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
 	//
@@ -298,6 +296,8 @@ type redisDatabaseArgs struct {
 	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
 	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 	PrimaryRegion *string `pulumi:"primaryRegion"`
+	// Whether Prod Pack is enabled for the database.
+	ProdPack *bool `pulumi:"prodPack"`
 	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
 	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
 	// given as primary.)
@@ -305,8 +305,8 @@ type redisDatabaseArgs struct {
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region string `pulumi:"region"`
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-	// resource)
+	// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+	// disabled.
 	Tls *bool `pulumi:"tls"`
 }
 
@@ -314,6 +314,9 @@ type redisDatabaseArgs struct {
 type RedisDatabaseArgs struct {
 	// Upgrade to higher plans automatically when it hits quotas
 	AutoScale pulumi.BoolPtrInput
+	// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+	// database will be throttled until the next month.
+	Budget pulumi.IntPtrInput
 	// When enabled, all writes are synchronously persisted to the disk.
 	//
 	// Deprecated: Consistent option is deprecated.
@@ -322,6 +325,8 @@ type RedisDatabaseArgs struct {
 	DatabaseName pulumi.StringInput
 	// Enable eviction, to evict keys when your database reaches the max size
 	Eviction pulumi.BoolPtrInput
+	// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+	IpAllowlists pulumi.StringArrayInput
 	// When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 	// results in deletion and recreation of the resource)
 	//
@@ -330,6 +335,8 @@ type RedisDatabaseArgs struct {
 	// Primary region for the database (Only works if region='global'. Can be one of [us-east-1, us-west-1, us-west-2,
 	// eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 	PrimaryRegion pulumi.StringPtrInput
+	// Whether Prod Pack is enabled for the database.
+	ProdPack pulumi.BoolPtrInput
 	// Read regions for the database (Only works if region='global' and primary_region is set. Can be any combination of
 	// [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2], excluding the one
 	// given as primary.)
@@ -337,8 +344,8 @@ type RedisDatabaseArgs struct {
 	// region of the database. Possible values are: "global", "eu-west-1", "us-east-1", "us-west-1", "ap-northeast-1" ,
 	// "eu-central1"
 	Region pulumi.StringInput
-	// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-	// resource)
+	// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+	// disabled.
 	Tls pulumi.BoolPtrInput
 }
 
@@ -434,6 +441,12 @@ func (o RedisDatabaseOutput) AutoScale() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.AutoScale }).(pulumi.BoolPtrOutput)
 }
 
+// Budget for the database (default $20). It is used to limit the cost of the database. If the budget is reached, the
+// database will be throttled until the next month.
+func (o RedisDatabaseOutput) Budget() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.IntPtrOutput { return v.Budget }).(pulumi.IntPtrOutput)
+}
+
 // When enabled, all writes are synchronously persisted to the disk.
 //
 // Deprecated: Consistent option is deprecated.
@@ -506,6 +519,11 @@ func (o RedisDatabaseOutput) Eviction() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Eviction }).(pulumi.BoolPtrOutput)
 }
 
+// Ip CIDR allowlist for the database. If not set, all IPs are allowed to connect to the database.
+func (o RedisDatabaseOutput) IpAllowlists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.StringArrayOutput { return v.IpAllowlists }).(pulumi.StringArrayOutput)
+}
+
 // When enabled, database becomes highly available and is deployed in multiple zones. (If changed to false from true,
 // results in deletion and recreation of the resource)
 //
@@ -528,6 +546,11 @@ func (o RedisDatabaseOutput) Port() pulumi.IntOutput {
 // eu-central-1, eu-west-1, sa-east-1, ap-southeast-1, ap-southeast-2])
 func (o RedisDatabaseOutput) PrimaryRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringPtrOutput { return v.PrimaryRegion }).(pulumi.StringPtrOutput)
+}
+
+// Whether Prod Pack is enabled for the database.
+func (o RedisDatabaseOutput) ProdPack() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.ProdPack }).(pulumi.BoolPtrOutput)
 }
 
 // Rest Token for the database.
@@ -558,8 +581,8 @@ func (o RedisDatabaseOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// When enabled, data is encrypted in transit. (If changed to false from true, results in deletion and recreation of the
-// resource)
+// When enabled, data is encrypted in transit. TLS is enabled by default for newly created databases and cannot be
+// disabled.
 func (o RedisDatabaseOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RedisDatabase) pulumi.BoolPtrOutput { return v.Tls }).(pulumi.BoolPtrOutput)
 }

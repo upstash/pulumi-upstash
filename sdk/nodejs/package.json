@@ -24,7 +24,6 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "upstash",
         "pluginDownloadURL": "github://api.github.com/upstash/pulumi-upstash"
     }
 }
