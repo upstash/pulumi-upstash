@@ -56,7 +56,7 @@ for (let i = 0; i < 5; i++) {
     new upstash.RedisDatabase("mydb" + i, {
         databaseName: "pulumi-ts-db" + i,
         region: "global",
-        primaryRegion: "us-east-1",
+		primaryRegion: "us-east-1",
         tls: true
     })
 }
